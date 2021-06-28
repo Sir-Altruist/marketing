@@ -1,4 +1,5 @@
 import Homepage from './Pages/Homepage.js'
+import ClientLogin from './Pages/ClientLogin'
 
 const routes = [
     {
@@ -6,7 +7,10 @@ const routes = [
         component: Homepage,
         exact: true
     },
-    
+    {
+        path: '/login/client',
+        component: ClientLogin
+    }  
 
 ]
 

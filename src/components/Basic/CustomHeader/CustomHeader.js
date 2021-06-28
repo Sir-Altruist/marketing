@@ -92,7 +92,11 @@ export default function CustomHeader() {
                             </Button>
                         )
                         )}
-                        <Button variant='contained' color='primary' className={classes.login}>Login</Button>
+                        <Button variant='contained' color='primary' className={classes.login}>
+                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                                Log in
+                            </RouterLink>
+                        </Button>
                     </div>
                     </Container>
             </Toolbar>

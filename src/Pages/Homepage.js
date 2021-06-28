@@ -91,7 +91,8 @@ function Homepage({ services, featured, testimonials }) {
     return (
         <>
         <Box component='div' className={classes.root}>
-        <Grid container>
+            <Container>
+            <Grid container>
             <Grid item xs={12} md={7}>
                 <CardMedia image={HomeImg} alt='background' className={classes.image} />
             </Grid>
@@ -105,6 +106,7 @@ function Homepage({ services, featured, testimonials }) {
                 </Typography>
             </Grid>
         </Grid>
+            </Container>
         </Box>
         <Box component='div' className={classes.service}>
         <Typography align='center' variant='h4' className={classes.serviceHead}>Our Services</Typography>
@@ -140,7 +142,7 @@ function Homepage({ services, featured, testimonials }) {
             <Carousel 
             breakPoints={breakPoints}
           >
-                {testimonials.map((testimonial, i) => {
+                {testimonials && testimonials.length && testimonials.map((testimonial, i) => {
                     return (
                         <Grid item key={i}>
                             <TestimonialSection testimonial={testimonial} />
@@ -150,7 +152,6 @@ function Homepage({ services, featured, testimonials }) {
             </Carousel>
             </Container>
         </Grid>
-
         </Box>
         </>
     )
