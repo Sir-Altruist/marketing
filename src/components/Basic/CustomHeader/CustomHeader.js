@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, Button,  Avatar, Container, IconButton, Drawer, Link, MenuItem } from '@material-ui/core';
+import {AppBar, Toolbar, Typography, ButtonBase, Button,  Avatar, Container, IconButton, Drawer, Link, MenuItem } from '@material-ui/core';
 import  MenuIcon  from '@material-ui/icons/Menu';
 import Logo from '../../../assets/home/logo.png';
 import menuItems from './menuItems';
-import {Link as RouterLink } from 'react-router-dom'
+import {Link as RouterLink, useHistory } from 'react-router-dom'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
       color: '#000000',
       fontFamily: "inter"
   },
+  header1: {
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    fontFamily: "inter",
+    paddingTop: '.5rem'
+},
   icon: {
       marginRight: '.5rem'
   },
@@ -27,13 +33,20 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#6056D7',
       textTransform: 'initial'
   },
+  login1: {
+    backgroundColor: '#6056D7',
+    textTransform: 'initial',
+    height: '2rem',
+    marginTop: '.5rem'
+},
   menu: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between'
   },
   logo: {
-      display: 'flex'
+      display: 'flex',
+      cursor: 'pointer'
   },
   mobile: {
       display: 'flex',
@@ -51,6 +64,8 @@ export default function CustomHeader() {
       isOpen: false
   })
   const { mobile, isOpen } = state;
+
+  const history = useHistory()
 
  useEffect(() => {
      const responsive = () => {
@@ -75,24 +90,31 @@ export default function CustomHeader() {
   const desktopView = () => {
     return <Toolbar>
                 <Container className={classes.menu}>
-                    <div className={classes.logo}>
+                    <div className={classes.logo} onClick={() => history.push('/')}>
                         <Avatar src={Logo} alt='logo' className={classes.icon} />
                         <Typography variant='h6' component='h1' className={classes.header}>Lilo Group</Typography>
                     </div>
                     <div>
                         {menuItems.map(({label, path}) => (
-                            <Button
+                            <ButtonBase
                             className={classes.title}
                             {...{
                                 key: label,
                                 to: path,
                                 component: RouterLink
-                            }}>
+                            }}
+                            disableRipple={true}
+                            disableTouchRipple={true}
+                            focusRipple={true}
+                            >
                                 {label}
-                            </Button>
+                            </ButtonBase>
                         )
                         )}
-                        <Button variant='contained' color='primary' className={classes.login}>
+                        <Button 
+                         variant='contained' 
+                         color='primary' 
+                         className={classes.login}>
                             <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
                                 Log in
                             </RouterLink>
@@ -135,9 +157,18 @@ export default function CustomHeader() {
             }}>
                 <div>{getDrawerChoices()}</div>
             </Drawer>
-            <div className={classes.logo}>
+            <Button 
+                         variant='contained' 
+                         color='primary' 
+                         size='small'
+                         className={classes.login1}>
+                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                                Log in
+                            </RouterLink>
+                        </Button>
+            <div className={classes.logo} onClick={() => history.push('/')}>
                 <Avatar src={Logo} alt='logo' className={classes.icon} />
-                <Typography variant='h6' component='h1' className={classes.header}>Lilo Group</Typography>
+                <Typography variant='h6' component='h1' className={classes.header1}>Lilo Group</Typography>
             </div>
             </Container>
         </Toolbar>;
@@ -146,6 +177,7 @@ export default function CustomHeader() {
     const getDrawerChoices = () => {
         return menuItems.map(({label, path}) => {
             return(
+                <>
                 <Link
                 {...{
                     to: path,
@@ -154,10 +186,11 @@ export default function CustomHeader() {
                         textDecoration: 'none'
                     },
                     key: label,
-                    component: RouterLink,
+                    component: RouterLink
                 }}>
                     <MenuItem>{label}</MenuItem>
                 </Link>
+                </>
             )
         })
     }

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#A6A6A6',
         color: '#ffffff',
         textTransform: 'inherit',
-        '&: hover': {
+        '&:hover': {
             backgroundColor: '#A6A6A6'
         }
     },

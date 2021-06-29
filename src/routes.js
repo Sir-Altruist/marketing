@@ -5,6 +5,7 @@ import Client from './Pages/Register/Client'
 import Marketer from './Pages/Register/Marketer'
 import About from './Pages/About'
 import Service from './Pages/Service'
+import Contact from './Pages/Contact'
 
 const routes = [
     {
@@ -19,6 +20,10 @@ const routes = [
     {
         path: '/service',
         component: Service
+    },
+    {
+        path: '/contact',
+        component: Contact
     },
     {
         path: '/login/client',

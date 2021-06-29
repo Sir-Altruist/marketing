@@ -57,6 +57,10 @@ const useStyles = makeStyles({
         paddingTop: '2rem',
         textAlign: 'center'
     },
+    buttons1: {
+        paddingTop: '2rem',
+        display: 'flex'
+    },
     btn: {
         textTransform: 'inherit',
         backgroundColor: '#F6F6F6',
@@ -150,7 +154,7 @@ function MarketerLogin() {
                 <Card className={classes.loginCard}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
-                    <div className={classes.buttons}>
+                    <div className={classes.buttons1}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
@@ -337,7 +341,7 @@ function MarketerLogin() {
                 <Card className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
-                    <div className={classes.buttons}>
+                    <div className={classes.buttons1}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}

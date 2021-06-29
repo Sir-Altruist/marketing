@@ -13,7 +13,7 @@ const menuItems = [
 },
 {
     label: 'Register',
-    path: '/signup'
+    path: '/register/client'
 }
 ]
 

@@ -141,6 +141,8 @@ function Homepage({ services, featured, testimonials }) {
             <Container>
             <Carousel 
             breakPoints={breakPoints}
+            enableAutoPlay={true}
+            autoPlaySpeed={3000}
           >
                 {testimonials && testimonials.length && testimonials.map((testimonial, i) => {
                     return (
