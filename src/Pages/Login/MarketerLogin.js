@@ -6,7 +6,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
 import CustomInput from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import ShowIcon from '@material-ui/icons/Visibility'
 import ShowOffIcon from '@material-ui/icons/VisibilityOff'
 
@@ -106,7 +106,7 @@ const ColorButton = withStyles((theme) => ({
     },
   }))(Button);
 
-function ClientLogin() {
+function MarketerLogin() {
     const classes = useStyles()
 
     const[checked, setChecked] = useState(false)
@@ -141,6 +141,7 @@ function ClientLogin() {
     const changeVisibility = () => {
         setVisible(!visible)
     }
+
     const history = useHistory()
     const location = useLocation()
     return (
@@ -227,7 +228,7 @@ function ClientLogin() {
                                </div>
                                <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
                                    Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
+                                <Link to='/register/marketer'> Register Here</Link> 
                                    </Typography>
                            </form>
                            </Container>
@@ -320,7 +321,7 @@ function ClientLogin() {
                                </div>
                                <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
                                    Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
+                                <Link to='/register/marketer'> Register Here</Link> 
                                    </Typography>
                            </form>
                            </Container>
@@ -346,12 +347,12 @@ function ClientLogin() {
                         disableElevation
                         onClick={() => history.push('/login/client')}
                         >
-                            Client
+                            Client 
                         </Button>
                         <Button
                         variant='contained'
-                        className={location.pathname === '/login/client' ? classes.active : classes.btn}
-                        className={classes.btn}
+                        startIcon={<BusinessIcon className={classes.icon}  />}
+                        className={location.pathname === '/login/marketer' ? classes.active : classes.btn}
                         style={{marginLeft: '2rem'}}
                         disableRipple
                         disableElevation
@@ -414,7 +415,7 @@ function ClientLogin() {
                                </div>
                                <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
                                    Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
+                                <Link to='/register/marketer'> Register Here</Link> 
                                    </Typography>
                            </form>
                            </Container>
@@ -427,4 +428,4 @@ function ClientLogin() {
     )
 }
 
-export default ClientLogin
+export default MarketerLogin

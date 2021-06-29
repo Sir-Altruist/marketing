@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         flexGrow: 1,
         backgroundColor: '#C4C4C41A',
         width: '100%',
-        minHeight: '110vh',
+        minHeight: '150vh',
         position: 'relative'
     },
     loginCard: {
@@ -106,7 +106,7 @@ const ColorButton = withStyles((theme) => ({
     },
   }))(Button);
 
-function ClientLogin() {
+function Marketer() {
     const classes = useStyles()
 
     const[checked, setChecked] = useState(false)
@@ -116,7 +116,9 @@ function ClientLogin() {
 
     const [values, setValues] = useState({
         username: '',
+        email: '',
         password: '',
+        confirm: ''
     })
     const onSubmit = input => e => {
         e.preventDefault()
@@ -131,8 +133,17 @@ function ClientLogin() {
         if(!values.username) {
             errors.username = 'Username is required'
         }
+        if(!values.email){
+            errors.email = 'Email is required'
+        }
         if(!values.password){
             errors.password = 'Password is required'
+        }
+        if(!values.confirm){
+            errors.confirm = 'This field is required'
+        }
+        if(values.password !== values.confirm){
+            errors.confirm = 'Passwords do not match'
         }
         return errors;
     }
@@ -148,27 +159,27 @@ function ClientLogin() {
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
                 <Card className={classes.loginCard}>
                     <Container>
-                    <Typography variant='h3' className={classes.headText}>Login as</Typography>
+                    <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
-                        className={location.pathname === '/login/client' ? classes.active : classes.btn}
+                        className={location.pathname === '/register/client' ? classes.active : classes.btn}
                         style={{marginRight: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/client')}
+                        onClick={() => history.push('/register/client')}
                         >
                             Client
                         </Button>
                         <Button
                         variant='contained'
                         startIcon={<BusinessIcon className={classes.icon}  />}
-                        className={location.pathname === '/login/marketer' ? classes.active : classes.btn}
+                        className={location.pathname === '/register/marketer' ? classes.active : classes.btn}
                         style={{marginLeft: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/marketer')}
+                        onClick={() => history.push('/register/marketer')}
                         >
                             Marketer
                         </Button>
@@ -181,12 +192,23 @@ function ClientLogin() {
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 
                                     component={CustomInput}
                                     type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Email</label>
+                                    <br />
+                                    <Field 
+                                    name="email" 
+                                    component={CustomInput}
+                                    type='email'
                                     required
                                     className={classes.field} 
                                     />
@@ -207,6 +229,17 @@ function ClientLogin() {
                                         <ShowOffIcon  onClick={changeVisibility}/>} */}
                                     {/* </div> */}
                                 </div>
+                                <div>
+                                    <label>Re-Password</label>
+                                    <br />
+                                <Field 
+                                    name="confirm" 
+                                    component={CustomInput}
+                                    type={visible ? 'text' : 'password'}
+                                    required
+                                    className={classes.field}
+                                    />
+                                </div>
                                <div className={classes.check}>
                                <Checkbox
                                     checked={checked}
@@ -214,7 +247,10 @@ function ClientLogin() {
                                     color='primary'
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 />
-                                <Typography variant='body2' style={{ paddingTop: '.7rem'}}>Forgotten Paswword?</Typography>
+                                 <Typography variant='body2' style={{ padding: '1rem 0'}}>
+                                    By creating an account, you agree to <br />
+                                    <Link to='#'> Conditions of Use</Link> and <Link to='#'>Privacy Notice</Link>
+                                </Typography>
                                </div>
                                <div style={{ textAlign: 'center'}}>
                                <ColorButton variant='contained' 
@@ -222,13 +258,9 @@ function ClientLogin() {
                                className={classes.loginBtn} 
                                type='submit' 
                                >
-                                   Login
+                                   Register
                                 </ColorButton>
                                </div>
-                               <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
-                                   Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
-                                   </Typography>
                            </form>
                            </Container>
                        )} /> 
@@ -241,27 +273,27 @@ function ClientLogin() {
         <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card className={classes.loginCardS}>
                     <Container>
-                    <Typography variant='h3' className={classes.headText}>Login as</Typography>
+                    <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
-                        className={location.pathname === '/login/client' ? classes.active : classes.btn}
+                        className={location.pathname === '/register/client' ? classes.active : classes.btn}
                         style={{marginRight: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/client')}
+                        onClick={() => history.push('/register/client')}
                         >
                             Client
                         </Button>
                         <Button
                         variant='contained'
                         startIcon={<BusinessIcon className={classes.icon}  />}
-                        className={location.pathname === '/login/marketer' ? classes.active : classes.btn}
+                        className={location.pathname === '/register/marketer' ? classes.active : classes.btn}
                         style={{marginLeft: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/marketer')}
+                        onClick={() => history.push('/register/marketer')}
                         >
                             Marketer
                         </Button>
@@ -307,7 +339,10 @@ function ClientLogin() {
                                     color='primary'
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 />
-                                <Typography variant='body2' style={{ paddingTop: '.7rem'}}>Forgotten Paswword?</Typography>
+                                 <Typography variant='body2' style={{ paddingTop: '.7rem'}}>
+                                    By creating an account, you agree to <br />
+                                    <Link to='#'> Conditions of Use</Link> and <Link to='#'>Privacy Notice</Link>
+                                </Typography>
                                </div>
                                <div style={{ textAlign: 'center'}}>
                                <ColorButton variant='contained' 
@@ -315,13 +350,9 @@ function ClientLogin() {
                                className={classes.loginBtn} 
                                type='submit' 
                                >
-                                   Login
+                                   Register
                                 </ColorButton>
                                </div>
-                               <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
-                                   Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
-                                   </Typography>
                            </form>
                            </Container>
                        )} /> 
@@ -335,27 +366,27 @@ function ClientLogin() {
         <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card className={classes.loginCardXs}>
                     <Container>
-                    <Typography variant='h3' className={classes.headText}>Login as</Typography>
+                    <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
-                        className={location.pathname === '/login/client' ? classes.active : classes.btn}
+                        className={location.pathname === '/register/client' ? classes.active : classes.btn}
                         style={{marginRight: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/client')}
+                        onClick={() => history.push('/register/client')}
                         >
                             Client
                         </Button>
                         <Button
                         variant='contained'
-                        className={location.pathname === '/login/client' ? classes.active : classes.btn}
-                        className={classes.btn}
+                        startIcon={<BusinessIcon className={classes.icon}  />}
+                        className={location.pathname === '/register/marketer' ? classes.active : classes.btn}
                         style={{marginLeft: '2rem'}}
                         disableRipple
                         disableElevation
-                        onClick={() => history.push('/login/marketer')}
+                        onClick={() => history.push('/register/marketer')}
                         >
                             Marketer
                         </Button>
@@ -401,7 +432,10 @@ function ClientLogin() {
                                     color='primary'
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 />
-                                <Typography variant='body2' style={{ paddingTop: '.7rem'}}>Forgotten Paswword?</Typography>
+                                <Typography variant='body2' style={{ paddingTop: '.7rem'}}>
+                                    By creating an account, you agree to <br />
+                                    <Link to='#'> Conditions of Use</Link> and <Link to='#'>Privacy Notice</Link>
+                                </Typography>
                                </div>
                                <div style={{ textAlign: 'center'}}>
                                <ColorButton variant='contained' 
@@ -409,13 +443,9 @@ function ClientLogin() {
                                className={classes.loginBtn} 
                                type='submit' 
                                >
-                                   Login
+                                   Register
                                 </ColorButton>
                                </div>
-                               <Typography variant='body2' align='center' style={{paddingTop: '1rem'}}>
-                                   Do not have either account?
-                                <Link to='/register/client'> Register Here</Link> 
-                                   </Typography>
                            </form>
                            </Container>
                        )} /> 
@@ -427,4 +457,4 @@ function ClientLogin() {
     )
 }
 
-export default ClientLogin
+export default Marketer
