@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Card, Box, Typography, Button, Checkbox, FormGroup, FormControlLabel } from '@material-ui/core'
+import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -7,8 +7,6 @@ import { Form, Field } from 'react-final-form';
 import CustomInput from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import ShowIcon from '@material-ui/icons/Visibility'
-import ShowOffIcon from '@material-ui/icons/VisibilityOff'
 
 const useStyles = makeStyles({
     root: {
@@ -65,7 +63,6 @@ const useStyles = makeStyles({
         textTransform: 'inherit',
         backgroundColor: '#F6F6F6',
         fontWeight: 'bold'
-        // border: '1px solid #6056D7'
     },
     icon: {
         color: '#6056D7'
@@ -152,10 +149,6 @@ function Marketer() {
         return errors;
     }
     
-    const [visible, setVisible] = useState(false)
-    const changeVisibility = () => {
-        setVisible(!visible)
-    }
     const history = useHistory()
     const location = useLocation()
     return (
@@ -220,18 +213,13 @@ function Marketer() {
                                <div>
                                     <label>Password</label>
                                     <br />
-                                    {/* <div className={classes.toggleParent}> */}
                                     <Field 
                                     name="password" 
                                     component={CustomInput}
-                                    type={visible ? 'text' : 'password'}
+                                    type='password'
                                     required
                                     className={classes.field}
                                     />
-                                    {/* {visible ? 
-                                        <ShowIcon  onClick={changeVisibility} /> : 
-                                        <ShowOffIcon  onClick={changeVisibility}/>} */}
-                                    {/* </div> */}
                                 </div>
                                 <div>
                                     <label>Re-Password</label>
@@ -239,7 +227,7 @@ function Marketer() {
                                 <Field 
                                     name="confirm" 
                                     component={CustomInput}
-                                    type={visible ? 'text' : 'password'}
+                                    type='password'
                                     required
                                     className={classes.field}
                                     />
@@ -323,18 +311,13 @@ function Marketer() {
                                <div>
                                     <label>Password</label>
                                     <br />
-                                    {/* <div className={classes.toggleParent}> */}
                                     <Field 
                                     name="password" 
                                     component={CustomInput}
-                                    type={visible ? 'text' : 'password'}
+                                    type='password'
                                     required
                                     className={classes.field}
                                     />
-                                    {/* {visible ? 
-                                        <ShowIcon  onClick={changeVisibility} /> : 
-                                        <ShowOffIcon  onClick={changeVisibility}/>} */}
-                                    {/* </div> */}
                                 </div>
                                <div className={classes.check}>
                                <Checkbox
@@ -416,18 +399,13 @@ function Marketer() {
                                <div>
                                     <label>Password</label>
                                     <br />
-                                    {/* <div className={classes.toggleParent}> */}
                                     <Field 
                                     name="password" 
                                     component={CustomInput}
-                                    type={visible ? 'text' : 'password'}
+                                    type='password'
                                     required
                                     className={classes.field}
                                     />
-                                    {/* {visible ? 
-                                        <ShowIcon  onClick={changeVisibility} /> : 
-                                        <ShowOffIcon  onClick={changeVisibility}/>} */}
-                                    {/* </div> */}
                                 </div>
                                <div className={classes.check}>
                                <Checkbox

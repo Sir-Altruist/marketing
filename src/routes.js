@@ -7,6 +7,7 @@ import About from './Pages/About'
 import Service from './Pages/Service'
 import Contact from './Pages/Contact'
 
+
 const routes = [
     {
         path: '/',
