@@ -1,19 +1,19 @@
 const menuItems = [
   {
-      label: 'Our Service',
-      path: '/service'
+      label: 'Prodcuts',
+      path: '/product'
   },
   {
+    label: 'Pricing',
+    path: '/pricing'
+},
+{
     label: 'About Us',
     path: '/about'
 },
 {
-    label: 'Contact Us',
-    path: '/contact'
-},
-{
-    label: 'Register',
-    path: '/register/client'
+    label: 'Service',
+    path: '/service'
 }
 ]
 

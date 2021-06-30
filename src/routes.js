@@ -1,4 +1,4 @@
-import Homepage from './Pages/Homepage.js'
+import Homepage2 from './Pages/Homepage2.js'
 import ClientLogin from './Pages/Login/ClientLogin'
 import MarketerLogin from './Pages/Login/MarketerLogin'
 import Client from './Pages/Register/Client'
@@ -11,7 +11,7 @@ import Contact from './Pages/Contact'
 const routes = [
     {
         path: '/',
-        component: Homepage,
+        component: Homepage2,
         exact: true
     },
     {
