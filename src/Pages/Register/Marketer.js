@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
+// import { Select } from 'material-ui-react-final-form'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import CustomInput from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInput, CategoryInput } from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
         flexGrow: 1,
         backgroundColor: '#C4C4C41A',
         width: '100%',
-        minHeight: '150vh',
+        minHeight: '180vh',
         position: 'relative'
     },
     loginCard: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
         left: '30%',
         right: '30%',
         width: '40%',
-        minHeight: '80%',
+        minHeight: '85%',
         borderRadius: '5%'
     },
     loginCardS: {
@@ -87,13 +88,16 @@ const useStyles = makeStyles({
     },
     loginBtn: {
         width: '15rem',
-        margin: '1rem 0 0 0'
+        margin: '1rem 0 2rem 0'
     },
     active: {
         border: '1px solid #6056D7',
         textTransform: 'inherit',
         backgroundColor: '#F6F6F6',
         fontWeight: 'bold'
+    },
+    category: {
+        width: '100%'
     }
 })
 
@@ -115,19 +119,15 @@ function Marketer() {
         setChecked(e.target.checked)
     }
 
-    const [values, setValues] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirm: ''
-    })
-    const onSubmit = input => e => {
-        e.preventDefault()
-        setValues({
-            [input]: e.target.value
-        })
-            console.log(values)
-    }
+    const onSubmit = async (values)  => {
+        try {
+            await console.log(values)
+            history.push('/login/marketer')
+        }
+        catch (e) {
+            console.log(error => error)
+        }
+    };
 
     const validate = values => {
         const errors = {}
@@ -136,6 +136,9 @@ function Marketer() {
         }
         if(!values.email){
             errors.email = 'Email is required'
+        }
+        if(!values.category){
+            errors.category = 'Category is required'
         }
         if(!values.password){
             errors.password = 'Password is required'
@@ -189,14 +192,14 @@ function Marketer() {
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
                                <div>
-                                    <label>Username</label>
+                                    <label>Marketer Name</label>
                                     <br />
                                     <Field 
                                     name="username" 
                                     component={CustomInput}
                                     type='text'
                                     required
-                                    className={classes.field} 
+                                    className={classes.field}
                                     />
                                 </div>
                                 <div>
@@ -207,7 +210,27 @@ function Marketer() {
                                     component={CustomInput}
                                     type='email'
                                     required
-                                    className={classes.field} 
+                                    className={classes.field}
+                                    />
+                                </div>
+                                <div>
+                                    <label>Website (if any)</label>
+                                    <br />
+                                    <Field 
+                                    name="website" 
+                                    component={CustomInput}
+                                    type='text'
+                                    className={classes.field}
+                                    />
+                                </div>
+                                <div>
+                                    <label>Category</label>
+                                    <br />
+                                    <Field 
+                                    name="category" 
+                                    component={CategoryInput}
+                                    type='select'
+                                    className={classes.field}
                                     />
                                 </div>
                                <div>
@@ -215,8 +238,7 @@ function Marketer() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -226,8 +248,7 @@ function Marketer() {
                                     <br />
                                 <Field 
                                     name="confirm" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -248,7 +269,7 @@ function Marketer() {
                                <ColorButton variant='contained' 
                                color='primary' 
                                className={classes.loginBtn} 
-                               type='submit' 
+                               type='submit'
                                >
                                    Register
                                 </ColorButton>
@@ -291,14 +312,14 @@ function Marketer() {
                         </Button>
                     </div>
                     <div>
-                       <Form
+                    <Form
                        onSubmit={onSubmit}
                        validate={validate}
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Marketer Name</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -308,13 +329,53 @@ function Marketer() {
                                     className={classes.field} 
                                     />
                                 </div>
+                                <div>
+                                    <label>Email</label>
+                                    <br />
+                                    <Field 
+                                    name="email" 
+                                    component={CustomInput}
+                                    type='email'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Website (if any)</label>
+                                    <br />
+                                    <Field 
+                                    name="website" 
+                                    component={CustomInput}
+                                    type='text'
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Category</label>
+                                    <br />
+                                    <Field 
+                                    name="category" 
+                                    component={CategoryInput}
+                                    type='select'
+                                    className={classes.field}
+                                    />
+                                </div>
                                <div>
                                     <label>Password</label>
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
+                                    required
+                                    className={classes.field}
+                                    />
+                                </div>
+                                <div>
+                                    <label>Re-Password</label>
+                                    <br />
+                                <Field 
+                                    name="confirm" 
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -326,7 +387,7 @@ function Marketer() {
                                     color='primary'
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 />
-                                 <Typography variant='body2' style={{ paddingTop: '.7rem'}}>
+                                 <Typography variant='body2' style={{ padding: '1rem 0'}}>
                                     By creating an account, you agree to <br />
                                     <Link to='#'> Conditions of Use</Link> and <Link to='#'>Privacy Notice</Link>
                                 </Typography>
@@ -354,7 +415,7 @@ function Marketer() {
                 <Card className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Register as</Typography>
-                    <div className={classes.buttons1}>
+                    <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
@@ -379,14 +440,14 @@ function Marketer() {
                         </Button>
                     </div>
                     <div>
-                       <Form
+                    <Form
                        onSubmit={onSubmit}
                        validate={validate}
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Marketer Name</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -396,13 +457,53 @@ function Marketer() {
                                     className={classes.field} 
                                     />
                                 </div>
+                                <div>
+                                    <label>Email</label>
+                                    <br />
+                                    <Field 
+                                    name="email" 
+                                    component={CustomInput}
+                                    type='email'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Website (if any)</label>
+                                    <br />
+                                    <Field 
+                                    name="website" 
+                                    component={CustomInput}
+                                    type='text'
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Category</label>
+                                    <br />
+                                    <Field 
+                                    name="category" 
+                                    component={CategoryInput}
+                                    type='select'
+                                    className={classes.field}
+                                    />
+                                </div>
                                <div>
                                     <label>Password</label>
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
+                                    required
+                                    className={classes.field}
+                                    />
+                                </div>
+                                <div>
+                                    <label>Re-Password</label>
+                                    <br />
+                                <Field 
+                                    name="confirm" 
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -414,7 +515,7 @@ function Marketer() {
                                     color='primary'
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 />
-                                <Typography variant='body2' style={{ paddingTop: '.7rem'}}>
+                                 <Typography variant='body2' style={{ padding: '1rem 0'}}>
                                     By creating an account, you agree to <br />
                                     <Link to='#'> Conditions of Use</Link> and <Link to='#'>Privacy Notice</Link>
                                 </Typography>

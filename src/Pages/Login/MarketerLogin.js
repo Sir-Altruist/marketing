@@ -4,7 +4,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import CustomInput from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInput} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
@@ -147,7 +147,7 @@ function MarketerLogin() {
                 <Card className={classes.loginCard}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
-                    <div className={classes.buttons1}>
+                    <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
@@ -194,8 +194,7 @@ function MarketerLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -282,8 +281,7 @@ function MarketerLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -325,7 +323,7 @@ function MarketerLogin() {
                 <Card className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
-                    <div className={classes.buttons1}>
+                    <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
@@ -372,7 +370,7 @@ function MarketerLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
+                                    component={PasswordInput}
                                     type='password'
                                     required
                                     className={classes.field}

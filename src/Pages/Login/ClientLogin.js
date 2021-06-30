@@ -4,7 +4,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import CustomInput from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInput} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
@@ -55,10 +55,6 @@ const useStyles = makeStyles({
     buttons: {
         paddingTop: '2rem',
         textAlign: 'center'
-    },
-    buttons1: {
-        paddingTop: '2rem',
-        display: 'flex'
     },
     btn: {
         textTransform: 'inherit',
@@ -116,17 +112,16 @@ function ClientLogin() {
         setChecked(e.target.checked)
     }
 
-    const [values, setValues] = useState({
-        username: '',
-        password: '',
-    })
-    const onSubmit = input => e => {
-        e.preventDefault()
-        setValues({
-            [input]: e.target.value
-        })
-            console.log(values)
-    }
+ 
+    const onSubmit = async (values)  => {
+        try {
+            await console.log(values)
+            history.push('/login/client')
+        }
+        catch (e) {
+
+        }
+    };
 
     const validate = values => {
         const errors = {}
@@ -195,8 +190,7 @@ function ClientLogin() {
                                 
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -283,8 +277,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
@@ -325,7 +318,7 @@ function ClientLogin() {
                 <Card className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
-                    <div className={classes.buttons1}>
+                    <div className={classes.buttons}>
                         <Button
                         variant='contained'
                         startIcon={<PersonIcon className={classes.icon}  />}
@@ -371,8 +364,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={CustomInput}
-                                    type='password'
+                                    component={PasswordInput}
                                     required
                                     className={classes.field}
                                     />
