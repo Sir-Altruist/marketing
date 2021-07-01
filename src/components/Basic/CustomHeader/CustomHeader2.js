@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#000000'
   },
   menuLink: {
-      paddingRight: '2rem'
+      paddingRight: '2rem',
+      textDecoration: 'none',
+      cursor: 'pointer'
   },
   login: {
       backgroundColor: '#6056D7',
@@ -108,12 +110,12 @@ export default function CustomHeader2() {
                         )}
                         </div>
                         <div>
-                        <Link to='/login/client' className={classes.menuLink}> Sign Up </Link>
+                        <RouterLink to='/register/client' className={classes.menuLink}> Sign Up </RouterLink>
                         <Button 
                          variant='contained' 
                          color='primary' 
                          className={classes.login}>
-                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                            <RouterLink to='#' style={{ textDecoration: 'none', color: '#ffffff'}}>
                                 Join Us
                             </RouterLink>
                         </Button>

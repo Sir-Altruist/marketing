@@ -1,7 +1,5 @@
-.left {
+.leftSide {
     width: 100%;
-    min-height: 100vh;
-    background-image: linear-gradient(rgba(90, 76, 238, 0.3)), url('./assets/home/bg-home.png');
-    background-size: cover;
-    background-position: center,
+    height: 100vh;
+    background-color: '#000000';
 }

@@ -1,11 +1,11 @@
 const menuItems = [
   {
       label: 'Prodcuts',
-      path: '/product'
+      path: '/#'
   },
   {
     label: 'Pricing',
-    path: '/pricing'
+    path: '/#'
 },
 {
     label: 'About Us',
