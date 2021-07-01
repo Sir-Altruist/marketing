@@ -50,6 +50,12 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between'
+  },
+  menuLink2: {
+      paddingTop: '.7rem',
+      paddingLeft: '1rem',
+      textDecoration: 'none',
+      cursor: 'pointer'
   }
 
 }));
@@ -139,7 +145,7 @@ export default function CustomHeader2() {
             <IconButton
             {...{
                 edge: 'start',
-                color: 'inherit',
+                color: 'black',
                 "aria-label": 'menu',
                 "aria-haspopup": "true",
                 "@media (max-width: 900px)": {
@@ -162,13 +168,13 @@ export default function CustomHeader2() {
                          color='primary' 
                          size='small'
                          className={classes.login1}>
-                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
-                                Log in
+                            <RouterLink to='#' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                                Join Us
                             </RouterLink>
                         </Button>
+                        <RouterLink to='/register/client' className={classes.menuLink2}> Sign Up </RouterLink>
             <div className={classes.logo} onClick={() => history.push('/')}>
-                <Avatar src={Logo} alt='logo' className={classes.icon} />
-                <Typography variant='h6' component='h1' className={classes.header1}>Lilo Group</Typography>
+                <img src={Logo} alt='logo' className={classes.icon} />
             </div>
             </Container>
         </Toolbar>;

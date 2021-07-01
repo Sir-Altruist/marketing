@@ -7,6 +7,8 @@ import choose from './choose'
 import products from './product'
 import affiliate from './affiliate'
 import buyer from './buyer'
+import image from './image'
+
 
 export default combineReducers({
     services,
@@ -16,5 +18,6 @@ export default combineReducers({
     choose,
     products,
     affiliate,
-    buyer
+    buyer,
+    image
 });

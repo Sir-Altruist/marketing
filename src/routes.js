@@ -6,6 +6,8 @@ import Marketer from './Pages/Register/Marketer'
 import About from './Pages/About'
 import Service from './Pages/Service'
 import Contact from './Pages/Contact'
+import Products from './Pages/Products'
+
 
 
 const routes = [
@@ -21,6 +23,10 @@ const routes = [
     {
         path: '/service',
         component: Service
+    },
+    {
+        path:'/products',
+        component: Products
     },
     {
         path: '/contact',

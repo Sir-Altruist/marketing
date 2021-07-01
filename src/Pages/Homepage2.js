@@ -158,7 +158,6 @@ function Homepage2({choose, products, affiliate, buyer}) {
             <div className={classes.rightSide}>
                 <img src={Chart} alt='chart' className={classes.image} />
             </div>
-            <div></div>
         </Box>
         <Box component='div' className={classes.choose}>
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Choose Us</Typography>
