@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, ButtonBase, Button,  Avatar, Container, IconButton, Drawer, Link, MenuItem } from '@material-ui/core';
+import {AppBar, Toolbar, ButtonBase, Button,  Container, IconButton, Drawer, Link, MenuItem } from '@material-ui/core';
 import  MenuIcon  from '@material-ui/icons/Menu';
 import Logo from '../../../assets/icons/logo.svg';
 import menuItems from './menuItems';

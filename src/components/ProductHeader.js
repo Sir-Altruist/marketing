@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography, Container, Divider, Button, Grid, TextField, Avatar } from '@material-ui/core'
+import { Typography, Container, Button, Grid, TextField, Avatar } from '@material-ui/core'
 import Logo from '../assets/icons/logo.svg'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined'
@@ -70,8 +70,7 @@ function ProductHeader() {
                         </form>
                         {/* <Divider className={classes.divider} orientation='vertical' /> */}
                     </Grid>
-                    <Grid item xs={4} md={0}></Grid>
-                    <Grid item xs={8} md={3}>
+                    <Grid item xs={12} md={3}>
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                             <TextsmsIcon style={{paddingTop: '.5rem'}} />
                             <ShoppingCartIcon style={{paddingTop: '.5rem'}} />

@@ -8,6 +8,7 @@ import products from './product'
 import affiliate from './affiliate'
 import buyer from './buyer'
 import image from './image'
+import snap from './snapScroll'
 
 
 export default combineReducers({
@@ -19,5 +20,6 @@ export default combineReducers({
     products,
     affiliate,
     buyer,
-    image
+    image,
+    snap
 });

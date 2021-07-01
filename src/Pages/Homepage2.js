@@ -9,6 +9,7 @@ import Carousel from 'react-elastic-carousel'
 import Product from '../components/Homepage2/Product'
 import AffiliateImg from '../assets/icons/affiliate2.png'
 import Affiliate from '../components/Homepage2/Affiliate'
+import Snap from '../components/Homepage2/Snap'
 import Buyer from '../components/Homepage2/Buyer'
 import BuyerImg from '../assets/home/buyer2.png'
 
@@ -35,10 +36,13 @@ const useStyles = makeStyles({
     rightSide: {
         marginTop: '10rem',
         position: 'absolute',
-        right: '2rem'
+        left: '40rem',
+        "@media (max-width: 900px)": {
+            left: 0
+          },
     },
     image: {
-       width: '95%',
+       width: '100%',
        height: '27rem'
     },
     choose: {
@@ -62,6 +66,9 @@ const useStyles = makeStyles({
     buyerList: {
         width: '90%',
     marginLeft: '5rem'    
+},
+buyerList1: {
+    width: '90%',    
 },
 bgText: {
     padding: '13rem 0 0 4rem',
@@ -133,11 +140,11 @@ const breakPoints = [
     }
 ]
 
-function Homepage2({choose, products, affiliate, buyer}) {
+function Homepage2({choose, products, affiliate, buyer, snap}) {
     const classes = useStyles()
     return (
         <>
-        <Box component='div' className={classes.root}>
+        <Box  component='div'  className={classes.root}>
             <div className={classes.leftSide}>
                 <Container className={classes.bgText}>
                 <Typography variant='h5' style={{ fontWeight: 'bold'}}>
@@ -160,12 +167,12 @@ function Homepage2({choose, products, affiliate, buyer}) {
             </div>
         </Box>
         <Box component='div' className={classes.choose}>
+            <Container>
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Choose Us</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
                 We provide many benefits for users, therefore you should find out now why <br /> you choose us. 
                 Of course we have many best services for you
             </Typography>
-            <Container>
                 <Grid container>
                     {choose.map((single, i) => {
                         return (
@@ -178,13 +185,13 @@ function Homepage2({choose, products, affiliate, buyer}) {
             </Container>
         </Box>
         <Box component='div' className={classes.product}>
+            <Container>
         <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Our Products</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
             We prepare the highest quality products for customers. <br />
             We strive to continuously improve the quantity and the best quality in the field
         </Typography>
         <Grid container>
-        <Container>
         <Carousel 
             breakPoints={breakPoints}
           >
@@ -197,16 +204,16 @@ function Homepage2({choose, products, affiliate, buyer}) {
                     )
                 })}
             </Carousel>
-            </Container>
             </Grid>
+            </Container>
         </Box>
         <Box component='div' className={classes.affiliate}>
+            <Container>
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become Affiliate <br /> With Us</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-            <Container>
                 <Grid container style={{ marginTop: '5rem'}}>
                 <Grid item xs={12} md={6}>
                     <List className={classes.affiliateList}>
@@ -223,16 +230,16 @@ function Homepage2({choose, products, affiliate, buyer}) {
                 </Grid>
             </Container>
         </Box>
-        <Box component='div' className={classes.affiliate}>
+        <Box component='div' display={{ xs: 'none', md: 'block' }} m={1} className={classes.affiliate}>
+            <Container>
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become A Buyer <br /> With Us</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-            <Container>
                 <Grid container style={{ marginTop: '5rem'}}>
                       <Grid item xs={12} md={6}>
-                        <img src={BuyerImg} alt='buyer' style={{ width: '100%'}} />
+                        <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <List className={classes.buyerList}>
@@ -246,12 +253,51 @@ function Homepage2({choose, products, affiliate, buyer}) {
                 </Grid>
             </Container>
         </Box>
+        <Box component='div' display={{ xs: 'block', md: 'none' }} m={1} className={classes.affiliate}>
+            <Container>
+            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become A Buyer <br /> With Us</Typography>
+            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
+            We invite you to join the Affiliate Program to get many benefits. 
+            Now find out <br /> what are your advantages by joining us
+            </Typography>
+                <Grid container style={{ marginTop: '5rem'}}>
+                      <Grid item xs={12} md={6}>
+                        <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <List className={classes.buyerList1}>
+                    {buyer.map((single, i) => {
+                        return ( 
+                           <Buyer single={single} key={i}  />
+                        )
+                    })}
+                    </List>
+                    </Grid>
+                </Grid>
+            </Container>
+        </Box>
         <Box component='div' className={classes.affiliate}>
+            <Container>
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Testimonials</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
+            <Grid container>
+        <Carousel 
+            breakPoints={breakPoints}
+          >
+
+              {snap.map((single, i) => {
+                    return (
+                        <Grid item key={i}>
+                            <Snap single={single} />
+                        </Grid>
+                    )
+                })}
+            </Carousel>
+            </Grid>
+            </Container>
         </Box>
         <Box component='div' className={classes.join}>
         <Typography variant='h5' align='center' style={{fontWeight: 'bold'}}>
@@ -273,7 +319,8 @@ const mapStateToProps = state => {
         choose: state.choose.data,
         products: state.products.data,
         affiliate: state.affiliate.data,
-        buyer: state.buyer.data
+        buyer: state.buyer.data,
+        snap: state.snap.data
     }
 }
 
