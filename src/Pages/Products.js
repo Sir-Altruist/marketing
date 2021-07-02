@@ -26,10 +26,25 @@ const useStyles = makeStyles({
         borderRadius: '5%',
         marginTop: '3rem',
     },
+    single: {
+        marginTop: '3rem',
+        "@media (max-width: 900px)": {
+            width: '50%',
+            margin: '2rem auto'
+            },
+    },
     product: {
         width: '100%',
         minHeight: '100vh',
         paddingTop: '5rem'
+    },
+    card: {
+        width: '60%',
+        marginTop: '2rem',
+        "@media (max-width: 900px)": {
+          width: '80%',
+          margin: '2rem auto'
+          },
     }
 })
 function Products({ image, products }) {
@@ -120,7 +135,7 @@ function Products({ image, products }) {
                         Storage: 256GB NVMe PCIe SSD<br />
                         Keyboard: Backlit Keyboard (Single Color, White)
                         </Typography>
-                        <Card style={{ width: '60%', marginTop: '2rem'}} data-aos="fade-right">
+                        <Card className={classes.card}  data-aos="fade-right">
                             <Container style={{ textAlign: 'center'}}>
                             <CardContent>
                                 <Typography variant='body1' style={{ paddingTop: '1rem', fontWeight: 'bold'}}>
@@ -182,7 +197,7 @@ function Products({ image, products }) {
                         <Grid container data-aos="fade-left" data-aos-delay="700">
                         {image.map((single, i) => {
                             return (
-                                <Grid item xs={12} md={4}  key={i} style={{marginTop: '3rem'}} spacing={3}>
+                                <Grid item xs={12} md={4}  key={i} className={classes.single} spacing={3}>
                                 <Stock single={single} />
                                 </Grid>
                             )
