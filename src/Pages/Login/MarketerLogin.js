@@ -116,17 +116,16 @@ function MarketerLogin() {
         setChecked(e.target.checked)
     }
 
-    const [values, setValues] = useState({
-        username: '',
-        password: '',
-    })
-    const onSubmit = input => e => {
-        e.preventDefault()
-        setValues({
-            [input]: e.target.value
-        })
+  
+    const onSubmit = (values)  => {
+        try {
             console.log(values)
-    }
+            history.push('/login/client')
+        }
+        catch (e) {
+
+        }
+    };
 
     const validate = values => {
         const errors = {}
@@ -144,7 +143,7 @@ function MarketerLogin() {
     return (
     <>
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
-                <Card className={classes.loginCard}>
+                <Card className={classes.loginCard} data-aos="fade-right" data-aos-delay='700'>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
                     <div className={classes.buttons}>
@@ -230,8 +229,8 @@ function MarketerLogin() {
         </Box>
 
         {/* small screen */}
-        <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
-                <Card className={classes.loginCardS}>
+        <Box component='div'  display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
+                <Card className={classes.loginCardS} data-aos="fade-right" data-aos-delay='700'>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
                     <div className={classes.buttons}>
@@ -320,7 +319,7 @@ function MarketerLogin() {
 
         {/* Extra small screen */}
         <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
-                <Card className={classes.loginCardXs}>
+                <Card data-aos="fade-right" data-aos-delay='700' className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
                     <div className={classes.buttons}>

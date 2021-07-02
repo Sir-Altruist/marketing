@@ -31,7 +31,16 @@ const useStyles = makeStyles({
          minHeight: "100vh",
          borderBottomRightRadius: '10%',
          position: 'relative',
-         color: '#ffffff'
+         color: '#ffffff',
+         "@media (max-width: 900px)": {
+            background: `linear-gradient(rgba(90, 76, 238, 0.3), rgba(90, 76, 238, 0.3)), url(${Background})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            minHeight: "100vh",
+            borderBottomRightRadius: 0,
+            position: 'relative',
+          },
     },
     rightSide: {
         marginTop: '10rem',
@@ -79,17 +88,25 @@ tag: {
     color: '#6056D7'
 },
 buttons: {
-    marginTop: '5rem'
+    marginTop: '5rem',
+    "@media (max-width: 900px)": {
+        margin: '13rem 0 3rem 0',
+        zIndex: 1
+      },
+
 },
 btn1: {
-    color: '#ffffff',
-    borderColor: '#ffffff',
+    color: '#000000',
     textTransform: 'inherit',
-    marginRight: '2rem'
+    marginRight: '2rem',
+    "@media (max-width: 900px)": {
+        color: '#000000',
+        textTransform: 'inherit',
+        marginRight: '.5rem',
+      },
 },
 btn2: {
-    color: '#ffffff',
-    borderColor: '#ffffff',
+    color: '#000000',
     textTransform: 'inherit'
 },
 join: {
@@ -157,17 +174,17 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
                 Expand the <br /> reach of your business and make a profit together
                 </Typography>
                 <div className={classes.buttons}>
-                <Button variant='outlined' className={classes.btn1}>I am a Buyer</Button>
-                <Button variant='outlined' className={classes.btn2}>I am an Affiliate</Button>
+                <Button variant='contained' className={classes.btn1}>I am a Buyer</Button>
+                <Button variant='contained' className={classes.btn2}>I am an Affiliate</Button>
                 </div>
                 </Container>
             </div>
-            <div className={classes.rightSide}>
+            <div className={classes.rightSide} data-aos="fade-left">
                 <img src={Chart} alt='chart' className={classes.image} />
             </div>
         </Box>
         <Box component='div' className={classes.choose}>
-            <Container>
+            <Container data-aos="fade-up">
             <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Choose Us</Typography>
             <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
                 We provide many benefits for users, therefore you should find out now why <br /> you choose us. 
@@ -194,6 +211,8 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
         <Grid container>
         <Carousel 
             breakPoints={breakPoints}
+            enableAutoPlay={true}
+            // autoPlaySpeed={1000}
           >
 
               {products.map((product, i) => {
@@ -209,12 +228,13 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
         </Box>
         <Box component='div' className={classes.affiliate}>
             <Container>
-            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become Affiliate <br /> With Us</Typography>
-            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
+            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}} data-aos="fade-up">Why Become Affiliate <br /> With Us</Typography>
+            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}
+             data-aos="fade-up">
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}}>
+                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
                 <Grid item xs={12} md={6}>
                     <List className={classes.affiliateList}>
                     {affiliate.map((single, i) => {
@@ -224,7 +244,7 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
                     })}
                     </List>
                     </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
                         <img src={AffiliateImg} alt='affiliate' style={{ width: '100%'}} />
                 </Grid>
                 </Grid>
@@ -232,16 +252,16 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
         </Box>
         <Box component='div' display={{ xs: 'none', md: 'block' }} m={1} className={classes.affiliate}>
             <Container>
-            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become A Buyer <br /> With Us</Typography>
-            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
+            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}} data-aos="fade-up">Why Become A Buyer <br /> With Us</Typography>
+            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}} data-aos="fade-up">
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}}>
+                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
                       <Grid item xs={12} md={6}>
                         <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
                     <List className={classes.buyerList}>
                     {buyer.map((single, i) => {
                         return ( 
@@ -255,16 +275,16 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
         </Box>
         <Box component='div' display={{ xs: 'block', md: 'none' }} m={1} className={classes.affiliate}>
             <Container>
-            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}}>Why Become A Buyer <br /> With Us</Typography>
-            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}}>
+            <Typography variant='h6' align='center' style={{fontWeight: 'bold'}} data-aos="fade-up">Why Become A Buyer <br /> With Us</Typography>
+            <Typography variant='body2' color='textSecondary' align='center' style={{paddingTop: '1rem'}} data-aos="fade-up">
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}}>
+                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
                       <Grid item xs={12} md={6}>
                         <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
                     <List className={classes.buyerList1}>
                     {buyer.map((single, i) => {
                         return ( 

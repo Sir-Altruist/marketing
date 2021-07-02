@@ -119,9 +119,9 @@ function Marketer() {
         setChecked(e.target.checked)
     }
 
-    const onSubmit = async (values)  => {
+    const onSubmit = (values)  => {
         try {
-            await console.log(values)
+            console.log(values)
             history.push('/login/marketer')
         }
         catch (e) {
@@ -157,7 +157,7 @@ function Marketer() {
     return (
     <>
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
-                <Card className={classes.loginCard}>
+                <Card className={classes.loginCard} data-aos="fade-up" data-aos-delay='700'>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>
@@ -284,7 +284,7 @@ function Marketer() {
 
         {/* small screen */}
         <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
-                <Card className={classes.loginCardS}>
+                <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardS}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>
@@ -412,7 +412,7 @@ function Marketer() {
 
         {/* Extra small screen */}
         <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
-                <Card className={classes.loginCardXs}>
+                <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Register as</Typography>
                     <div className={classes.buttons}>

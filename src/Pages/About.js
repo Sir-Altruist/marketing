@@ -33,11 +33,11 @@ function About() {
     return (
         <Box component='div' className={classes.root}>
             <Container>
-                <Grid container>
+                <Grid container data-aos="fade-right" data-aos-delay='600'>
                     <Grid item xs={12} md={6}>
                         <img src={Info} alt='info-icon' />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='1000'>
                         <Card className={classes.card}>
                             <Container>
                             <Typography variant='h4' component='h2' className={classes.title}>About Us</Typography>

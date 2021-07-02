@@ -14,7 +14,11 @@ const menuItems = [
 {
     label: 'Service',
     path: '/service'
-}
+},
+{
+    label: 'Contact Us',
+    path: '/contact'
+},
 ]
 
 export default menuItems;

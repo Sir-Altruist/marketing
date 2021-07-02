@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
   header: {
       background: 'transparent'
   },
+  header1: {
+    background: '#ffffff'
+},
   icon: {
       width: '6rem'
   },
@@ -63,6 +66,13 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomHeader2() {
   const classes = useStyles();
 
+  const[navbar, setNavbar] = useState(false)
+  const changeNav = () => {
+      return window.scrollY >= 100
+      ? setNavbar(true)
+      : setNavbar(false)
+  }
+
   const[state, setState] = useState({
       mobile: false,
       isOpen: false
@@ -92,6 +102,7 @@ export default function CustomHeader2() {
  }, [])
 
   const desktopView = () => {
+    window.addEventListener('scroll', changeNav)
     return <Toolbar>
                 <Container className={classes.menu}>
                     <div className={classes.logo} onClick={() => history.push('/')}>
@@ -121,8 +132,8 @@ export default function CustomHeader2() {
                          variant='contained' 
                          color='primary' 
                          className={classes.login}>
-                            <RouterLink to='#' style={{ textDecoration: 'none', color: '#ffffff'}}>
-                                Join Us
+                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                                Login
                             </RouterLink>
                         </Button>
                         </div>
@@ -131,6 +142,7 @@ export default function CustomHeader2() {
     }
 
     const mobileView = () => {
+        window.addEventListener('scroll', changeNav)
         const menuIconOpen = () => setState(prevState => ({
             ...prevState,
             isOpen: true
@@ -168,8 +180,8 @@ export default function CustomHeader2() {
                          color='primary' 
                          size='small'
                          className={classes.login1}>
-                            <RouterLink to='#' style={{ textDecoration: 'none', color: '#ffffff'}}>
-                                Join Us
+                            <RouterLink to='/login/client' style={{ textDecoration: 'none', color: '#ffffff'}}>
+                                Login
                             </RouterLink>
                         </Button>
                         <RouterLink to='/register/client' className={classes.menuLink2}> Sign Up </RouterLink>
@@ -202,7 +214,7 @@ export default function CustomHeader2() {
     }
  
     return <div className={classes.root}>
-      <AppBar className={classes.header}>
+      <AppBar className={navbar ? classes.header1 : classes.header}>
           {mobile ? mobileView() : desktopView()}
       </AppBar>
     </div>

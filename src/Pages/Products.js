@@ -80,24 +80,24 @@ function Products({ image, products }) {
                 <Container>
                 <Grid container>
                     <Grid item xs={12} md={6}>
-                        <Typography variant='body2' style={{ color: '#6056D7'}}>Electronic</Typography><br />
-                        <Typography variant='h4' color='textPrimary'>Laptop-AsusMX456GM</Typography><br />
-                        <div className={classes.list}>
+                        <Typography variant='body2' style={{ color: '#6056D7'}} data-aos="fade-up">Electronic</Typography><br />
+                        <Typography variant='h4' color='textPrimary' data-aos="fade-up">Laptop-AsusMX456GM</Typography><br />
+                        <div className={classes.list} data-aos="fade-up">
                             <div style={{ marginRight: '1rem', display: 'flex'}}>
                         <Typography variant='body2' color='textSecondary' style={{paddingRight: '1rem'}}>Sold</Typography>
                         <Typography variant='body2' style={{ fontWeight: 'bold'}}>1200</Typography>
                             </div>
                         <Divider oreintation='vertical' />
-                        <div style={{ marginRight: '1rem'}}>
+                        <div style={{ marginRight: '1rem'}} data-aos="fade-up">
                         <img src={Stars} alt='rate' />
                         </div>
                         <Divider oreintation='vertical' />
-                        <div style={{ marginRight: '1rem', display: 'flex'}}>
+                        <div style={{ marginRight: '1rem', display: 'flex'}} data-aos="fade-up">
                         <Typography variant='body2' color='textSecondary' style={{paddingRight: '1rem'}}>Discussion</Typography>
                         <Typography variant='body2' style={{ fontWeight: 'bold'}}>200</Typography>
                         </div>
                         </div>
-                        <div style={{display: 'flex', marginTop: '2rem'}}>
+                        <div style={{display: 'flex', marginTop: '2rem'}} data-aos="fade-up">
                             <Button    
                             variant='contained' 
                             color='primary'
@@ -110,7 +110,7 @@ function Products({ image, products }) {
                                 Reviews
                             </Button>
                         </div>
-                        <Typography variant='body2' color='textSecondary' style={{ paddingTop: '2rem'}}>
+                        <Typography variant='body2' color='textSecondary' style={{ paddingTop: '2rem'}} data-aos="fade-up">
                         Processor Installed : Intel® Core™ i3-10110U Processor (4M Cache, up to 4.10 GHz)<br />
                         Standard Memory: 8GB DDR4<br />
                         Graphics Type: Intel UHD Graphics<br />
@@ -120,7 +120,7 @@ function Products({ image, products }) {
                         Storage: 256GB NVMe PCIe SSD<br />
                         Keyboard: Backlit Keyboard (Single Color, White)
                         </Typography>
-                        <Card style={{ width: '60%', marginTop: '2rem'}}>
+                        <Card style={{ width: '60%', marginTop: '2rem'}} data-aos="fade-right">
                             <Container style={{ textAlign: 'center'}}>
                             <CardContent>
                                 <Typography variant='body1' style={{ paddingTop: '1rem', fontWeight: 'bold'}}>
@@ -168,7 +168,7 @@ function Products({ image, products }) {
                         </Card>
                     </Grid>
                     <Grid item xs={12} md={6} style={{ paddingTop: '3rem'}}>
-                        <div style={{ display: 'flex'}}>
+                        <div style={{ display: 'flex'}} data-aos="fade-up">
                         <div style={{ display: 'flex', paddingRight: '3rem'}}>
                             <TextsmsIcon />
                             <Typography variant='body1' style={{fontWeight: 'bold', paddingLeft: '1rem'}}>Chat</Typography>
@@ -178,8 +178,8 @@ function Products({ image, products }) {
                             <Typography variant='body1' style={{fontWeight: 'bold', paddingLeft: '1rem'}}>Wishlist</Typography>
                         </div>
                         </div>
-                        <img src={Laptop} alt='laptop' className={classes.img}/>
-                        <Grid container>
+                        <img src={Laptop} alt='laptop' className={classes.img} data-aos="fade-up"/>
+                        <Grid container data-aos="fade-left" data-aos-delay="700">
                         {image.map((single, i) => {
                             return (
                                 <Grid item xs={12} md={4}  key={i} style={{marginTop: '3rem'}} spacing={3}>
@@ -199,6 +199,7 @@ function Products({ image, products }) {
         <Grid container>
         <Carousel 
             breakPoints={breakPoints}
+            enableAutoPlay={true}
           >
 
               {products.map((product, i) => {

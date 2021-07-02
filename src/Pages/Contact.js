@@ -53,10 +53,10 @@ function Contact() {
         <Box component='div' className={classes.root}>
             <Container>
             <Grid container>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} data-aos="fade-right" data-aos-delay='600'>
                     <img src={Attendant} alt='contact' className={classes.img} />
             </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='1000'>
                         <Card className={classes.card}>
                             <Container className={classes.form}>
                             <Typography variant='h5' className={classes.title}>How We Can Help?</Typography>

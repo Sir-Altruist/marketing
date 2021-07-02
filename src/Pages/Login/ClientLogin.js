@@ -113,9 +113,9 @@ function ClientLogin() {
     }
 
  
-    const onSubmit = async (values)  => {
+    const onSubmit = (values)  => {
         try {
-            await console.log(values)
+            console.log(values)
             history.push('/login/client')
         }
         catch (e) {
@@ -138,8 +138,8 @@ function ClientLogin() {
     const location = useLocation()
     return (
     <>
-        <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
-                <Card className={classes.loginCard}>
+        <Box component='div' data-aos="fade-right" data-aos-delay='700' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
+                <Card className={classes.loginCard} data-aos="fade-up" data-aos-delay='700'>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
                     <div className={classes.buttons}>
@@ -226,7 +226,7 @@ function ClientLogin() {
         </Box>
 
         {/* small screen */}
-        <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
+        <Box component='div' data-aos="fade-right" data-aos-delay='700' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card className={classes.loginCardS}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
@@ -314,7 +314,7 @@ function ClientLogin() {
 
 
         {/* Extra small screen */}
-        <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
+        <Box component='div' data-aos="fade-right" data-aos-delay='700' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card className={classes.loginCardXs}>
                     <Container>
                     <Typography variant='h3' className={classes.headText}>Login as</Typography>
