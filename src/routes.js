@@ -1,12 +1,13 @@
-import Homepage2 from './Pages/Homepage2.js'
+// import Homepage2 from './Pages/Homepage2.js'
 import ClientLogin from './Pages/Login/ClientLogin'
 import MarketerLogin from './Pages/Login/MarketerLogin'
 import Client from './Pages/Register/Client'
 import Marketer from './Pages/Register/Marketer'
-import About from './Pages/About'
-import Service from './Pages/Service'
-import Contact from './Pages/Contact'
-import Products from './Pages/Products'
+// import About from './Pages/About'
+// import Service from './Pages/Service'
+// import Contact from './Pages/Contact'
+// import Products from './Pages/Products'
+import Home from './Pages/Dashboard/Home'
 
 
 
@@ -47,6 +48,10 @@ const routes = [
     {
         path: '/register/marketer',
         component: Marketer 
+    },
+    {
+        path: '/dashboard/home',
+        component: Home
     }
 ]
 

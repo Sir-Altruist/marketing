@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, Container, Grid, Card, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import Info from '../assets/icons/about.svg'
+import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
+import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 const useStyles = makeStyles({
     root: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles({
 function About() {
     const classes = useStyles()
     return (
+        <>
+        <CustomHeader2 />
         <Box component='div' className={classes.root}>
             <Container>
                 <Grid container data-aos="fade-right" data-aos-delay='600'>
@@ -55,6 +59,8 @@ function About() {
                 </Grid>
             </Container>
         </Box>
+        <CustomFooter2 />
+        </>
     )
 }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, Container, Grid, Card, TextField, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Attendant from '../assets/home/contact.png'
+import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
+import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 
 
@@ -50,6 +52,8 @@ const useStyles = makeStyles({
 function Contact() {
     const classes = useStyles()
     return (
+        <>
+        <CustomHeader2 />
         <Box component='div' className={classes.root}>
             <Container>
             <Grid container>
@@ -94,6 +98,8 @@ function Contact() {
                 </Grid>
              </Container>
         </Box>
+        <CustomFooter2 />
+        </>
     )
 }
 

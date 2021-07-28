@@ -9,6 +9,12 @@ import affiliate from './affiliate'
 import buyer from './buyer'
 import image from './image'
 import snap from './snapScroll'
+import board from './board'
+import chat from './chat'
+import footer from './footer'
+import order from './order'
+import { productReducers } from './productReducers'
+import { clientLoginReducer } from './clientReducer'
 
 
 export default combineReducers({
@@ -17,9 +23,15 @@ export default combineReducers({
     testimonials,
     servicePage,
     choose,
+    productReducers,
     products,
     affiliate,
     buyer,
     image,
-    snap
+    snap,
+    board,
+    chat,
+    footer,
+    order,
+    clientLoginReducer
 });

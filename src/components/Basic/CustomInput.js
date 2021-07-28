@@ -26,7 +26,7 @@ function CustomInput(props) {
         <>
         <TextField variant='outlined' fullWidth size='small' {...props.input} {...props} />
         {props.meta.touched && props.meta.error && (
-            <div>
+            <div style={{color: 'red'}}>
                 <small>{props.meta.error}</small>
             </div>
         )}   
@@ -34,7 +34,7 @@ function CustomInput(props) {
     )
 }
 
-function PasswordInput(props) {
+function PasswordInputs(props) {
     const classes = useStyles()
 
     const [visible, setVisible] = useState(false)
@@ -43,24 +43,23 @@ function PasswordInput(props) {
     }
     return (
         <div className={classes.root}>
-            {visible 
-            ? 
-            <VisibilityIcon onClick={changeVisibility} className={classes.icon} /> 
-            : 
-            <VisibilityOffIcon onClick={changeVisibility} className={classes.icon} 
-            />}
-            <TextField 
-            variant='outlined' 
+            { 
+            visible 
+            ? <VisibilityIcon onClick={changeVisibility} className={classes.icon} />
+            : <VisibilityOffIcon onClick={changeVisibility} className={classes.icon} />
+            }
+            <TextField
+            variant='outlined'
             type={visible ? 'text' : 'password'}
             fullWidth
-            size='small' 
+            size='small'
             {...props.input} {...props} 
             />
             {props.meta.touched && props.meta.error && (
-            <div>
-                <small>{props.meta.error}</small>
-            </div>
-        )}   
+                <div style={{color: 'red'}}>
+                    <small>{props.meta.error}</small>
+                </div>
+            )}
         </div>
     )
 }
@@ -103,4 +102,4 @@ function CategoryInput({
 }
 
 
-export {CustomInput, PasswordInput, CategoryInput }
+export {CustomInput, PasswordInputs,  CategoryInput }

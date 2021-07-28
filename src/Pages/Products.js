@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Grid, Typography, Divider, Container, Button, Card, CardContent} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import ProductHeader from '../components/ProductHeader'
@@ -10,13 +10,16 @@ import Stock from '../components/Stock'
 import { connect } from 'react-redux'
 import Carousel from 'react-elastic-carousel'
 import Product from '../components/Homepage2/Product'
+import { productList } from '../actions/productAction'
+import { useDispatch, useSelector } from 'react-redux'
+import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
         width: '100%',
         minHeight: '100vh',
-        margin: '10rem 0'
+        marginTop: '5rem'
     },
     list: {
         display: 'flex'
@@ -47,7 +50,7 @@ const useStyles = makeStyles({
           },
     }
 })
-function Products({ image, products }) {
+function Products({ image }) {
     const[value, setValue] = useState(2)
     const addValue = () => {
         setValue(prevState => {
@@ -88,6 +91,17 @@ function Products({ image, products }) {
         }
     ]
     
+    const dispatch = useDispatch()
+
+    const productLists = useSelector(state => state.productReducers)
+  
+    const { loading, error, products } = productLists
+
+    useEffect(() => {
+
+        dispatch(productList())
+      }, [dispatch])
+
     return (
         <div className={classes.root}>
             <ProductHeader />
@@ -212,9 +226,11 @@ function Products({ image, products }) {
             <Container>
             <Typography variant='h6' style={{fontWeight: 'bold', paddingLeft: '5.5rem'}}>More Products</Typography>
         <Grid container>
-        <Carousel 
+        {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> :
+            <Carousel 
             breakPoints={breakPoints}
             enableAutoPlay={true}
+            // autoPlaySpeed={1000}
           >
 
               {products.map((product, i) => {
@@ -224,10 +240,11 @@ function Products({ image, products }) {
                         </Grid>
                     )
                 })}
-            </Carousel>
+            </Carousel> }
             </Grid>
             </Container>
         </Box>
+        <CustomFooter2 />
         </div>
     )
 }

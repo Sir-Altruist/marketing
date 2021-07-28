@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import {CustomInput, PasswordInput} from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInputs} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../actions/clientAction'
 
 
 const useStyles = makeStyles({
@@ -112,15 +114,24 @@ function ClientLogin() {
         setChecked(e.target.checked)
     }
 
- 
-    const onSubmit = (values)  => {
-        try {
-            console.log(values)
-            history.push('/login/client')
-        }
-        catch (e) {
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
 
+    const {loading, error, clientInfo} = clientLogin
+
+
+    useEffect(() => {
+        if(clientInfo){
+            // console.log(clientInfo)
+            history.push('/dashboard/client')
         }
+    }, [history, clientInfo])
+
+    const onSubmit = (values)  => {
+        const { username, email, password } = values
+        dispatch(login(username, email, password))
     };
 
     const validate = values => {
@@ -133,9 +144,7 @@ function ClientLogin() {
         }
         return errors;
     }
-    
-    const history = useHistory()
-    const location = useLocation()
+
     return (
     <>
         <Box component='div' data-aos="fade-right" data-aos-delay='700' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
@@ -173,6 +182,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                               {error && <h2 style={{color: 'red'}}>{error}</h2>}
+                               {loading && <h2>Loading...</h2>}
                                <div>
                                     <label>Username/Email</label>
                                     <br />
@@ -190,7 +201,7 @@ function ClientLogin() {
                                 
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -261,6 +272,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h2 style={{color: 'red'}}>{error}</h2>}
+                               {loading && <h2>Loading...</h2>}
                                <div>
                                     <label>Username/Email</label>
                                     <br />
@@ -277,7 +290,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -348,6 +361,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h2 style={{color: 'red'}}>{error}</h2>}
+                               {loading && <h2>Loading...</h2>}
                                <div>
                                     <label>Username/Email</label>
                                     <br />
@@ -364,7 +379,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />

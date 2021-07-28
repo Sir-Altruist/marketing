@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Typography, Container, Grid, List, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Background from '../assets/home/bg-home.png'
@@ -12,6 +12,11 @@ import Affiliate from '../components/Homepage2/Affiliate'
 import Snap from '../components/Homepage2/Snap'
 import Buyer from '../components/Homepage2/Buyer'
 import BuyerImg from '../assets/home/buyer2.png'
+import { productList } from '../actions/productAction'
+import { useDispatch, useSelector } from 'react-redux'
+import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
+import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
+
 
 //clickup.com
 //The problems section
@@ -157,10 +162,22 @@ const breakPoints = [
     }
 ]
 
-function Homepage2({choose, products, affiliate, buyer, snap}) {
+function Homepage2({choose, affiliate, buyer, snap}) {
     const classes = useStyles()
+    const dispatch = useDispatch()
+
+    const productLists = useSelector(state => state.productReducers)
+  
+    const { loading, error, products } = productLists
+
+    useEffect(() => {
+
+        dispatch(productList())
+      }, [dispatch])
+
     return (
         <>
+        <CustomHeader2 />
         <Box  component='div'  className={classes.root}>
             <div className={classes.leftSide}>
                 <Container className={classes.bgText}>
@@ -209,7 +226,8 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
             We strive to continuously improve the quantity and the best quality in the field
         </Typography>
         <Grid container>
-        <Carousel 
+            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> :
+            <Carousel 
             breakPoints={breakPoints}
             enableAutoPlay={true}
             // autoPlaySpeed={1000}
@@ -222,7 +240,7 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
                         </Grid>
                     )
                 })}
-            </Carousel>
+            </Carousel> }
             </Grid>
             </Container>
         </Box>
@@ -328,6 +346,7 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
                 <Button variant='outlined' className={classes.joinBtn2}>I am an Affiliate</Button>
                 </div>
         </Box>
+        <CustomFooter2 />
         </>
     )
 }
@@ -337,7 +356,6 @@ function Homepage2({choose, products, affiliate, buyer, snap}) {
 const mapStateToProps = state => {
     return {
         choose: state.choose.data,
-        products: state.products.data,
         affiliate: state.affiliate.data,
         buyer: state.buyer.data,
         snap: state.snap.data

@@ -3,6 +3,8 @@ import { Box, Container, Typography, TableContainer, Table, TableBody, TableRow 
 import { makeStyles } from '@material-ui/core/styles'
 import ServicePage from '../components/Service/ServicePage';
 import { connect } from 'react-redux'
+import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
+import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 const useStyles = makeStyles({
     root: {
@@ -31,6 +33,7 @@ function Service({ servicePage }) {
     const classes = useStyles()
     return (
         <>
+        <CustomHeader2 />
         <Box component='div' className={classes.root}>
             <Container className={classes.contain1}>
                 <Typography variant='h3' align='center'>Our Service</Typography>
@@ -54,6 +57,7 @@ function Service({ servicePage }) {
                 </TableContainer>
             </div>
             </Box>
+            <CustomFooter2 />
             </>
     )
 }

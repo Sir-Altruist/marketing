@@ -4,7 +4,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import {CustomInput, PasswordInput} from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInputs} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
@@ -213,7 +213,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -223,7 +223,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="confirm" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -320,7 +320,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -330,7 +330,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="confirm" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -428,7 +428,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="password" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />
@@ -438,7 +438,7 @@ function ClientLogin() {
                                     <br />
                                     <Field 
                                     name="confirm" 
-                                    component={PasswordInput}
+                                    component={PasswordInputs}
                                     required
                                     className={classes.field}
                                     />

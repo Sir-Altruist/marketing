@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardActionArea, CardMedia, CardContent, Typography, Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import Rating from '../Rating'
 
 
 
@@ -20,16 +21,16 @@ function Product({ product }) {
         <Card className={classes.root} elevation={2}>
             <CardActionArea>
                 <CardMedia
-                image={product.img}
+                image={product.productImg}
                 className={classes.media}
                 title='product'
             />
             </CardActionArea>
             <CardContent>
                 <Container>
-                <Typography varaint='body2' color='textSecondary'>{product.item}</Typography>
                 <Typography varaint='h6' color='textSecondary'>{product.name}</Typography>
-                <img src={product.rate} alt='rating' />
+                <Typography varaint='body2' color='textSecondary'>{product.description}</Typography>
+                <Rating value={product.rating} />
                 <Typography varaint='h5' color='textPrimary'>&#36;{product.amount}</Typography>
                 </Container>
             </CardContent>
