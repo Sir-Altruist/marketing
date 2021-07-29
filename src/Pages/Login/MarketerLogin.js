@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
@@ -7,6 +7,8 @@ import { Form, Field } from 'react-final-form';
 import {CustomInput, PasswordInputs} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../actions/marketerAction'
 
 
 const useStyles = makeStyles({
@@ -117,20 +119,27 @@ function MarketerLogin() {
     }
 
   
-    const onSubmit = (values)  => {
-        try {
-            console.log(values)
-            history.push('/login/client')
-        }
-        catch (e) {
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const marketerLogin = useSelector(state => state.marketerLoginReducer)
 
+    const { loading, error, marketerInfo } = marketerLogin
+
+    useEffect(() => {
+        if(marketerInfo){
+            history.push('/dashboard/client')
         }
+    })
+    const onSubmit = (values)  => {
+      const {email, password } = values
+      dispatch(login( email, password ))
     };
 
     const validate = values => {
         const errors = {}
-        if(!values.username) {
-            errors.username = 'Username is required'
+        if(!values.email) {
+            errors.email = 'Email is required'
         }
         if(!values.password){
             errors.password = 'Password is required'
@@ -138,8 +147,6 @@ function MarketerLogin() {
         return errors;
     }
 
-    const history = useHistory()
-    const location = useLocation()
     return (
     <>
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
@@ -177,13 +184,15 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Email</label>
                                     <br />
                                     <Field 
-                                    name="username" 
+                                    name="email" 
                                     component={CustomInput}
-                                    type='text'
+                                    type='email'
                                     required
                                     className={classes.field} 
                                     />
@@ -264,13 +273,15 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Email</label>
                                     <br />
                                     <Field 
-                                    name="username" 
+                                    name="email" 
                                     component={CustomInput}
-                                    type='text'
+                                    type='email'
                                     required
                                     className={classes.field} 
                                     />
@@ -353,13 +364,15 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Email</label>
                                     <br />
                                     <Field 
-                                    name="username" 
+                                    name="email" 
                                     component={CustomInput}
-                                    type='text'
+                                    type='email'
                                     required
                                     className={classes.field} 
                                     />

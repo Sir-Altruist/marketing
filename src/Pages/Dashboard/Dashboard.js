@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Box,
     Container,
@@ -19,6 +19,9 @@ import { connect } from 'react-redux';
 import Editor from '../../components/Dashboard/Editor'
 import Footer from '../../components/Dashboard/Footer'
 import Head from '../../components/Head'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { details } from '../../actions/clientAction'
 
 const useStyles = makeStyles({
     root: {
@@ -43,6 +46,27 @@ const useStyles = makeStyles({
 
 function Dashboard({ chat, footer }) {
     const classes = useStyles()
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+
+    useEffect(() => {
+        const client = JSON.parse(localStorage.getItem('clientInfo')) 
+        console.log(client)
+        if(!clientInfo){
+            history.push('/login/client')
+        } else {
+            if(!user._id){
+                dispatch(details(user._id))
+            } else {
+                history.push(`/dashboard/client/${user._id}`)
+            }
+        }
+    }, [user._id, clientInfo, history, dispatch])
     return (
         <div className={classes.root}>
             <Head />

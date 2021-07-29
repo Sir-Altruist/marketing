@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import LocalMallOutlined from '@material-ui/icons/LocalMallOutlined'
 import CreateOutlined from '@material-ui/icons/CreateOutlined';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import CloseOutlined from '@material-ui/icons/CloseOutlined';
 import Spec from '../../../assets/icons/mirror.svg'
 import Head from '../../../components/Head'
-import { Box, Typography, Container, Card, Grid, Divider } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles' 
+import { Box, Typography, Container, Card, Grid, Divider, TextField, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { details } from '../../../actions/clientAction'
+import { productUpload } from '../../../actions/productAction'
 
 const useStyles = makeStyles({
     root: {
@@ -25,6 +29,14 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         paddingLeft: '2rem'
     },
+    form: {
+        margin: '2rem 0 2rem 0'
+    },
+    field: {
+        marginTop: 20,
+        marginBottom: 5,
+        backgroundColor: "#E8E8E880"
+    },
     details: {
         paddingTop: '2rem',
         paddingLeft: '2rem'
@@ -32,10 +44,65 @@ const useStyles = makeStyles({
     icons: {
         paddingLeft: '10rem',
         cursor: 'pointer'
+    },
+    formCard: {
+        width: '60%',
+        minHeight: '60vh',
+        margin: '5rem auto',
+        borderRadius: '5%',
+        marginLeft: '10%'
+     },
+     btn: {
+        backgroundColor: '#6056D7',
+        textTransform: 'inherit',
+        color: '#ffffff',
+        width: '8rem',
+        '&:hover': {
+            backgroundColor: '#6056D7',
+        }
     }
 })
 function Tracking() {
     const classes = useStyles()
+
+    const [productName, setProductName] = useState('')
+    const [amount, setAmount] = useState('')
+    const [commission, setCommission] = useState('')
+    const [rating, setRating] = useState('')
+    const [image, setImage] = useState('')
+    const [description, setDescription] = useState('')
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+    const product = useSelector(state => state.productUploadReducers)
+    const {loading, error, productUploaded} = product
+
+    useEffect(() => {
+        if(!clientInfo){
+            history.push('/login/client')
+        } else {
+            if(!user._id){
+                dispatch(details(user._id))
+            } else {
+                history.push(`/order/tracking/${user._id}`)
+            }
+        }
+    }, [history, clientInfo, user._id, dispatch])
+
+    const handleSubmit = (e, productName, amount, commission, rating, image, description) => {
+        e.preventDefault()
+      dispatch(productUpload( productName, amount, commission, rating, image, description ))
+      if(productUploaded){
+          console.log('Successfully Uploaded')
+      }else {
+          console.log('Product uploading failed')
+      }
+    }
+
     return (
         <div className={classes.root}>
             <Head />
@@ -114,6 +181,94 @@ function Tracking() {
                     </Container>
                 </Card>
                 </Container>
+            </Box>
+            <Box style={{marginTop: '3rem'}}>
+                <Card className={classes.formCard}>
+                <Container className={classes.form}>  
+                <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
+                <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
+                {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
+                               {productUploaded ? <h5>Product Uploaded Successfully</h5> : null}
+                               <div>
+                               <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Product Name' 
+                                name='name'
+                                variant='outlined'
+                                onChange={e => setProductName(e.target.value)}
+                                value={productName}
+                                className={classes.field} 
+                                />
+                                <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Amount'
+                                name='amount'
+                                 variant='outlined'
+                                 onChange={e => setAmount(e.target.value)}
+                                 value={amount}
+                                 className={classes.field} 
+                                 />
+                                 <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Commission'
+                                name='commission'
+                                 variant='outlined'
+                                 onChange={e => setCommission(e.target.value)}
+                                 value={commission}
+                                 className={classes.field} 
+                                 />
+                                 <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Prodcut Rating (number)'
+                                name='rating'
+                                 variant='outlined'
+                                 onChange={e => setRating(e.target.value)}
+                                 value={rating}
+                                 className={classes.field} 
+                                 />
+                                 <input
+                                 accept='images/*'
+                                 className={classes.field}
+                                 id="raised-button-file"
+                                 multiple
+                                 name='image'
+                                 onChange={e => setImage(e.target.value)}
+                                 value={image}
+                                 type='file'
+                                 hidden />
+                                 <label htmlFor='raised-button-file'>
+                                     <Button 
+                                     variant='contained' 
+                                     component='span' 
+                                     className={classes.field}
+                                     style={{textTransform: 'inherit'}}>
+                                         Select image
+                                     </Button>
+                                 </label>
+                                <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Description'
+                                name='description'
+                                variant='outlined'
+                                onChange={e => setDescription(e.target.value)}
+                                value={description}
+                                multiline
+                                rows={4}
+                                className={classes.field} 
+                                />
+                                <div style={{ textAlign: 'right', marginTop: '1rem'}}>
+                                <Button onClick={handleSubmit} className={classes.btn}>Submit</Button>
+                                </div>
+                               </div>
+                </form>
+                </Container>
+                </Card>
             </Box>
             <Box component='div'>
                 <Container>

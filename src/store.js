@@ -2,20 +2,15 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from "./reducers";
+import { persistStore } from 'redux-persist'
 
-const clientInfoFromStorage = localStorage.getItem('clientInfo')
- ? JSON.parse(localStorage.getItem('clientInfo')) 
- : null
 
-const initialState = {
-  clientInfoFromStorage
-}
 
 const middleware = [thunk]
 const store = createStore(
   rootReducer,
-  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
+const persistor = persistStore(store)
 
-export default store;
+export  {store, persistor};

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PaymentHeader from '../../../components/PaymentHead'
 import { Box, Container, Typography, Card, CardActionArea, Button, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { useHistory } from 'react-router-dom' 
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { details } from '../../../actions/clientAction'
 
 const useStyles = makeStyles({
     root: {
@@ -35,7 +37,27 @@ const useStyles = makeStyles({
 
 function Payment() {
     const classes = useStyles()
+
+
     const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+
+    useEffect(() => {
+        if(!clientInfo){
+            history.push('/login/client')
+        } else {
+            if(!user._id){
+                dispatch(details(user._id))
+            } else {
+                history.push(`/payment/paypal/${user._id}`)
+            }
+        }
+    }, [history, clientInfo, user._id, dispatch])
+
     return (
         <div>
             <PaymentHeader />
@@ -62,7 +84,7 @@ function Payment() {
                         disableFocusRipple
                         disableTouchRipple 
                         className={classes.btn}
-                        onClick={() => history.push('/payment/card')}
+                        onClick={() => history.push('/payment/card/:id')}
                         >
                             Card
                         </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
@@ -7,6 +7,8 @@ import { Form, Field } from 'react-final-form';
 import {CustomInput, PasswordInputs} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../../actions/clientAction'
 
 
 const useStyles = makeStyles({
@@ -116,14 +118,22 @@ function ClientLogin() {
         setChecked(e.target.checked)
     }
 
-    const onSubmit = values  => {
-        try {
-            console.log(values)
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const clientRegister = useSelector(state => state.clientRegisterReducer)
+
+    const { loading, error, clientInfo } = clientRegister
+
+    useEffect(() => {
+        if(clientInfo){
             history.push('/login/client')
         }
-        catch (e) {
-            console.log(error => error)
-        }
+    }, [history, clientInfo])
+
+    const onSubmit = values  => {
+      const { username, email, password, confirm } = values
+      dispatch(register( username, email, password, confirm ))
     };
 
     const validate = values => {
@@ -145,10 +155,7 @@ function ClientLogin() {
         }
         return errors;
     }
-    
 
-    const history = useHistory()
-    const location = useLocation()
     return (
     <>
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
@@ -186,6 +193,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Username</label>
                                     <br />
@@ -293,6 +302,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Username</label>
                                     <br />
@@ -401,6 +412,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Username</label>
                                     <br />

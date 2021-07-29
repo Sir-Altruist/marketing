@@ -7,7 +7,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { makeStyles } from '@material-ui/core/styles'
 import User from '../assets/home/user.png'
 import Board from './Dashboard/Board'
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { logout } from '../actions/clientAction'
+import { useHistory } from 'react-router-dom'
+
 
 const useStyles = makeStyles({
     root: {
@@ -32,19 +35,30 @@ const useStyles = makeStyles({
 
 function Head({ board }) {
     const classes = useStyles()
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+
+
+    const handleLogout = () => {
+        dispatch(logout())
+        history.push('/login/client')
+    }
     return (
         <Box component='div' className={classes.root}>
         <Container>
             <div className={classes.top}>
                 <div data-aos='fade-right'>
-                    <Typography variant='body1'>Welcome back, User Tom Clay</Typography>
+                    <Typography variant='body1'>Welcome back, {clientInfo ? clientInfo.user.username : null}</Typography>
                 </div>
                 <div className={classes.icons} data-aos='fade-left'>
                     <Avatar src={User} alt='user' className={classes.avatar} />
                     <NotificationsNoneIcon />
                     <ChatBubbleOutlineIcon />
                     <SettingsOutlined />
-                    <ExitToAppIcon />
+                    <ExitToAppIcon onClick={handleLogout} />
                 </div>
             </div>
             <Grid container>

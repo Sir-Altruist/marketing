@@ -17,6 +17,7 @@ import Status from './Pages/Dashboard/order/Status'
 import Tracking from './Pages/Dashboard/order/Tracking'
 import Settings from './Pages/Dashboard/Settings'
 import Layout from './components/Layout'
+// import { useSelector } from 'react-redux'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -39,12 +40,12 @@ function App() {
           <Route path='/register/marketer'  component={Marketer} />
           <Layout>
             <Switch>
-            <Route path='/dashboard/client' component={Dashboard} />
-            <Route path='/payment/paypal' component={Paypal} />
-            <Route path='/payment/card' component={CreditCard} />
-            <Route path='/order/status' component={Status} />
-            <Route path='/order/tracking' component={Tracking} />
-            <Route path='/settings' component={Settings} />
+            <Route path='/dashboard/client/:id' component={Dashboard} />
+            <Route path='/payment/paypal/:id' component={Paypal} />
+            <Route path='/payment/card/:id' component={CreditCard} />
+            <Route path='/order/status/:id' component={Status} />
+            <Route path='/order/tracking/:id' component={Tracking} />
+            <Route path='/settings/:id' component={Settings} />
             </Switch>
           </Layout>
         </Switch>

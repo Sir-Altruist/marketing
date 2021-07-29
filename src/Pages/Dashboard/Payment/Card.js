@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PaymentHeader from '../../../components/PaymentHead'
 import { Box, Container, Typography, Card, CardActionArea, Button, Grid, Divider } from '@material-ui/core'
 import { CustomInput, PasswordInputs } from '../../../components/Basic/CustomInput'
 import { Form, Field } from 'react-final-form'
 import { makeStyles } from '@material-ui/core/styles'
-import { useHistory } from 'react-router-dom' 
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { details } from '../../../actions/clientAction'
 
 const useStyles = makeStyles({
     root: {
@@ -46,7 +48,26 @@ const useStyles = makeStyles({
 
 function CreditCard() {
     const classes = useStyles()
+
+
     const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+
+    useEffect(() => {
+        if(!clientInfo){
+            history.push('/login/client')
+        } else {
+            if(!user._id){
+                dispatch(details(user._id))
+            } else {
+                history.push(`/payment/card/${user._id}`)
+            }
+        }
+    }, [history, clientInfo, user._id, dispatch])
 
     const onSubmit = values  => {
         try {

@@ -106,7 +106,7 @@ const ColorButton = withStyles((theme) => ({
     },
   }))(Button);
 
-function ClientLogin() {
+const ClientLogin = props => {
     const classes = useStyles()
 
     const[checked, setChecked] = useState(false)
@@ -119,13 +119,11 @@ function ClientLogin() {
     const dispatch = useDispatch()
     const clientLogin = useSelector(state => state.clientLoginReducer)
 
-    const {loading, error, clientInfo} = clientLogin
-
+    const {loading, error, clientInfo } = clientLogin
 
     useEffect(() => {
         if(clientInfo){
-            // console.log(clientInfo)
-            history.push('/dashboard/client')
+            history.push(`/dashboard/client/:id`)
         }
     }, [history, clientInfo])
 
@@ -182,8 +180,8 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                               {error && <h2 style={{color: 'red'}}>{error}</h2>}
-                               {loading && <h2>Loading...</h2>}
+                               {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Username/Email</label>
                                     <br />

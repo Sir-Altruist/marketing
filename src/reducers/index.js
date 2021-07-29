@@ -4,7 +4,6 @@ import featured from './featured'
 import testimonials from './testimonials'
 import servicePage from './servicePage';
 import choose from './choose'
-import products from './product'
 import affiliate from './affiliate'
 import buyer from './buyer'
 import image from './image'
@@ -13,18 +12,27 @@ import board from './board'
 import chat from './chat'
 import footer from './footer'
 import order from './order'
-import { productReducers } from './productReducers'
-import { clientLoginReducer } from './clientReducer'
+import { productReducers, productUploadReducers } from './productReducers'
+import { clientLoginReducer, clientDetailsReducer, clientRegisterReducer } from './clientReducer'
+import { marketerRegisterReducer, marketerLoginReducer } from './marketerReducer'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 
-export default combineReducers({
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['clientLoginReducer','clientDetailsReducer']
+}
+
+const rootReducer = combineReducers({
     services,
     featured,
     testimonials,
     servicePage,
     choose,
     productReducers,
-    products,
+    productUploadReducers,
     affiliate,
     buyer,
     image,
@@ -33,5 +41,11 @@ export default combineReducers({
     chat,
     footer,
     order,
-    clientLoginReducer
+    clientLoginReducer,
+    clientDetailsReducer,
+    clientRegisterReducer,
+    marketerRegisterReducer,
+    marketerLoginReducer
 });
+
+export default persistReducer(persistConfig, rootReducer)

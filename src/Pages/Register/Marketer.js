@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
-// import { Select } from 'material-ui-react-final-form'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -8,6 +7,8 @@ import { Form, Field } from 'react-final-form';
 import {CustomInput, PasswordInputs, CategoryInput } from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../../actions/marketerAction'
 
 const useStyles = makeStyles({
     root: {
@@ -119,14 +120,22 @@ function Marketer() {
         setChecked(e.target.checked)
     }
 
-    const onSubmit = (values)  => {
-        try {
-            console.log(values)
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const marketerRegister = useSelector(state => state.marketerRegisterReducer)
+
+    const {loading, error, marketerInfo } = marketerRegister
+
+    useEffect(() => {
+        if(marketerInfo){
             history.push('/login/marketer')
         }
-        catch (e) {
-            console.log(error => error)
-        }
+    }, [history, marketerInfo])
+
+    const onSubmit = (values)  => {
+        const {username, email, website, category, password, confirm } = values
+        dispatch(register(username, email, website, category, password, confirm))
     };
 
     const validate = values => {
@@ -151,9 +160,7 @@ function Marketer() {
         }
         return errors;
     }
-    
-    const history = useHistory()
-    const location = useLocation()
+
     return (
     <>
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
@@ -191,6 +198,8 @@ function Marketer() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Marketer Name</label>
                                     <br />
@@ -318,6 +327,8 @@ function Marketer() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Marketer Name</label>
                                     <br />
@@ -446,6 +457,8 @@ function Marketer() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
                                <div>
                                     <label>Marketer Name</label>
                                     <br />

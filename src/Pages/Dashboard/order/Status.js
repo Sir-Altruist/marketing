@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from '../../../components/Head'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Container, Typography, Card, Grid, TableContainer, Table, TableBody, TableRow, TableCell, TableHead,  Paper } from '@material-ui/core'
@@ -10,6 +10,9 @@ import LocalMallOutlined from '@material-ui/icons/LocalMallOutlined';
 import Visa from '../../../assets/home/visa.png'
 import Order from '../../../components/Order'
 import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { details } from '../../../actions/clientAction'
 
 const useStyles = makeStyles({
     root: {
@@ -33,8 +36,30 @@ const useStyles = makeStyles({
        marginBottom: '3rem'
    }
 })
+
+
 function Status({ order }) {
     const classes = useStyles()
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const clientLogin = useSelector(state => state.clientLoginReducer)
+    const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+
+    useEffect(() => {
+        if(!clientInfo){
+            history.push('/login/client')
+        } else {
+            if(!user._id){
+                dispatch(details(user._id))
+            } else {
+                history.push(`/order/status/${user._id}`)
+            }
+        }
+    }, [history, clientInfo, user._id, dispatch])
+
     return (
         <div className={classes.root}>
             <Head />
