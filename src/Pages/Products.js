@@ -230,10 +230,10 @@ function Products({ image }) {
             <Carousel 
             breakPoints={breakPoints}
             enableAutoPlay={true}
-            // autoPlaySpeed={1000}
+            autoPlaySpeed={5000}
           >
 
-              {products.map((product, i) => {
+              {products && products.length && products.map((product, i) => {
                     return (
                         <Grid item key={i}>
                             <Product product={product} />

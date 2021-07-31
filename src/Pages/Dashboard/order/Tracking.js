@@ -86,6 +86,7 @@ function Tracking() {
     const {loading, error, productUploaded} = product
 
     useEffect(() => {
+        localStorage.setItem('userInfo', JSON.stringify(user))
         if(!clientInfo){
             history.push('/login/client')
         } else {

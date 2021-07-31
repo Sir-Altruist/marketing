@@ -1,7 +1,7 @@
 {
   "name": "trial",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://dashboard.heroku.com/apps/limitless-chamber-50639",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^29.0.0",
