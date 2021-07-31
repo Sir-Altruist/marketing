@@ -51,22 +51,15 @@ function Dashboard({ chat, footer }) {
     const dispatch = useDispatch()
     const clientLogin = useSelector(state => state.clientLoginReducer)
     const {clientInfo} = clientLogin
-    const clientDetails = useSelector(state => state.clientDetailsReducer)
-    const { user } = clientDetails
 
     useEffect(() => {
-        const client = JSON.parse(localStorage.getItem('clientInfo')) 
-        console.log(client)
+        // const client = JSON.parse(localStorage.getItem('clientInfo')) 
         if(!clientInfo){
             history.push('/login/client')
         } else {
-            if(!user._id){
-                dispatch(details(user._id))
-            } else {
-                history.push(`/dashboard/client/${user._id}`)
-            }
+            dispatch(details())
         }
-    }, [user._id, clientInfo, history, dispatch])
+    }, [clientInfo, history, dispatch])
     return (
         <div className={classes.root}>
             <Head />

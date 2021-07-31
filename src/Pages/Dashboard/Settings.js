@@ -9,20 +9,15 @@ function Settings() {
     const dispatch = useDispatch()
     const clientLogin = useSelector(state => state.clientLoginReducer)
     const {clientInfo} = clientLogin
-    const clientDetails = useSelector(state => state.clientDetailsReducer)
-    const { user } = clientDetails
 
     useEffect(() => {
         if(!clientInfo){
             history.push('/login/client')
         } else {
-            if(!user._id){
-                dispatch(details(user._id))
-            } else {
-                history.push(`/settings/${user._id}`)
-            }
+           
+             dispatch(details())
         }
-    }, [history, clientInfo, user._id, dispatch])
+    }, [history, clientInfo, dispatch])
     
     return (
         <div>

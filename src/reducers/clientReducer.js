@@ -13,8 +13,6 @@ import {
 
 } from "../constants/clientConstant"
 
-
-
 export const clientLoginReducer = (state = {}, action) => {
     switch(action.type){
         case CLIENT_LOGIN_REQUEST:
@@ -59,6 +57,7 @@ export const clientDetailsReducer = (state = { user: {}}, action) => {
             return state
     }
 }
+
 
 export const clientRegisterReducer = (state = {}, action) => {
     switch(action.type){

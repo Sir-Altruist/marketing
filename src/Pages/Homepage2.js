@@ -226,8 +226,9 @@ function Homepage2({choose, affiliate, buyer, snap}) {
             We strive to continuously improve the quantity and the best quality in the field
         </Typography>
         <Grid container>
-            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> :
-            <Carousel 
+            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> 
+            : products.length < 1 ? <h2>No product has been added yet!</h2>
+            : <Carousel 
             breakPoints={breakPoints}
             enableAutoPlay={true}
             // autoPlaySpeed={1000}

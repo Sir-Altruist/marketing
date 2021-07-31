@@ -64,6 +64,19 @@ function PasswordInputs(props) {
     )
 }
 
+function ImageInput(props) {
+    return (
+        <>
+        <TextField variant='outlined' fullWidth size='small' type='file' {...props.input} {...props} />
+        {props.meta.touched && props.meta.error && (
+            <div style={{color: 'red'}}>
+                <small>{props.meta.error}</small>
+            </div>
+        )}   
+        </>
+    )
+}
+
 function CategoryInput({
     input: { name, value, onChange, ...restInput }, 
     meta,
@@ -102,4 +115,4 @@ function CategoryInput({
 }
 
 
-export {CustomInput, PasswordInputs,  CategoryInput }
+export {CustomInput, PasswordInputs,  CategoryInput, ImageInput }

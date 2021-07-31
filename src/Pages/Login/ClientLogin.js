@@ -123,7 +123,7 @@ const ClientLogin = props => {
 
     useEffect(() => {
         if(clientInfo){
-            history.push(`/dashboard/client/:id`)
+            history.push(`/dashboard/client`)
         }
     }, [history, clientInfo])
 

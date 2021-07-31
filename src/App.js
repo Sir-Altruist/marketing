@@ -40,12 +40,12 @@ function App() {
           <Route path='/register/marketer'  component={Marketer} />
           <Layout>
             <Switch>
-            <Route path='/dashboard/client/:id' component={Dashboard} />
-            <Route path='/payment/paypal/:id' component={Paypal} />
-            <Route path='/payment/card/:id' component={CreditCard} />
-            <Route path='/order/status/:id' component={Status} />
+            <Route path='/dashboard/client' component={Dashboard} />
+            <Route path='/payment/paypal' component={Paypal} />
+            <Route path='/payment/card' component={CreditCard} />
+            <Route path='/order/status' component={Status} />
             <Route path='/order/tracking/:id' component={Tracking} />
-            <Route path='/settings/:id' component={Settings} />
+            <Route path='/settings' component={Settings} />
             </Switch>
           </Layout>
         </Switch>

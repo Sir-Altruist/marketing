@@ -28,13 +28,17 @@ export const productList = () => async (dispatch) => {
     }
 }
 
-export const productUpload = (productName, amount, commission, rating, productImg, description) => async (dispatch, getState) => {
+export const productUpload = (name, amount, commission, rating, productImg, description) => async (dispatch, getState) => {
     try {
 
 
         const {
             clientLoginReducer: { clientInfo }
         } = getState()
+
+        const { 
+            clientDetailsReducer: { user }
+    } = getState()
         const config = ({
             headers: {
                 'Content-Type': "application/json",
@@ -44,8 +48,8 @@ export const productUpload = (productName, amount, commission, rating, productIm
 
             dispatch({ type: PRODUCT_UPLOAD_REQUEST })
 
-        const { data  } = await axios.post(`/products/client/${clientInfo.user._id}/addproduct`, 
-        {productName, description, amount, commission, rating, productImg}, config)
+        const { data  } = await axios.post(`/products/client/${user._id}/addproduct`, 
+        {name, amount, commission, rating, productImg, description}, config)
 
         dispatch({
             type: PRODUCT_UPLOAD_SUCCESS,

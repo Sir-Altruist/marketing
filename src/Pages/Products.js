@@ -251,8 +251,7 @@ function Products({ image }) {
 
 const mapStateToProps = state => {
     return {
-        image: state.image.data,
-        products: state.products.data
+        image: state.image.data
     }
 }
 export default connect(mapStateToProps)(Products)

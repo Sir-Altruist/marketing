@@ -5,12 +5,15 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import CloseOutlined from '@material-ui/icons/CloseOutlined';
 import Spec from '../../../assets/icons/mirror.svg'
 import Head from '../../../components/Head'
-import { Box, Typography, Container, Card, Grid, Divider, TextField, Button } from '@material-ui/core'
+import { Box, Typography, Container, Card, Grid, Divider, Button, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../../actions/clientAction'
 import { productUpload } from '../../../actions/productAction'
+// import {CustomInput, ImageInput } from '../../../components/Basic/CustomInput';
+// import { Form, Field } from 'react-final-form';
+import axios from 'axios'
 
 const useStyles = makeStyles({
     root: {
@@ -65,12 +68,13 @@ const useStyles = makeStyles({
 function Tracking() {
     const classes = useStyles()
 
-    const [productName, setProductName] = useState('')
+    const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [commission, setCommission] = useState('')
-    const [rating, setRating] = useState('')
-    const [image, setImage] = useState('')
+    const [rating, setRating] = useState(1)
+    const [productImg, setProductImg] = useState('')
     const [description, setDescription] = useState('')
+    const [uploading, setUploading] = useState(false)
 
     const history = useHistory()
     const dispatch = useDispatch()
@@ -85,23 +89,54 @@ function Tracking() {
         if(!clientInfo){
             history.push('/login/client')
         } else {
-            if(!user._id){
-                dispatch(details(user._id))
+            if(!user){
+                dispatch(details())
             } else {
                 history.push(`/order/tracking/${user._id}`)
             }
         }
-    }, [history, clientInfo, user._id, dispatch])
+    }, [history, clientInfo, user, user._id, dispatch])
 
-    const handleSubmit = (e, productName, amount, commission, rating, image, description) => {
-        e.preventDefault()
-      dispatch(productUpload( productName, amount, commission, rating, image, description ))
-      if(productUploaded){
-          console.log('Successfully Uploaded')
-      }else {
-          console.log('Product uploading failed')
-      }
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append('productImg', file)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'x-auth-token': `${clientInfo.token}`
+                }
+            }
+
+            const { data } = await axios.post('/image', formData, config)
+
+            setProductImg(data)
+            setUploading(false)
+
+        } catch (error) {
+            console.log(error)
+            setUploading(false)
+        }
     }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log(`
+        ${name}
+        ${amount}
+        ${commission}
+        ${rating}
+        ${productImg}
+        ${description}
+        `)
+        dispatch(productUpload(name, amount, commission, rating, productImg, description))
+    }
+ 
+      
+  
 
     return (
         <div className={classes.root}>
@@ -186,10 +221,87 @@ function Tracking() {
                 <Card className={classes.formCard}>
                 <Container className={classes.form}>  
                 <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
-                <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
+                {/* <Form
+                       onSubmit={onSubmit}
+                       validate={validate}
+                       render={({ handleSubmit }) => (
+                           <Container>
+                           <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
+                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>}
+                               <div>
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field}
+                                    placeholder='Product Name' 
+                                    />
+                                </div>
+                                <div>
+                                    <Field 
+                                    name="amount" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field}
+                                    placeholder='Amount' 
+                                    />
+                                </div>
+                               <div>
+                                    <Field 
+                                    name="commission" 
+                                    component={CustomInput}
+                                    required
+                                    className={classes.field}
+                                    placeholder='Commission'
+                                    />
+                                </div>
+                                <div>
+                                    <Field 
+                                    name="rating" 
+                                    component={CustomInput}
+                                    required
+                                    className={classes.field}
+                                    placeholder='Product Rating'
+                                    />
+                                </div>
+                                <div>
+                                    <Field 
+                                    name="productImg" 
+                                    component={CustomInput}
+                                    required
+                                    className={classes.field}
+                                    placeholder='Upload Product Image'
+                                    />
+                                     <Field 
+                                    name="productImg" 
+                                    component={CustomInput}
+                                    required
+                                    className={classes.field}
+                                    placeholder='Upload Product Image'
+                                    />
+                                </div>
+                                <div>
+                                    <Field 
+                                    name="description" 
+                                    component={CustomInput}
+                                    required
+                                    className={classes.field}
+                                    placeholder='Description'
+                                    />
+                                </div>
+                                <div style={{ textAlign: 'right', marginTop: '1rem'}}>
+                                <Button onClick={handleSubmit} className={classes.btn}>Submit</Button>
+                                </div>
+                           </form>
+                           </Container>
+                       )} /> */}
+                       <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
                 {error && <h5 style={{color: 'red'}}>{error}</h5>}
                                {loading && <h5>Loading...</h5>}
-                               {productUploaded ? <h5>Product Uploaded Successfully</h5> : null}
+                               {productUploaded && <h5>Product Uploaded Successfully</h5> }
                                <div>
                                <TextField 
                                 size='small' 
@@ -197,8 +309,8 @@ function Tracking() {
                                 label='Product Name' 
                                 name='name'
                                 variant='outlined'
-                                onChange={e => setProductName(e.target.value)}
-                                value={productName}
+                                onChange={e => setName(e.target.value)}
+                                value={name}
                                 className={classes.field} 
                                 />
                                 <TextField 
@@ -231,25 +343,35 @@ function Tracking() {
                                  value={rating}
                                  className={classes.field} 
                                  />
+                                   <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Upload product image'
+                                name='productImg'
+                                 variant='outlined'
+                                 onChange={e => setProductImg(e.target.value)}
+                                 value={productImg}
+                                 className={classes.field} 
+                                 />
                                  <input
                                  accept='images/*'
-                                 className={classes.field}
+                                //  className={classes.field}
+                                 onChange={uploadFileHandler}
                                  id="raised-button-file"
                                  multiple
                                  name='image'
-                                 onChange={e => setImage(e.target.value)}
-                                 value={image}
                                  type='file'
                                  hidden />
                                  <label htmlFor='raised-button-file'>
                                      <Button 
                                      variant='contained' 
                                      component='span' 
-                                     className={classes.field}
+                                    //  className={classes.field}
                                      style={{textTransform: 'inherit'}}>
                                          Select image
                                      </Button>
                                  </label>
+                                 {uploading && <h5>Product image uploading... </h5>}
                                 <TextField 
                                 size='small' 
                                 fullWidth 

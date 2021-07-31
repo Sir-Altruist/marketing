@@ -8,7 +8,7 @@ import {
     CLIENT_LOGOUT, 
     CLIENT_REGISTER_FAILURE, 
     CLIENT_REGISTER_REQUEST, 
-    CLIENT_REGISTER_SUCCESS 
+    CLIENT_REGISTER_SUCCESS
 } from "../constants/clientConstant"
 import axios from 'axios'
 
@@ -41,7 +41,7 @@ export const login = (username, email, password) => async (dispatch) => {
     }
 }
 
-export const details = (id) => async (dispatch, getState) => {
+export const details = () => async (dispatch, getState) => {
     try {
 
         dispatch({
@@ -58,7 +58,7 @@ export const details = (id) => async (dispatch, getState) => {
             }
         })
 
-        const { data } = await axios.get(`/dashboard/client/${id}`, config)
+        const { data } = await axios.get(`/dashboard/client/`, config)
 
         dispatch({
             type: CLIENT_DETAILS_SUCCESS,
@@ -101,6 +101,7 @@ export const register = (username, email, password, confirm) => async (dispatch)
         })
     }
 }
+
 
 export const logout = () => (dispatch) => {
 
