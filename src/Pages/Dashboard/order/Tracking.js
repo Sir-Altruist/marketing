@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../../actions/clientAction'
 import { productUpload } from '../../../actions/productAction'
-// import {CustomInput, ImageInput } from '../../../components/Basic/CustomInput';
-// import { Form, Field } from 'react-final-form';
 import axios from 'axios'
 
 const useStyles = makeStyles({
@@ -71,7 +69,7 @@ function Tracking() {
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
     const [commission, setCommission] = useState('')
-    const [rating, setRating] = useState(1)
+    const [rating, setRating] = useState('')
     const [productImg, setProductImg] = useState('')
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
@@ -125,14 +123,6 @@ function Tracking() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(`
-        ${name}
-        ${amount}
-        ${commission}
-        ${rating}
-        ${productImg}
-        ${description}
-        `)
         dispatch(productUpload(name, amount, commission, rating, productImg, description))
     }
  
@@ -222,83 +212,6 @@ function Tracking() {
                 <Card className={classes.formCard}>
                 <Container className={classes.form}>  
                 <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
-                {/* <Form
-                       onSubmit={onSubmit}
-                       validate={validate}
-                       render={({ handleSubmit }) => (
-                           <Container>
-                           <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
-                               <div>
-                                    <Field 
-                                    name="name" 
-                                    component={CustomInput}
-                                    type='text'
-                                    required
-                                    className={classes.field}
-                                    placeholder='Product Name' 
-                                    />
-                                </div>
-                                <div>
-                                    <Field 
-                                    name="amount" 
-                                    component={CustomInput}
-                                    type='text'
-                                    required
-                                    className={classes.field}
-                                    placeholder='Amount' 
-                                    />
-                                </div>
-                               <div>
-                                    <Field 
-                                    name="commission" 
-                                    component={CustomInput}
-                                    required
-                                    className={classes.field}
-                                    placeholder='Commission'
-                                    />
-                                </div>
-                                <div>
-                                    <Field 
-                                    name="rating" 
-                                    component={CustomInput}
-                                    required
-                                    className={classes.field}
-                                    placeholder='Product Rating'
-                                    />
-                                </div>
-                                <div>
-                                    <Field 
-                                    name="productImg" 
-                                    component={CustomInput}
-                                    required
-                                    className={classes.field}
-                                    placeholder='Upload Product Image'
-                                    />
-                                     <Field 
-                                    name="productImg" 
-                                    component={CustomInput}
-                                    required
-                                    className={classes.field}
-                                    placeholder='Upload Product Image'
-                                    />
-                                </div>
-                                <div>
-                                    <Field 
-                                    name="description" 
-                                    component={CustomInput}
-                                    required
-                                    className={classes.field}
-                                    placeholder='Description'
-                                    />
-                                </div>
-                                <div style={{ textAlign: 'right', marginTop: '1rem'}}>
-                                <Button onClick={handleSubmit} className={classes.btn}>Submit</Button>
-                                </div>
-                           </form>
-                           </Container>
-                       )} /> */}
                        <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
                 {error && <h5 style={{color: 'red'}}>{error}</h5>}
                                {loading && <h5>Loading...</h5>}

@@ -50,7 +50,6 @@ function App() {
           </Layout>
         </Switch>
       </Router>
-          {/* <Route path='/dashboard/home'  component={Home} /> */}
         </>
   );
 }

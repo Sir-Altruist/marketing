@@ -7,14 +7,12 @@ import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 const getUserId = () => {
     const user = JSON.parse(localStorage.getItem('userInfo'))
-    console.log(user)
     let id = null
     if(!user){
         id = null
     } else {
         id = user._id
     }
-    console.log(id)
     return id
 }
 

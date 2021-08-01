@@ -102,6 +102,22 @@ function Products({ image }) {
         dispatch(productList())
       }, [dispatch])
 
+      let listOfProducts = products.length > 0 ? <Carousel 
+      breakPoints={breakPoints}
+      enableAutoPlay={true}
+      autoPlaySpeed={5000}
+    >
+
+        {products &&  products.map((product, i) => {
+              return (
+                  <Grid item key={i}>
+                      <Product product={product} />
+                  </Grid>
+              )
+          })}
+      </Carousel> : <h2>No Product has been uploaded yet!</h2>
+      
+
     return (
         <div className={classes.root}>
             <ProductHeader />
@@ -225,22 +241,10 @@ function Products({ image }) {
             <Box component='div' className={classes.product}>
             <Container>
             <Typography variant='h6' style={{fontWeight: 'bold', paddingLeft: '5.5rem'}}>More Products</Typography>
-        <Grid container>
-        {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> :
-            <Carousel 
-            breakPoints={breakPoints}
-            enableAutoPlay={true}
-            autoPlaySpeed={5000}
-          >
-
-              {products && products.length && products.map((product, i) => {
-                    return (
-                        <Grid item key={i}>
-                            <Product product={product} />
-                        </Grid>
-                    )
-                })}
-            </Carousel> }
+            <Grid container>
+            {loading && <h2>Loading...</h2>} 
+            {error && <h3>{error}</h3>}
+            {listOfProducts}
             </Grid>
             </Container>
         </Box>

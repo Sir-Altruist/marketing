@@ -18,9 +18,6 @@ import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
 import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 
-//clickup.com
-//The problems section
-
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -169,11 +166,26 @@ function Homepage2({choose, affiliate, buyer, snap}) {
     const productLists = useSelector(state => state.productReducers)
   
     const { loading, error, products } = productLists
+    console.log(products)
 
     useEffect(() => {
-
         dispatch(productList())
       }, [dispatch])
+
+      let listOfProducts = products.length > 0 ? <Carousel 
+      breakPoints={breakPoints}
+      enableAutoPlay={true}
+      autoPlaySpeed={5000}
+    >
+
+        {products &&  products.map((product, i) => {
+              return (
+                  <Grid item key={i}>
+                      <Product product={product} />
+                  </Grid>
+              )
+          })}
+      </Carousel> : <h2>No Product has been uploaded yet!</h2>
 
     return (
         <>
@@ -226,22 +238,9 @@ function Homepage2({choose, affiliate, buyer, snap}) {
             We strive to continuously improve the quantity and the best quality in the field
         </Typography>
         <Grid container>
-            {loading ? <h2>Loading...</h2> 
-            : error ? <h3>{error}</h3> 
-            : <Carousel 
-            breakPoints={breakPoints}
-            enableAutoPlay={true}
-            autoPlaySpeed={5000}
-          >
-
-              {products && products.length && products.map((product, i) => {
-                    return (
-                        <Grid item key={i}>
-                            <Product product={product} />
-                        </Grid>
-                    )
-                })}
-            </Carousel> }
+            {loading && <h2>Loading...</h2>} 
+            {error && <h3>{error}</h3>}
+            {listOfProducts}
             </Grid>
             </Container>
         </Box>
