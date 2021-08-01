@@ -25,7 +25,7 @@ export const login = (username, email, password) => async (dispatch) => {
             }
         })
 
-        const { data } = await axios.post('/login/client', { username, email, password }, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login/client`, { username, email, password }, config)
 
         dispatch({
             type: CLIENT_LOGIN_SUCCESS,
@@ -58,7 +58,7 @@ export const details = () => async (dispatch, getState) => {
             }
         })
 
-        const { data } = await axios.get(`/dashboard/client/`, config)
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/dashboard/client`, config)
 
         dispatch({
             type: CLIENT_DETAILS_SUCCESS,
@@ -86,7 +86,7 @@ export const register = (username, email, password, confirm) => async (dispatch)
             }
         })
 
-        const { data } = await axios.post('/register/client', { username, email, password, confirm }, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/register/client`, { username, email, password, confirm }, config)
 
         dispatch({
             type: CLIENT_REGISTER_SUCCESS,

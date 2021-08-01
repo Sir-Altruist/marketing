@@ -13,7 +13,7 @@ export const productList = () => async (dispatch) => {
 
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data  } = await axios.get('/products')
+        const { data  } = await axios.get(`${process.env.REACT_APP_API_URL}/products`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -48,7 +48,7 @@ export const productUpload = (name, amount, commission, rating, productImg, desc
 
             dispatch({ type: PRODUCT_UPLOAD_REQUEST })
 
-        const { data  } = await axios.post(`/products/client/${user._id}/addproduct`, 
+        const { data  } = await axios.post(`${process.env.REACT_APP_API_URL}/products/client/${user._id}/addproduct`, 
         {name, amount, commission, rating, productImg, description}, config)
 
         dispatch({
