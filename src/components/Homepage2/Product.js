@@ -21,7 +21,7 @@ function Product({ product }) {
         <Card className={classes.root} elevation={2}>
             <CardActionArea>
                 <CardMedia
-                image={product.productImg}
+                image={`${process.env.REACT_APP_API_URL}${product.productImg}`}
                 className={classes.media}
                 title='product'
             />
