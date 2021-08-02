@@ -110,7 +110,7 @@ function Tracking() {
                 }
             }
 
-            const { data } = await axios.post('/image', formData, config)
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/image`, formData, config)
 
             setProductImg(data)
             setUploading(false)
