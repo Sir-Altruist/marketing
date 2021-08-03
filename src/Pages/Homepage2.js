@@ -18,6 +18,7 @@ import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
 import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
 
 
+
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
@@ -162,6 +163,7 @@ const breakPoints = [
 function Homepage2({choose, affiliate, buyer, snap}) {
     const classes = useStyles()
     const dispatch = useDispatch()
+
 
     const productLists = useSelector(state => state.productReducers)
   

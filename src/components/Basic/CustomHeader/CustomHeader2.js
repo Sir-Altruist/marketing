@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
   menuLink: {
       paddingRight: '2rem',
       textDecoration: 'none',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      color: 'black'
   },
   login: {
       backgroundColor: '#6056D7',

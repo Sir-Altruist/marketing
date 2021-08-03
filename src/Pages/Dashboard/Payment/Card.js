@@ -123,7 +123,7 @@ function CreditCard() {
                         disableFocusRipple
                         disableTouchRipple 
                         className={classes.btn}
-                        onClick={() => history.push('/payment/paypal')}
+                        onClick={() => history.push('/client/payment/paypal')}
                         >
                             Paypal
                         </Button>

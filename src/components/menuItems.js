@@ -19,13 +19,13 @@ const getUserId = () => {
 const menuItems = [
     {
         name: 'Dashboard',
-        path: '/dashboard/client',
+        path: '/client/dashboard',
         icon1: <DashboardOutlined />,
         icon2: <DashboardOutlined color='primary' />
     },
     {
         name: 'Order',
-        path: "/order/status",
+        path: "/client/order/status",
         icon1: <BusinessCenterIcon />,
         icon2: <BusinessCenterIcon color='primary' />,
         iconOpen: <ExpandMore style={{ paddingTop: '.2rem', fontSize:'2rem'}} />,
@@ -33,23 +33,23 @@ const menuItems = [
         subNav: [
             {
                 name: 'Status',
-                path: '/order/status',
+                path: '/client/order/status',
             },
             {
                 name: 'Tracking',
-                path: `/order/tracking/${getUserId()}`
+                path: `/client/order/tracking/${getUserId()}`
             }
         ]
     },
     {
         name: 'Payment',
-        path: '/payment/paypal',
+        path: '/client/payment/paypal',
         icon1: <PaymentIcon />,
         icon2: <PaymentIcon color='primary' />
     },
     {
         name: 'Settings',
-        path: '/settings',
+        path: '/client/settings',
         icon1: <SettingsOutlined />,
         icon2: <SettingsOutlined color='primary' />
     }

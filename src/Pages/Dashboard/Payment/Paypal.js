@@ -78,7 +78,7 @@ function Payment() {
                         disableFocusRipple
                         disableTouchRipple 
                         className={classes.btn}
-                        onClick={() => history.push('/payment/card')}
+                        onClick={() => history.push('/client/payment/card')}
                         >
                             Card
                         </Button>

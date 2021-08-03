@@ -53,7 +53,6 @@ function Dashboard({ chat, footer }) {
     const {clientInfo} = clientLogin
 
     useEffect(() => {
-        // const client = JSON.parse(localStorage.getItem('clientInfo')) 
         if(!clientInfo){
             history.push('/login/client')
         } else {

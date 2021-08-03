@@ -80,8 +80,9 @@ function Tracking() {
     const {clientInfo} = clientLogin
     const clientDetails = useSelector(state => state.clientDetailsReducer)
     const { user } = clientDetails
-    const product = useSelector(state => state.productUploadReducers)
-    const {loading, error, productUploaded} = product
+    const products = useSelector(state => state.productUploadReducers)
+    const {product} = products
+    console.log(product)
 
     useEffect(() => {
         localStorage.setItem('userInfo', JSON.stringify(user))
@@ -91,7 +92,7 @@ function Tracking() {
             if(!user){
                 dispatch(details())
             } else {
-                history.push(`/order/tracking/${user._id}`)
+                history.push(`/client/order/tracking/${user._id}`)
             }
         }
     }, [history, clientInfo, user, user._id, dispatch])
@@ -115,6 +116,7 @@ function Tracking() {
             setProductImg(data)
             setUploading(false)
 
+
         } catch (error) {
             console.log(error)
             setUploading(false)
@@ -124,6 +126,7 @@ function Tracking() {
     const handleSubmit = e => {
         e.preventDefault()
         dispatch(productUpload(name, amount, commission, rating, productImg, description))
+        console.log(product)
     }
  
       
@@ -213,9 +216,9 @@ function Tracking() {
                 <Container className={classes.form}>  
                 <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
                        <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
-                {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
-                               {productUploaded && <h5>Product Uploaded Successfully</h5> }
+                {/* {error && <h5 style={{color: 'red'}}>{error}</h5>}
+                               {loading && <h5>Loading...</h5>} */}
+                               {product && <h5 style={{color: 'green'}}>Product Uploaded Successfully</h5> }
                                <div>
                                <TextField 
                                 size='small' 

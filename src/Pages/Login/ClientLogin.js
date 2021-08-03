@@ -121,9 +121,10 @@ const ClientLogin = props => {
 
     const {loading, error, clientInfo } = clientLogin
 
+    console.log(window.location)
     useEffect(() => {
         if(clientInfo){
-            history.push(`/dashboard/client`)
+            history.push(`/client/dashboard`)
         }
     }, [history, clientInfo])
 
