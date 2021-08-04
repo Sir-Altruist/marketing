@@ -17,7 +17,7 @@ function SideBar({ show, closed }) {
       <aside
         className={`fixed bg-white inset-y-0 z-50 flex flex-col flex-shrink-0 ${
           show ? "w-64" : "w-0"
-        } max-h-screen overflow-hidden transition-all transform border-r shadow-lg lg:z-auto lg:static lg:shadow-none`}
+        } max-h-screen overflow-hidden transition-all transform border-r shadow-lg lg:z-auto lg:shadow-none`}
       >
         <div className="flex items-center justify-between flex-shrink-0 p-2">
           <span className="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
@@ -25,7 +25,7 @@ function SideBar({ show, closed }) {
           </span>
           <XIcon
             width={20}
-            className="lg:hidden block cursor-pointer"
+            className="block cursor-pointer"
             onClick={closed}
           />
         </div>

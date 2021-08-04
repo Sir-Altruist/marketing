@@ -31,9 +31,9 @@ function App() {
        <Route path='/register/marketer'  component={Marketer} />
        <Link />
        <Route component={NotFound} />
-      </Switch>  
+      </Switch>
     </Router>
-  
+
   );
 }
 
@@ -44,4 +44,3 @@ AOS.init({
 });
 
 export default App;
-

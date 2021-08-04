@@ -16,9 +16,9 @@ const Marketer = (props) => {
   return (
     <>
       <SideBar show={showSideBar} closed={sideBarClosedHandler} />
-      <div className="flex flex-col flex-1 h-full overflow-hidden">
+      <div className="flex flex-col flex-1 overflow-hidden">
         <NavBar chevronClicked={SideBarToggleHandler} show={showSideBar} />
-        <Backdrop show={showSideBar} clicked={sideBarClosedHandler} />
+        {/*<Backdrop show={showSideBar} clicked={sideBarClosedHandler} />*/}
         <main className="flex-1 xl:p-4 pl-20 max-w-full max-h-full p-5 overflow-hidden overflow-y-scroll">
           {props.children}
         </main>
