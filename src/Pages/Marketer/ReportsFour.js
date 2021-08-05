@@ -1,8 +1,47 @@
-import Laptop from "../../assets/home/laptop1.png";
-import Mouse from "../../assets/home/mouse.png";
-import Xbox from "../../assets/home/xbox.png";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { productList } from '../../actions/productAction'
+
 
 export default function ReportsFour() {
+
+  const dispatch = useDispatch()
+  const productLists = useSelector(state => state.productReducers)
+  const { loading, error, products } = productLists
+
+  useEffect(() => {
+    dispatch(productList())
+  }, [dispatch])
+
+  let listOfProducts = products.length > 0 ? 
+  <>
+  {products && products.map((product, i) => {
+    return (
+      <article className="bg-white cursor-pointer transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
+  <div className="relative">
+    <img src={`${process.env.REACT_APP_API_URL}${product.productImg}`} alt="product" className="w-full" />
+    <span
+      style={{ left: "4rem" }}
+      className="absolute top-20 text-xl bg-blue-600 bg-blend-multiply py-2 px-6 rounded-lg font-bold text-white"
+    >
+       Commission {product.commission}&#37;
+    </span>
+  </div>
+  <div className="px-6">
+    <p className="font-semibold text-md">{product.name}</p>
+    <span className="block pb-5 pt-2 font-extralight">
+     {product.description}
+    </span>
+    <span className="block pb-5 text-purple-500 font-bold text-md">
+      {product.amount}
+    </span>
+  </div>
+  </article>
+    )
+  })}
+</> : <h2>No product has been uploaded yet...</h2>
+
+
   return (
     <>
       {/* Main content header */}
@@ -12,62 +51,7 @@ export default function ReportsFour() {
 
       {/* Start content */}
       <div className="grid grid-cols-1 mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <article className="bg-white cursor-pointer transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
-          <div className="relative">
-            <img src={Laptop} alt="Laptop" className="w-full" />
-            <span
-              style={{ left: "4rem" }}
-              className="absolute top-20 text-xl bg-blue-600 bg-blend-multiply py-2 px-6 rounded-lg font-bold text-white"
-            >
-              Commission 25%
-            </span>
-          </div>
-          <div className="px-6">
-            <p className="font-semibold text-md">Laptop-AsusMX456GM</p>
-            <span className="block pb-5 pt-2 font-extralight">
-              Core i7 Gen 11, Ram 16 Gb
-            </span>
-            <span className="block pb-5 text-purple-500 font-bold text-md">
-              $1000
-            </span>
-          </div>
-        </article>
-
-        <article className="bg-white cursor-pointer transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
-          <div className="relative">
-            <img src={Mouse} alt="Mouse" className="w-full" />
-            <span className="absolute top-20 right-16 text-xl bg-blue-600 bg-blend-multiply py-2 px-6 rounded-lg font-bold text-white">
-              Commission 25%
-            </span>
-          </div>
-          <div className="px-6">
-            <p className="font-semibold text-md">Laptop-AsusMX456GM</p>
-            <span className="block pb-5 pt-2 font-extralight">
-              Core i7 Gen 11, Ram 16 Gb
-            </span>
-            <span className="block pb-5 text-purple-500 font-bold text-md">
-              $1000
-            </span>
-          </div>
-        </article>
-
-        <article className="bg-white cursor-pointer transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
-          <div className="relative">
-            <img src={Xbox} alt="Xbox" className="w-full" />
-            <span className="absolute top-20 right-16 text-xl bg-blue-600 bg-blend-multiply py-2 px-6 rounded-lg font-bold text-white">
-              Commission 25%
-            </span>
-          </div>
-          <div className="px-6">
-            <p className="font-semibold text-md">Laptop-AsusMX456GM</p>
-            <span className="block pb-5 pt-2 font-extralight">
-              Core i7 Gen 11, Ram 16 Gb
-            </span>
-            <span className="block pb-5 text-purple-500 font-bold text-md">
-              $1000
-            </span>
-          </div>
-        </article>
+        {listOfProducts}
       </div>
       {/* ========== Start content end ========= */}
     </>

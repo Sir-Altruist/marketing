@@ -31,8 +31,6 @@ export const register = (name, email, website, category, password, confirm) => a
             payload: data 
         })
 
-        localStorage.setItem('marketerInfo', JSON.stringify(data))
-
     } catch (error) {
 
         dispatch({

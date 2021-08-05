@@ -128,7 +128,7 @@ function MarketerLogin() {
 
     useEffect(() => {
         if(marketerInfo){
-            history.push('/dashboard/client')
+            history.push('/marketer/dashboard')
         }
     })
     const onSubmit = (values)  => {

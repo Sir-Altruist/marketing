@@ -92,8 +92,6 @@ export const register = (username, email, password, confirm) => async (dispatch)
             type: CLIENT_REGISTER_SUCCESS,
             payload: data
         })
-
-        localStorage.setItem('clientInfo', JSON.stringify(data))
     } catch (error) {
         dispatch({
             type: CLIENT_REGISTER_FAILURE,

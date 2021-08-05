@@ -120,8 +120,6 @@ const ClientLogin = props => {
     const clientLogin = useSelector(state => state.clientLoginReducer)
 
     const {loading, error, clientInfo } = clientLogin
-
-    console.log(window.location)
     useEffect(() => {
         if(clientInfo){
             history.push(`/client/dashboard`)
@@ -184,7 +182,7 @@ const ClientLogin = props => {
                                {error && <h5 style={{color: 'red'}}>{error}</h5>}
                                {loading && <h5>Loading...</h5>}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 

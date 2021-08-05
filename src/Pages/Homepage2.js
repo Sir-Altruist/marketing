@@ -166,7 +166,6 @@ function Homepage2({choose, affiliate, buyer, snap}) {
 
 
     const productLists = useSelector(state => state.productReducers)
-  
     const { loading, error, products } = productLists
     console.log(products)
 

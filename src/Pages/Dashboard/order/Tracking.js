@@ -5,13 +5,23 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import CloseOutlined from '@material-ui/icons/CloseOutlined';
 import Spec from '../../../assets/icons/mirror.svg'
 import Head from '../../../components/Head'
-import { Box, Typography, Container, Card, Grid, Divider, Button, TextField } from '@material-ui/core'
+import { Box, 
+    Typography, 
+    Container, 
+    Card, 
+    Grid, 
+    Divider, 
+    Button, 
+    TextField
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../../actions/clientAction'
 import { productUpload } from '../../../actions/productAction'
+// import Alerts from '../../../components/Basic/Alert'
 import axios from 'axios'
+
 
 const useStyles = makeStyles({
     root: {
@@ -72,6 +82,8 @@ function Tracking() {
     const [rating, setRating] = useState('')
     const [productImg, setProductImg] = useState('')
     const [description, setDescription] = useState('')
+
+    //image upload
     const [uploading, setUploading] = useState(false)
 
     const history = useHistory()
@@ -80,9 +92,8 @@ function Tracking() {
     const {clientInfo} = clientLogin
     const clientDetails = useSelector(state => state.clientDetailsReducer)
     const { user } = clientDetails
-    const products = useSelector(state => state.productUploadReducers)
-    const {product} = products
-    console.log(product)
+ 
+
 
     useEffect(() => {
         localStorage.setItem('userInfo', JSON.stringify(user))
@@ -126,7 +137,6 @@ function Tracking() {
     const handleSubmit = e => {
         e.preventDefault()
         dispatch(productUpload(name, amount, commission, rating, productImg, description))
-        console.log(product)
     }
  
       
@@ -216,9 +226,7 @@ function Tracking() {
                 <Container className={classes.form}>  
                 <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
                        <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
-                {/* {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>} */}
-                               {product && <h5 style={{color: 'green'}}>Product Uploaded Successfully</h5> }
+                           {/* <Alerts /> */}
                                <div>
                                <TextField 
                                 size='small' 
@@ -302,7 +310,7 @@ function Tracking() {
                                 className={classes.field} 
                                 />
                                 <div style={{ textAlign: 'right', marginTop: '1rem'}}>
-                                <Button onClick={handleSubmit} className={classes.btn}>Submit</Button>
+                                <Button type='submit' onClick={handleSubmit} className={classes.btn}>Submit</Button>
                                 </div>
                                </div>
                 </form>

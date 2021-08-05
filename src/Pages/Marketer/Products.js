@@ -1,6 +1,58 @@
-import Laptop from "../../assets/home/laptop.png";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { productList } from '../../actions/productAction'
+
 
 export default function Products() {
+
+  const dispatch = useDispatch()
+  const productLists = useSelector(state => state.productReducers)
+  const { loading, error, products } = productLists
+
+  useEffect(() => {
+    dispatch(productList())
+  }, [dispatch])
+
+  let listOfProducts = products.length > 0 ?    
+  <>
+     {products &&  products.map((product, i) => {
+              return (
+                <tr className="border-b border-gray-300" key={i}>
+                <td className="flex space-x-3 p-3">
+                <img
+                  className="rounded-full max-h-14"
+                  src={`${process.env.REACT_APP_API_URL}${product.productImg}`}
+                  alt="product"
+                />
+                <div>
+                  <span className="block font-bold break-words">
+                    {product.name}
+                  </span>
+                  <span className="block font-light break-words">
+                    {product.description}
+                  </span>
+                </div>
+              </td>
+              <td>&#36;{product.amount}</td>
+              <td>{product.commission}&#37;</td>
+              <td className="relative">
+                <input
+                  className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
+                  type="text"
+                  value="http://AsusMx/4548"
+                  contentEditable={false}
+                />
+                <button
+                  style={{ left: "13rem" }}
+                  className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
+                >
+                  Copy Link
+                </button>
+              </td>
+              </tr>
+              )
+            })}
+  </> : <h2>No product has been uploaded yet...</h2>
   return (
     <>
       <h2 className="font-bold text-xl mb-10">Products</h2>
@@ -30,204 +82,9 @@ export default function Products() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
-              <tr className="border-b border-gray-300">
-                <td className="flex space-x-3 p-3">
-                  <img
-                    className="rounded-full max-h-14"
-                    src={Laptop}
-                    alt="Laptop"
-                  />
-                  <div>
-                    <span className="block font-bold break-words">
-                      Laptop-AsusMX456GM
-                    </span>
-                    <span className="block font-light break-words">
-                      Core i7 Gen 11, Ram 16 Gb
-                    </span>
-                  </div>
-                </td>
-                <td>$1000</td>
-                <td>$250</td>
-                <td className="relative">
-                  <input
-                    className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
-                    type="text"
-                    value="http://AsusMx/4548"
-                    contentEditable={false}
-                  />
-                  <button
-                    style={{ left: "13rem" }}
-                    className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  >
-                    Copy Link
-                  </button>
-                </td>
-              </tr>
+            {loading && <h2>Loading...</h2>} 
+            {error && <h3>{error}</h3>}
+              {listOfProducts}
             </tbody>
           </table>
         </div>
