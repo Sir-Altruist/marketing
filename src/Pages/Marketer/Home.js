@@ -1,15 +1,36 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { details } from '../../actions/marketerAction'
 import ClickIcon from "../../assets/icons/click.svg";
 import OrderIcon from "../../assets/icons/product.svg";
 import SalesIcon from "../../assets/icons/sales.svg";
 import CommissionIcon from "../../assets/icons/commision_icon.svg";
 
+
 export default function Dashboard() {
+
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const marketerLogin = useSelector(state => state.marketerLoginReducer)
+  const {marketerInfo} = marketerLogin
+   const marketerDetails = useSelector(state => state.marketerDetailsReducer)
+  const { user } = marketerDetails
+
+
+  useEffect(() => {
+    if(!marketerInfo){
+        history.push('/login/marketer')
+    } else {
+        dispatch(details())
+    }
+}, [marketerInfo, history, dispatch])
   return (
     <>
       {/* Main content header start */}
       <div className="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
         <h1 className="text-xl font-semibold whitespace-nowrap">
-          Welcome back Salisu
+          Welcome back, {user ? user.name : null}
         </h1>
       </div>
       {/* Main content header end */}

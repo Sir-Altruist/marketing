@@ -7,7 +7,7 @@ export default function ReportsFour() {
 
   const dispatch = useDispatch()
   const productLists = useSelector(state => state.productReducers)
-  const { loading, error, products } = productLists
+  const { products } = productLists
 
   useEffect(() => {
     dispatch(productList())

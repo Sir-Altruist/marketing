@@ -19,7 +19,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../../actions/clientAction'
 import { productUpload } from '../../../actions/productAction'
-// import Alerts from '../../../components/Basic/Alert'
+import ErrorAlert from '../../../components/Basic/Alerts/ErrorAlert'
+import SuccessAlert from '../../../components/Basic/Alerts/SuccessAlert'
 import axios from 'axios'
 
 
@@ -92,6 +93,8 @@ function Tracking() {
     const {clientInfo} = clientLogin
     const clientDetails = useSelector(state => state.clientDetailsReducer)
     const { user } = clientDetails
+    const productMessage = useSelector(state => state.productUploadReducers)
+    const {loading, error, products} = productMessage
  
 
 
@@ -225,8 +228,10 @@ function Tracking() {
                 <Card className={classes.formCard}>
                 <Container className={classes.form}>  
                 <Typography variant='h4' style={{textAlign: 'center'}}>Upload Product</Typography>
-                       <form noValidate autoComplete='false' style={{margin: '2rem 0'}}>
-                           {/* <Alerts /> */}
+                       <form noValidate autoComplete='false' style={{margin: '2rem 0'}} onSubmit={handleSubmit}>
+                           {loading && <h5>Loading...</h5>}
+                           {error && <ErrorAlert />}
+                           {products && <SuccessAlert />}
                                <div>
                                <TextField 
                                 size='small' 
@@ -310,7 +315,7 @@ function Tracking() {
                                 className={classes.field} 
                                 />
                                 <div style={{ textAlign: 'right', marginTop: '1rem'}}>
-                                <Button type='submit' onClick={handleSubmit} className={classes.btn}>Submit</Button>
+                                <Button type='submit' className={classes.btn}>Submit</Button>
                                 </div>
                                </div>
                 </form>

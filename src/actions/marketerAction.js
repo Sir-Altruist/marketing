@@ -1,4 +1,7 @@
 import { 
+    MARKETER_DETAILS_FAILURE,
+    MARKETER_DETAILS_REQUEST,
+    MARKETER_DETAILS_SUCCESS,
     MARKETER_LOGIN_FAILURE, 
     MARKETER_LOGIN_REQUEST, 
     MARKETER_LOGIN_SUCCESS, 
@@ -69,6 +72,38 @@ export const login = (email, password) => async (dispatch) => {
 
         dispatch({
             type: MARKETER_LOGIN_FAILURE,
+            payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
+        })
+    }
+}
+
+export const details = () => async (dispatch, getState) => {
+    try {
+
+        dispatch({
+            type: MARKETER_DETAILS_REQUEST
+        })
+
+        const {
+            marketerLoginReducer: { marketerInfo }
+        } = getState()
+        const config = ({
+            headers: {
+                'Content-Type': "application/json",
+                "x-auth-token": `${marketerInfo.token}` 
+            }
+        })
+
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/dashboard/marketer`, config)
+
+        dispatch({
+            type: MARKETER_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: MARKETER_DETAILS_FAILURE,
             payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
         })
     }

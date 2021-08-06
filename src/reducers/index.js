@@ -14,7 +14,7 @@ import footer from './footer'
 import order from './order'
 import { productReducers, productUploadReducers } from './productReducers'
 import { clientLoginReducer, clientDetailsReducer, clientRegisterReducer } from './clientReducer'
-import { marketerRegisterReducer, marketerLoginReducer } from './marketerReducer'
+import { marketerRegisterReducer, marketerLoginReducer, marketerDetailsReducer } from './marketerReducer'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -22,7 +22,7 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['clientLoginReducer','clientDetailsReducer']
+    whitelist: ['clientLoginReducer','clientDetailsReducer', 'marketerLoginReducer', 'marketerDetailsReducer']
 }
 
 const rootReducer = combineReducers({
@@ -45,7 +45,8 @@ const rootReducer = combineReducers({
     clientDetailsReducer,
     clientRegisterReducer,
     marketerRegisterReducer,
-    marketerLoginReducer
+    marketerLoginReducer,
+    marketerDetailsReducer
 });
 
 export default persistReducer(persistConfig, rootReducer)

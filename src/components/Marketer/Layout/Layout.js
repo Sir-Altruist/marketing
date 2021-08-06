@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "../NavBar";
 import SideBar from "../SideBar";
-import Backdrop from "../UI/Backdrop/Backdrop";
 
 const Marketer = (props) => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -18,7 +17,6 @@ const Marketer = (props) => {
       <SideBar show={showSideBar} closed={sideBarClosedHandler} />
       <div className="flex flex-col flex-1 overflow-hidden">
         <NavBar chevronClicked={SideBarToggleHandler} show={showSideBar} />
-        {/*<Backdrop show={showSideBar} clicked={sideBarClosedHandler} />*/}
         <main className="flex-1 xl:p-4 pl-20 max-w-full max-h-full p-5 overflow-hidden overflow-y-scroll">
           {props.children}
         </main>

@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
@@ -7,6 +8,10 @@ import {
 import Salisu from "../../assets/home/salisu.jpg";
 
 function NavBar({ chevronClicked, show }) {
+
+  const marketerDetails = useSelector(state => state.marketerDetailsReducer)
+  const { user } = marketerDetails
+
   return (
     <header className="flex-shrink-1 border-b bg-white">
       <div className="flex items-center justify-between p-2">
@@ -36,7 +41,7 @@ function NavBar({ chevronClicked, show }) {
               </button>
             </div>
 
-            <h4>Salisu Shuaibu</h4>
+            <h4>{user ? user.name : null}</h4>
 
             {/* Avatar */}
             <div className="relative">

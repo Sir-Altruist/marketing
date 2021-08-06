@@ -1,4 +1,7 @@
 import { 
+    MARKETER_DETAILS_FAILURE,
+    MARKETER_DETAILS_REQUEST,
+    MARKETER_DETAILS_SUCCESS,
     MARKETER_LOGIN_FAILURE,
     MARKETER_LOGIN_REQUEST,
     MARKETER_LOGIN_SUCCESS,
@@ -48,6 +51,28 @@ export const marketerLoginReducer =  (state = {}, action) => {
             }
         case MARKETER_LOGOUT:
             return {}
+        default:
+            return state
+    }
+}
+
+export const marketerDetailsReducer = (state = { user: {}}, action) => {
+    switch(action.type){
+        case MARKETER_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case MARKETER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                user: action.payload
+            }
+        case MARKETER_DETAILS_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+                }
         default:
             return state
     }
