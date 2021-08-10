@@ -58,7 +58,8 @@ export const details = () => async (dispatch, getState) => {
             }
         })
 
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/dashboard/client`, config)
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/dashboard/client`, 
+        config)
 
         dispatch({
             type: CLIENT_DETAILS_SUCCESS,
@@ -104,6 +105,7 @@ export const register = (username, email, password, confirm) => async (dispatch)
 export const logout = () => (dispatch) => {
 
     localStorage.removeItem('clientInfo')
+    localStorage.removeItem('userInfo')
     dispatch({
         type: CLIENT_LOGOUT
     })

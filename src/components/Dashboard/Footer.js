@@ -1,6 +1,11 @@
 import React from 'react'
 import { Card, CardContent, Container, Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
+import Tag from '../../assets/home/footer.png'
+import CreateOutlined from '@material-ui/icons/CreateOutlined';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import Spec from '../../assets/icons/mirror.svg'
+import CloseOutlined from '@material-ui/icons/CloseOutlined';
 
 const useStyles = makeStyles({
     root: {
@@ -28,7 +33,7 @@ const useStyles = makeStyles({
         cursor: 'pointer'
     }
 })
-function Footer({ single }) {
+function Footer({ product }) {
     
     const classes = useStyles()
     return (
@@ -37,20 +42,26 @@ function Footer({ single }) {
                 <Grid container>
                     <Grid item xs={12} md={7}>
                         <div className={classes.header}>
-                            <img src={single.path} alt='icon' />
-                            <Typography variant='span' className={classes.head}>{single.service}</Typography>
+                            <img src={Tag} alt='icon' />
+                            <Typography variant='span' className={classes.head}>{product.name}</Typography>
                         </div>
                         <CardContent>
-                                <Typography variant='body2' color='textSecondary'>{single.details}</Typography>
+                                <Typography variant='body2' color='textSecondary'>{product.description}</Typography>
                             </CardContent>
                     </Grid>
                     <Grid item xs={12} md={5}>
-                        <Typography align='right' style={{ fontWeight: 'bold'}}>{single.amount}</Typography>
+                        <Typography align='right' style={{ fontWeight: 'bold'}}>{product.amount}</Typography>
                         <div className={classes.icons}>
-                            <span style={{width: '.1rem', height: '.1rem'}}>{single.icon1}</span>
-                            <span style={{width: '.1rem', height: '.1rem'}}>{single.icon2}</span>
-                            <span style={{width: '.1rem', height: '.1rem', color: 'red'}}>{single.icon3}</span>
-                            <img src={single.icon4} alt='icon' />
+                            <span style={{width: '.1rem', height: '.1rem'}}>
+                                <CreateOutlined />
+                            </span>
+                            <span style={{width: '.1rem', height: '.1rem'}}>
+                                <ChatBubbleOutlineIcon />
+                            </span>
+                            <span style={{width: '.1rem', height: '.1rem', color: 'red'}}>
+                                <CloseOutlined />
+                            </span>
+                            <img src={Spec} alt='icon' />
                         </div>
                     </Grid>
                 </Grid>

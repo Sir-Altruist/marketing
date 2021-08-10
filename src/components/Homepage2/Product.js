@@ -28,7 +28,7 @@ function Product({ product }) {
             </CardActionArea>
             <CardContent>
                 <Container>
-                <Typography varaint='h6' color='textSecondary'>{product.name}</Typography>
+                <Typography varaint='h6' color='textSecondary' style={{fontWeight: 'bold'}}>{product.name}</Typography>
                 <Typography varaint='body2' color='textSecondary'>{product.description}</Typography>
                 <Rating value={product.rating} />
                 <Typography varaint='h5' color='textPrimary'>&#36;{product.amount}</Typography>

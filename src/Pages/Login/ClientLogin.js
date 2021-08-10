@@ -9,6 +9,9 @@ import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../actions/clientAction'
+import ErrorAlert from '../../components/Basic/Alerts/Client/Login/ErrorAlert';
+import SuccessAlert from '../../components/Basic/Alerts/Client/Login/SuccessAlert';
+
 
 
 const useStyles = makeStyles({
@@ -106,7 +109,7 @@ const ColorButton = withStyles((theme) => ({
     },
   }))(Button);
 
-const ClientLogin = props => {
+const ClientLogin = () => {
     const classes = useStyles()
 
     const[checked, setChecked] = useState(false)
@@ -118,7 +121,6 @@ const ClientLogin = props => {
     const location = useLocation()
     const dispatch = useDispatch()
     const clientLogin = useSelector(state => state.clientLoginReducer)
-
     const {loading, error, clientInfo } = clientLogin
     useEffect(() => {
         if(clientInfo){
@@ -179,8 +181,9 @@ const ClientLogin = props => {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                               {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username</label>
                                     <br />
@@ -269,8 +272,9 @@ const ClientLogin = props => {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h2 style={{color: 'red'}}>{error}</h2>}
-                               {loading && <h2>Loading...</h2>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username/Email</label>
                                     <br />
@@ -358,8 +362,9 @@ const ClientLogin = props => {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h2 style={{color: 'red'}}>{error}</h2>}
-                               {loading && <h2>Loading...</h2>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username/Email</label>
                                     <br />

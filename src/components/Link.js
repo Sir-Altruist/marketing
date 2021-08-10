@@ -45,7 +45,7 @@ function Link() {
           <Route path='/client/payment/paypal' component={Paypal} />
           <Route path='/client/payment/card' component={CreditCard} />
           <Route path='/client/order/status' component={Status} />
-          <Route path='/client/order/tracking/:id' component={Tracking} />
+          <Route path='/client/order/tracking' component={Tracking} />
           <Route path='/client/settings' component={Settings} />
           </Switch>
   </Layout>

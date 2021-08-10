@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productList } from '../../actions/productAction'
+import InfoAlert from '../../components/Basic/Alerts/Products/InfoAlert'
 
 
 export default function Products() {
@@ -52,7 +53,7 @@ export default function Products() {
               </tr>
               )
             })}
-  </> : <h2>No product has been uploaded yet...</h2>
+  </> : <InfoAlert />
   return (
     <>
       <h2 className="font-bold text-xl mb-10">Products</h2>

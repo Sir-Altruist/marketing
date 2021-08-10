@@ -9,6 +9,9 @@ import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../actions/marketerAction'
+import ErrorAlert from '../../components/Basic/Alerts/Marketer/Login/ErrorAlert';
+import SuccessAlert from '../../components/Basic/Alerts/Marketer/Login/SuccessAlert';
+
 
 
 const useStyles = makeStyles({
@@ -123,7 +126,6 @@ function MarketerLogin() {
     const location = useLocation()
     const dispatch = useDispatch()
     const marketerLogin = useSelector(state => state.marketerLoginReducer)
-
     const { loading, error, marketerInfo } = marketerLogin
 
     useEffect(() => {
@@ -184,8 +186,9 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {marketerInfo && <SuccessAlert />}
                                <div>
                                     <label>Email</label>
                                     <br />
@@ -273,8 +276,9 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {marketerInfo && <SuccessAlert />}
                                <div>
                                     <label>Email</label>
                                     <br />
@@ -364,8 +368,9 @@ function MarketerLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {marketerInfo && <SuccessAlert />}
                                <div>
                                     <label>Email</label>
                                     <br />

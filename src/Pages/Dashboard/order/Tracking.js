@@ -19,8 +19,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../../actions/clientAction'
 import { productUpload } from '../../../actions/productAction'
-import ErrorAlert from '../../../components/Basic/Alerts/ErrorAlert'
-import SuccessAlert from '../../../components/Basic/Alerts/SuccessAlert'
+import ErrorAlert from '../../../components/Basic/Alerts/Products/ErrorAlert'
+import SuccessAlert from '../../../components/Basic/Alerts/Products/SuccessAlert'
 import axios from 'axios'
 
 
@@ -79,9 +79,11 @@ function Tracking() {
 
     const [name, setName] = useState('')
     const [amount, setAmount] = useState('')
+    const [budget, setBudget] = useState('')
     const [commission, setCommission] = useState('')
     const [rating, setRating] = useState('')
     const [productImg, setProductImg] = useState('')
+    const [link, setLink] = useState('')
     const [description, setDescription] = useState('')
 
     //image upload
@@ -106,10 +108,10 @@ function Tracking() {
             if(!user){
                 dispatch(details())
             } else {
-                history.push(`/client/order/tracking/${user._id}`)
+                history.push(`/client/order/tracking`)
             }
         }
-    }, [history, clientInfo, user, user._id, dispatch])
+    }, [history, clientInfo, user, dispatch])
 
     const uploadFileHandler = async (e) => {
         const file = e.target.files[0]
@@ -139,7 +141,7 @@ function Tracking() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(productUpload(name, amount, commission, rating, productImg, description))
+        dispatch(productUpload(name, amount, budget, commission, rating, productImg, link, description))
     }
  
       
@@ -256,6 +258,16 @@ function Tracking() {
                                  <TextField 
                                 size='small' 
                                 fullWidth 
+                                label='Budget'
+                                name='budget'
+                                 variant='outlined'
+                                 onChange={e => setBudget(e.target.value)}
+                                 value={budget}
+                                 className={classes.field} 
+                                 />
+                                 <TextField 
+                                size='small' 
+                                fullWidth 
                                 label='Commission'
                                 name='commission'
                                  variant='outlined'
@@ -302,6 +314,16 @@ function Tracking() {
                                      </Button>
                                  </label>
                                  {uploading && <h5>Product image uploading... </h5>}
+                                 <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Product Link'
+                                name='link'
+                                 variant='outlined'
+                                 onChange={e => setLink(e.target.value)}
+                                 value={link}
+                                 className={classes.field} 
+                                 />
                                 <TextField 
                                 size='small' 
                                 fullWidth 

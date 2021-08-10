@@ -16,6 +16,7 @@ import { productList } from '../actions/productAction'
 import { useDispatch, useSelector } from 'react-redux'
 import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
 import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
+import InfoAlert from '../components/Basic/Alerts/Products/InfoAlert'
 
 
 
@@ -186,7 +187,7 @@ function Homepage2({choose, affiliate, buyer, snap}) {
                   </Grid>
               )
           })}
-      </Carousel> : <h2>No Product has been uploaded yet!</h2>
+      </Carousel> : <InfoAlert />
 
     return (
         <>

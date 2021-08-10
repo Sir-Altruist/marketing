@@ -9,6 +9,8 @@ import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../actions/clientAction'
+import ErrorAlert from '../../components/Basic/Alerts/Client/Register/ErrorAlert';
+import SuccessAlert from '../../components/Basic/Alerts/Client/Register/SuccessAlert';
 
 
 const useStyles = makeStyles({
@@ -122,7 +124,6 @@ function ClientLogin() {
     const location = useLocation()
     const dispatch = useDispatch()
     const clientRegister = useSelector(state => state.clientRegisterReducer)
-
     const { loading, error, clientInfo } = clientRegister
 
     useEffect(() => {
@@ -193,8 +194,9 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
                                {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username</label>
                                     <br />
@@ -302,8 +304,9 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                           {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username</label>
                                     <br />
@@ -412,8 +415,9 @@ function ClientLogin() {
                        render={({ handleSubmit }) => (
                            <Container>
                            <form onSubmit={handleSubmit} noValidate autoComplete='off' className={classes.form}>
-                           {error && <h5 style={{color: 'red'}}>{error}</h5>}
-                               {loading && <h5>Loading...</h5>}
+                           {loading && <h5>Loading...</h5>}
+                               {error && <ErrorAlert />}
+                               {clientInfo && <SuccessAlert />}
                                <div>
                                     <label>Username</label>
                                     <br />

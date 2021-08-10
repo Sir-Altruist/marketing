@@ -5,21 +5,21 @@ import SettingsOutlined from '@material-ui/icons/SettingsOutlined';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 
-const getUserId = () => {
-    const user = JSON.parse(localStorage.getItem('userInfo'))
-    let id = null
-    if(!user){
-        id = null
-    } else {
-        id = user._id
-    }
-    return id
-}
+// const getUserId = () => {
+//     const user = JSON.parse(localStorage.getItem('userInfo'))
+//     let id;
+//     if(!user){
+//         id = null
+//     } else {
+//         id = user._id
+//     }
+//     return id 
+// }
 
 const menuItems = [
     {
         name: 'Dashboard',
-        path: '/client/dashboard',
+        path: `/client/dashboard`,
         icon1: <DashboardOutlined />,
         icon2: <DashboardOutlined color='primary' />
     },
@@ -37,7 +37,7 @@ const menuItems = [
             },
             {
                 name: 'Tracking',
-                path: `/client/order/tracking/${getUserId()}`
+                path: `/client/order/tracking`
             }
         ]
     },

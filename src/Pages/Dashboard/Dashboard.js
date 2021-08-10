@@ -22,6 +22,8 @@ import Head from '../../components/Head'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../actions/clientAction'
+import { userProductList } from '../../actions/productAction'
+import InfoAlert from '../../components/Basic/Alerts/Products/InfoAlert'
 
 const useStyles = makeStyles({
     root: {
@@ -44,21 +46,43 @@ const useStyles = makeStyles({
     }
 })
 
-function Dashboard({ chat, footer }) {
+function Dashboard({ chat }) {
     const classes = useStyles()
 
     const history = useHistory()
     const dispatch = useDispatch()
     const clientLogin = useSelector(state => state.clientLoginReducer)
     const {clientInfo} = clientLogin
+    const clientDetails = useSelector(state => state.clientDetailsReducer)
+    const { user } = clientDetails
+    const userProducts = useSelector(state => state.userProductReducers)
+    const {loading, error, products} = userProducts
+
 
     useEffect(() => {
+         localStorage.setItem('userInfo', JSON.stringify(user))
         if(!clientInfo){
             history.push('/login/client')
         } else {
-            dispatch(details())
+            if(!user._id){
+                dispatch(details())
+            } else {
+                history.push(`/client/dashboard`)
+            }
         }
-    }, [clientInfo, history, dispatch])
+        dispatch(userProductList())
+}, [clientInfo, history, user, user._id, dispatch])
+
+let listOfProducts = products.length > 0 ? 
+        <>
+        {products &&  products.slice(0, 2).map((product, i) => {
+              return (
+                <Grid item xs={12} md={6} key={i}>
+                    <Footer product={product} />
+                </Grid>
+              )
+          })}
+      </> : <InfoAlert />
     return (
         <div className={classes.root}>
             <Head />
@@ -100,14 +124,10 @@ function Dashboard({ chat, footer }) {
                     Order according chat
                 </Typography>
                     </div>
-                <Grid container data-aos='fade-right' data-aos-offset='200'>
-                    {footer.map((single, i) => {
-                        return(
-                            <Grid item xs={12} md={6} key={i}>
-                                <Footer single={single} />
-                            </Grid>
-                        )
-                    })}
+                <Grid container>
+                    {loading && <h5>Loading...</h5>}
+                    {error && <h5>{error}</h5>}
+                    {listOfProducts}
                 </Grid>
                 </Container>
             </Box>
@@ -118,8 +138,8 @@ function Dashboard({ chat, footer }) {
 const mapStateToProps = state => {
     return {
         board: state.board.data,
-        chat: state.chat.data,
-        footer: state.footer.data
+        chat: state.chat.data
     }
 }
+
 export default connect(mapStateToProps)(Dashboard)
