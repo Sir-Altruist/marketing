@@ -22,7 +22,7 @@ import Head from '../../components/Head'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../actions/clientAction'
-import { userProductList } from '../../actions/productAction'
+import { userProductList, deleteProduct } from '../../actions/productAction'
 import InfoAlert from '../../components/Basic/Alerts/Products/InfoAlert'
 
 const useStyles = makeStyles({
@@ -57,8 +57,13 @@ function Dashboard({ chat }) {
     const { user } = clientDetails
     const userProducts = useSelector(state => state.userProductReducers)
     const {loading, error, products} = userProducts
+    const deletedProduct = useSelector(state => state.productDeleteReducer)
+    const { success } = deletedProduct
 
-
+    const handleDelete = (id) => {
+        if(window.confirm('Are you sure you want to delete this product?'))
+        dispatch(deleteProduct(id))
+    }
     useEffect(() => {
          localStorage.setItem('userInfo', JSON.stringify(user))
         if(!clientInfo){
@@ -71,14 +76,14 @@ function Dashboard({ chat }) {
             }
         }
         dispatch(userProductList())
-}, [clientInfo, history, user, user._id, dispatch])
+}, [clientInfo, history, user, user._id, dispatch, success])
 
 let listOfProducts = products.length > 0 ? 
         <>
         {products &&  products.slice(0, 2).map((product, i) => {
               return (
                 <Grid item xs={12} md={6} key={i}>
-                    <Footer product={product} />
+                    <Footer product={product} handleDelete={() => handleDelete(product._id)}  />
                 </Grid>
               )
           })}

@@ -40,7 +40,7 @@ export default function Products() {
                 <input
                   className="h-10 px-5 w-64 border border-gray-400 rounded-md outline-none"
                   type="text"
-                  value="http://AsusMx/4548"
+                  value={product.link}
                   contentEditable={false}
                 />
                 <button

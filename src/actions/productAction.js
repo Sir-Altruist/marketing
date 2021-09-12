@@ -7,7 +7,13 @@ import {
     PRODUCT_UPLOAD_FAILURE, 
     USER_PRODUCT_LIST_REQUEST,
     USER_PRODUCT_LIST_SUCCESS,
-    USER_PRODUCT_LIST_FAILURE
+    USER_PRODUCT_LIST_FAILURE,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAILURE,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DETAILS_FAILURE
 } from '../constants/products'
 import axios from 'axios'
 
@@ -99,6 +105,52 @@ export const productUpload = (
 
         dispatch({
             type: PRODUCT_UPLOAD_FAILURE,
+            payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
+        })
+    }
+}
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
+    try {
+
+        const {
+            clientLoginReducer: { clientInfo }
+        } = getState()
+
+        const config = ({
+            headers: {
+                'Content-Type': "application/json",
+                "x-auth-token": `${clientInfo.token}` 
+            }
+        })
+
+        dispatch({ type: PRODUCT_DELETE_REQUEST })
+
+        const { data } = await axios.delete(`${process.env.REACT_APP_API_URL}/products/${id}`, config)
+
+        dispatch({ type: PRODUCT_DELETE_SUCCESS })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DELETE_FAILURE,
+            payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
+        })
+    }
+}
+
+export const singleProductDetails = (id) => async (dispatch) => {
+    try {
+
+        dispatch({ type: PRODUCT_DETAILS_REQUEST })
+
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
+
+        dispatch({ 
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data 
+    })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAILURE,
             payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
         })
     }

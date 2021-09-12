@@ -7,6 +7,7 @@ import CreditCard from '../Pages/Dashboard/Payment/Card'
 import Status from '../Pages/Dashboard/order/Status'
 import Tracking from '../Pages/Dashboard/order/Tracking'
 import Settings from '../Pages/Dashboard/Settings'
+import EditProduct from '../Pages/Dashboard/EditProduct'
 import Layout from './Layout'
 // Marketer's link
 import MarketerDashboard from "./Marketer/Layout/Layout";
@@ -47,6 +48,7 @@ function Link() {
           <Route path='/client/order/status' component={Status} />
           <Route path='/client/order/tracking' component={Tracking} />
           <Route path='/client/settings' component={Settings} />
+          <Route path='/client/editproduct/:id' component={EditProduct} />
           </Switch>
   </Layout>
     </Switch> : null

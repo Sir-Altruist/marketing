@@ -174,7 +174,7 @@ function Homepage2({choose, affiliate, buyer, snap}) {
         dispatch(productList())
       }, [dispatch])
 
-      let listOfProducts = products.length > 0 ? <Carousel 
+      const listOfProducts = products.length > 0 ? <Carousel 
       breakPoints={breakPoints}
       enableAutoPlay={true}
       autoPlaySpeed={5000}

@@ -126,11 +126,11 @@ function ClientLogin() {
     const clientRegister = useSelector(state => state.clientRegisterReducer)
     const { loading, error, clientInfo } = clientRegister
 
-    useEffect(() => {
-        if(clientInfo){
-            history.push('/login/client')
-        }
-    }, [history, clientInfo])
+    // useEffect(() => {
+    //     if(clientInfo){
+    //         history.push('/login/client')
+    //     }
+    // }, [history, clientInfo])
 
     const onSubmit = values  => {
       const { username, email, password, confirm } = values

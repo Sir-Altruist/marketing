@@ -12,7 +12,13 @@ import board from './board'
 import chat from './chat'
 import footer from './footer'
 import order from './order'
-import { productReducers, productUploadReducers, userProductReducers } from './productReducers'
+import { 
+    productReducers, 
+    productUploadReducers, 
+    userProductReducers,  
+    productDeleteReducer, 
+    productDetailsReducer 
+} from './productReducers'
 import { clientLoginReducer, clientDetailsReducer, clientRegisterReducer } from './clientReducer'
 import { marketerRegisterReducer, marketerLoginReducer, marketerDetailsReducer } from './marketerReducer'
 import { persistReducer } from 'redux-persist'
@@ -34,6 +40,8 @@ const rootReducer = combineReducers({
     productReducers,
     productUploadReducers,
     userProductReducers,
+    productDeleteReducer,
+    productDetailsReducer,
     affiliate,
     buyer,
     image,

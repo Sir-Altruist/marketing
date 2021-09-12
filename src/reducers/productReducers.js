@@ -7,7 +7,13 @@ import {
     PRODUCT_UPLOAD_FAILURE,
     USER_PRODUCT_LIST_REQUEST,
     USER_PRODUCT_LIST_SUCCESS,
-    USER_PRODUCT_LIST_FAILURE
+    USER_PRODUCT_LIST_FAILURE,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAILURE,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DETAILS_FAILURE
  } from '../constants/products'
 
 const initialState = {
@@ -70,6 +76,49 @@ export const productUploadReducers = (state = {}, action) => {
                 products: action.payload
             }
         case PRODUCT_UPLOAD_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+            } 
+        default:
+            return state
+    }
+}
+
+export const productDeleteReducer = (state = {}, action) => {
+    switch(action.type){
+        case PRODUCT_DELETE_REQUEST:
+            return {
+                loading: true
+            }
+        case PRODUCT_DELETE_SUCCESS:
+            return {
+                loading: false,
+                success: true
+            }
+        case PRODUCT_DELETE_FAILURE:
+            return {
+                loading: false,
+                error: action.payload
+            } 
+        default:
+            return state
+    }
+}
+
+export const productDetailsReducer = (state = { product: {}}, action) => {
+    switch(action.type){
+        case PRODUCT_DETAILS_REQUEST:
+            return {
+                loading: true,
+                product: {}
+            }
+        case PRODUCT_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                product: action.payload
+            }
+        case PRODUCT_DETAILS_FAILURE:
             return {
                 loading: false,
                 error: action.payload
