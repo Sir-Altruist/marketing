@@ -13,12 +13,14 @@ import Layout from './Layout'
 import MarketerDashboard from "./Marketer/Layout/Layout";
 import MarketerHome from "../Pages/Marketer/Home";
 import MarketerProducts from "../Pages/Marketer/Products";
-import Reports from "../Pages/Marketer/Reports";
-import ReportsOne from "../Pages/Marketer/ReportsOne";
-import ReportsTwo from "../Pages/Marketer/ReportsTwo";
-import ReportsThree from "../Pages/Marketer/ReportsThree";
-import ReportsFour from "../Pages/Marketer/ReportsFour";
-import Invitation from "../Pages/Marketer/Invitation";
+import RecentProducts from "../Pages/Marketer/RecentProducts";
+import MarketerPaypal from '../Pages/Marketer/Paypal'
+// import Reports from "../Pages/Marketer/Reports";
+// import ReportsOne from "../Pages/Marketer/ReportsOne";
+// import ReportsTwo from "../Pages/Marketer/ReportsTwo";
+// import ReportsThree from "../Pages/Marketer/ReportsThree";
+// import ReportsFour from "../Pages/Marketer/ReportsFour";
+// import Invitation from "../Pages/Marketer/Invitation";
 import Payment from "../Pages/Marketer/Payment";
 
 function Link() {
@@ -29,12 +31,14 @@ function Link() {
   <Switch>
     <Route path='/marketer/dashboard' exact component={MarketerHome} />
     <Route path='/marketer/products' component={MarketerProducts} />
-    <Route path='/marketer/reports' component={Reports} />
+    <Route path='/marketer/recent-products' component={RecentProducts} />
+    <Route path='/marketer/paypal' component={MarketerPaypal} />
+    {/* <Route path='/marketer/reports' component={Reports} />
     <Route path='/marketer/reportsone' component={ReportsOne} />
     <Route path='/marketer/reportstwo' component={ReportsTwo} />
     <Route path='/marketer/reportsthree' component={ReportsThree} />
     <Route path='/marketer/reportsfour' component={ReportsFour} />
-    <Route path='/marketer/invitation' component={Invitation} />
+    <Route path='/marketer/invitation' component={Invitation} /> */}
     <Route path='/marketer/payment' component={Payment} />
     </Switch>
   </MarketerDashboard>

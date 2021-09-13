@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { singleProductDetails } from '../../actions/productAction'
+import { singleProductDetails, editProduct } from '../../actions/productAction'
+import EditAlert from '../../components/Basic/Alerts/Products/EditAlert'
+import ErrorAlert from '../../components/Basic/Alerts/Products/ErrorAlert'
 
 
 
@@ -24,6 +26,25 @@ const useStyles = makeStyles({
         marginTop: 20,
         marginBottom: 5,
         backgroundColor: "#E8E8E880"
+    },
+    formCard: {
+        width: '60%',
+        minHeight: '60vh',
+        margin: '5rem auto',
+        borderRadius: '5%',
+        marginLeft: '10%'
+    },
+    form: {
+        margin: '2rem 0 2rem 0'
+    },
+    btn: {
+        backgroundColor: '#008000',
+        textTransform: 'inherit',
+        color: '#ffffff',
+        width: '8rem',
+        '&:hover': {
+            backgroundColor: '#008000',
+        }
     }
 })
 
@@ -35,6 +56,9 @@ function EditProduct({ match }) {
     const {clientInfo} = clientLogin
     const productDetails = useSelector(state => state.productDetailsReducer)
     const { loading, error, product } = productDetails
+    const productEdit = useSelector(state => state.productEditReducer)
+    const { loading: editLoading, success } = productEdit
+
 
     //product Id
     const productId = match.params.id
@@ -45,7 +69,7 @@ function EditProduct({ match }) {
     const [commission, setCommission] = useState('')
     const [rating, setRating] = useState('')
     const [productImg, setProductImg] = useState('')
-    const [link, setLink] = useState('')
+    const [link1, setLink1] = useState('')
     const [description, setDescription] = useState('')
 
     useEffect(() => {
@@ -61,17 +85,8 @@ function EditProduct({ match }) {
                 setCommission(product.commission)
                 setRating(product.rating)
                 setProductImg(product.productImg)
-                setLink(product.link)
+                setLink1(product.link1)
                 setDescription(product.description)
-                    // console.log(product._id)
-                // console.log(product.name)
-                // console.log(product.amount)
-                // console.log(product.budget)
-                // console.log(product.commission)
-                // console.log(product.rating)
-                // console.log(product.productImg)
-                // console.log(product.link)
-                // console.log(product.description)
             }      
         }
     }, [dispatch, history, productId, product._id, clientInfo])
@@ -104,22 +119,31 @@ function EditProduct({ match }) {
         }
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(productUpload(name, amount, budget, commission, rating, productImg, link, description))
+        dispatch(editProduct({
+            _id: productId,
+            name,
+            amount,
+            budget,
+            commission,
+            rating,
+            productImg,
+            link1,
+            description
+        }))
     }
 
     return (
         <Box className={classes.root}>
-            <Card>
-                <Container>
+            <Card className={classes.formCard}>
+                <Container className={classes.form}>
                     <Typography variant='h3' className={classes.header}>Edit Product</Typography>
                     {loading ? <h5>Loading...</h5>
                     : error ? <h5>{error}</h5> : (
                         <form noValidate autoComplete='false' style={{margin: '2rem 0'}} onSubmit={handleSubmit}>
-                           {/* {loading && <h5>Loading...</h5>}
-                           {error && <ErrorAlert />}
-                           {products && <SuccessAlert />} */}
+                           {editLoading && <h5>Loading...</h5>}
+                           {success && <EditAlert />}
                                <div>
                                <TextField
                                 size='small' 
@@ -183,7 +207,6 @@ function EditProduct({ match }) {
                                  />
                                  <input
                                  accept='images/*'
-                                //  className={classes.field}
                                  onChange={uploadFileHandler}
                                  id="raised-button-file"
                                  multiple
@@ -194,7 +217,6 @@ function EditProduct({ match }) {
                                      <Button 
                                      variant='contained' 
                                      component='span' 
-                                    //  className={classes.field}
                                      style={{textTransform: 'inherit'}}>
                                          Select image
                                      </Button>
@@ -206,8 +228,8 @@ function EditProduct({ match }) {
                                 label='Product Link'
                                 name='link'
                                  variant='outlined'
-                                 onChange={e => setLink(e.target.value)}
-                                 value={link}
+                                 onChange={e => setLink1(e.target.value)}
+                                 value={link1}
                                  className={classes.field} 
                                  />
                                 <TextField 
@@ -223,7 +245,13 @@ function EditProduct({ match }) {
                                 className={classes.field} 
                                 />
                                 <div style={{ textAlign: 'right', marginTop: '1rem'}}>
-                                <Button type='submit' className={classes.btn}>Update</Button>
+                                <Button 
+                                type='submit' 
+                                className={classes.btn}
+                                onClick={handleSubmit}
+                                >
+                                    Update
+                                </Button>
                                 </div>
                                </div>
                 </form>

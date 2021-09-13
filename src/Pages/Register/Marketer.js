@@ -179,7 +179,7 @@ function Marketer() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client
+                           Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -309,7 +309,7 @@ function Marketer() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -440,7 +440,7 @@ function Marketer() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'

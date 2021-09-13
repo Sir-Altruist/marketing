@@ -83,7 +83,8 @@ function Tracking() {
     const [commission, setCommission] = useState('')
     const [rating, setRating] = useState('')
     const [productImg, setProductImg] = useState('')
-    const [link, setLink] = useState('')
+    const [link1, setLink1] = useState('')
+    const [link2, setLink2] = useState('')
     const [description, setDescription] = useState('')
 
     //image upload
@@ -141,7 +142,7 @@ function Tracking() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(productUpload(name, amount, budget, commission, rating, productImg, link, description))
+        dispatch(productUpload(name, amount, budget, commission, rating, productImg, link1, link2, description))
     }
  
       
@@ -318,10 +319,20 @@ function Tracking() {
                                 size='small' 
                                 fullWidth 
                                 label='Product Link'
-                                name='link'
+                                name='link1'
                                  variant='outlined'
-                                 onChange={e => setLink(e.target.value)}
-                                 value={link}
+                                 onChange={e => setLink1(e.target.value)}
+                                 value={link1}
+                                 className={classes.field} 
+                                 />
+                                  <TextField 
+                                size='small' 
+                                fullWidth 
+                                label='Product Link 2'
+                                name='link2'
+                                 variant='outlined'
+                                 onChange={e => setLink2(e.target.value)}
+                                 value={link2}
                                  className={classes.field} 
                                  />
                                 <TextField 

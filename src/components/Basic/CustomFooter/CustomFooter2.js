@@ -75,6 +75,7 @@ function CustomFooter2() {
                     </List>
                    </Grid>
                 </Grid>
+                <div id="google_translate_element"></div>
             </Container> 
         </Box>
     )

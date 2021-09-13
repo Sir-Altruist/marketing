@@ -5,6 +5,7 @@ import {
     MARKETER_LOGIN_FAILURE, 
     MARKETER_LOGIN_REQUEST, 
     MARKETER_LOGIN_SUCCESS, 
+    MARKETER_LOGOUT, 
     MARKETER_REGISTER_FAILURE, 
     MARKETER_REGISTER_REQUEST, 
     MARKETER_REGISTER_SUCCESS 
@@ -107,4 +108,15 @@ export const details = () => async (dispatch, getState) => {
             payload: error.response && error.response.data.msg ? error.response.data.msg : error.msg
         })
     }
+}
+
+export const logout = () => (dispatch) => {
+
+    localStorage.removeItem('marketerInfo')
+    localStorage.removeItem('userInfo')
+    dispatch({
+        type: MARKETER_LOGOUT
+
+    })
+
 }

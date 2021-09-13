@@ -4,13 +4,24 @@ import {
   ChevronDoubleRightIcon,
   BellIcon,
 } from "@heroicons/react/outline";
+import { logout } from '../../actions/marketerAction'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import Salisu from "../../assets/home/salisu.jpg";
 
 function NavBar({ chevronClicked, show }) {
 
+  const dispatch = useDispatch()
+  const history = useHistory()
   const marketerDetails = useSelector(state => state.marketerDetailsReducer)
   const { user } = marketerDetails
+ 
+
+  const handleLogout = () => {
+    dispatch(logout())
+    history.push('/login/marketer')
+}
 
   return (
     <header className="flex-shrink-1 border-b bg-white">
@@ -32,6 +43,11 @@ function NavBar({ chevronClicked, show }) {
         {/* Navbar Right */}
         <div className="relative flex items-center space-x-3">
           <div className="items-center space-x-3 flex">
+            <h4
+            onClick={handleLogout}
+            style={{ cursor: 'pointer'}}>
+              Log Out
+            </h4>
             {/*Notification Button */}
             <div className="relative">
               <div className="absolute right-0 p-1 bg-red-400 rounded-full animate-ping"></div>

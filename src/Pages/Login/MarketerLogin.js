@@ -165,7 +165,7 @@ function MarketerLogin() {
                         disableElevation
                         onClick={() => history.push('/login/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -255,7 +255,7 @@ function MarketerLogin() {
                         disableElevation
                         onClick={() => history.push('/login/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -347,7 +347,7 @@ function MarketerLogin() {
                         disableElevation
                         onClick={() => history.push('/login/client')}
                         >
-                            Client 
+                            Merchant 
                         </Button>
                         <Button
                         variant='contained'

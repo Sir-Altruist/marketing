@@ -4,10 +4,8 @@ import { productList } from '../../actions/productAction'
 import { addClick } from '../../actions/clickAction'
 import InfoAlert from '../../components/Basic/Alerts/Products/InfoAlert'
 
-
-export default function Products({ history }) {
-
-  const dispatch = useDispatch()
+function RecentProducts({ history }) {
+    const dispatch = useDispatch()
   const productLists = useSelector(state => state.productReducers)
   const { loading, error, products } = productLists
    const marketerLogin = useSelector(state => state.marketerLoginReducer)
@@ -21,20 +19,19 @@ export default function Products({ history }) {
     }
   }, [dispatch, history, marketerInfo])
 
-
-  const addButtonCount = () => {
-    dispatch(addClick())
-  }
+    const addButtonCount = () => {
+        dispatch(addClick())
+    }
 
   let listOfProducts = products.length > 0 ?    
   <>
-     {products &&  products.map((product, i) => {
+     {products &&  products.slice(0, 5).map((product, i) => {
               return (
                 <tr className="border-b border-gray-300" key={i}>
                 <td className="flex space-x-3 p-3">
                 <img
                   className="rounded-full max-h-14"
-                  src={`${product.productImg}`}
+                  src={`${process.env.REACT_APP_API_URL}${product.productImg}`}
                   alt="product"
                 />
                 <div>
@@ -58,7 +55,7 @@ export default function Products({ history }) {
                 <button
                   style={{ left: "13rem" }}
                   className="bg-purple-800 rounded-tr-md rounded-br-md outline-none text-white p-2 px-5 absolute top-5"
-                  onClick={addButtonCount}
+                  onClick={addButtonCount()}
                 >
                   Copy Link
                 </button>
@@ -72,12 +69,12 @@ export default function Products({ history }) {
       <h2 className="font-bold text-xl mb-10">Products</h2>
       <div>
         <div className="mb-3">
-          <button className="bg-purple-800 outline-none py-2 px-5 rounded-md text-white">
+          <button 
+          className="outline-none py-2 px-5 outline-none font-light"
+          onClick={() => history.push('/marketer/products')}>
             All
           </button>
-          <button 
-          className="py-2 px-5 rounded-md outline-none font-light"
-          onClick={() => history.push('/marketer/recent-products')}>
+          <button className="bg-purple-800 text-white py-2 px-5 rounded-md outline-none">
             New Products
           </button>
           <button className="py-2 px-5 rounded-md outline-none font-light">
@@ -108,3 +105,5 @@ export default function Products({ history }) {
     </>
   );
 }
+
+export default RecentProducts

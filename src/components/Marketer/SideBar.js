@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 // import Reports from "../../assets/icons/report.svg";
 
 import {
-  TrendingUpIcon,
-  UserAddIcon,
+  // TrendingUpIcon,
+  // UserAddIcon,
   ViewGridIcon,
   CreditCardIcon,
   XIcon,
@@ -61,7 +61,7 @@ function SideBar({ show, closed }) {
               </NavLink>
             </li>
 
-            <li>
+            {/* <li>
               <NavLink
                 to="/marketer/reports"
                 activeClassName="selected"
@@ -147,7 +147,7 @@ function SideBar({ show, closed }) {
                   Invitation
                 </span>
               </NavLink>
-            </li>
+            </li> */}
 
             <li>
               <NavLink

@@ -1,6 +1,22 @@
+import { useEffect } from 'react'
 import { LockClosedIcon } from "@heroicons/react/outline";
+import { details } from '../../actions/marketerAction'
+import { useSelector, useDispatch } from 'react-redux'
 
-export default function Payment() {
+export default function Payment({ history }) {
+
+  const dispatch = useDispatch()
+
+  const marketerLogin = useSelector(state => state.marketerLoginReducer)
+  const {marketerInfo} = marketerLogin
+
+  useEffect(() => {
+    if(!marketerInfo){
+        history.push('/login/marketer')
+    } else {
+     dispatch(details())
+    }
+}, [history, marketerInfo, dispatch])
   return (
     <>
       {/* Main content header */}
@@ -15,10 +31,18 @@ export default function Payment() {
         <span className="text-xl mt-5 block">Payment methods</span>
         <div className="shadow-lg py-4 bg-white rounded-md flex flex-col">
           <div className="px-4">
-            <button className="bg-blue-600 py-2 px-5 rounded-md text-white">
+            <button 
+            className="bg-blue-600 py-2 px-5 rounded-md text-white"
+            onClick={() => history.push('#')}
+            >
               Card
             </button>
-            <button className="py-2 px-5 rounded-md">Paypal</button>
+            <button 
+            className="py-2 px-5 rounded-md"
+            onClick={() => history.push('/marketer/paypal')}
+            >
+              Paypal
+            </button>
           </div>
           <p className="px-4 mb-3 mt-2">
             This is the <span className="font-bold">card number</span> that will

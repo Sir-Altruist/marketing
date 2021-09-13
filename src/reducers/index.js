@@ -17,10 +17,12 @@ import {
     productUploadReducers, 
     userProductReducers,  
     productDeleteReducer, 
-    productDetailsReducer 
+    productDetailsReducer,
+    productEditReducer
 } from './productReducers'
 import { clientLoginReducer, clientDetailsReducer, clientRegisterReducer } from './clientReducer'
 import { marketerRegisterReducer, marketerLoginReducer, marketerDetailsReducer } from './marketerReducer'
+import { addClickReducer, getClickReducer } from './clickReducers'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
@@ -42,6 +44,7 @@ const rootReducer = combineReducers({
     userProductReducers,
     productDeleteReducer,
     productDetailsReducer,
+    productEditReducer,
     affiliate,
     buyer,
     image,
@@ -55,7 +58,9 @@ const rootReducer = combineReducers({
     clientRegisterReducer,
     marketerRegisterReducer,
     marketerLoginReducer,
-    marketerDetailsReducer
+    marketerDetailsReducer,
+    addClickReducer,
+    getClickReducer
 });
 
 export default persistReducer(persistConfig, rootReducer)

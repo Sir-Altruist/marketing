@@ -1,6 +1,6 @@
 const menuItems = [
   {
-      label: 'Prodcuts',
+      label: 'Products',
       path: '/products'
   },
   {

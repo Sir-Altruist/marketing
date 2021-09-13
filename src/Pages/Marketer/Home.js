@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { details } from '../../actions/marketerAction'
+import { getClickCount } from '../../actions/clickAction'
 import ClickIcon from "../../assets/icons/click.svg";
 import OrderIcon from "../../assets/icons/product.svg";
 import SalesIcon from "../../assets/icons/sales.svg";
@@ -14,8 +15,10 @@ export default function Dashboard() {
   const dispatch = useDispatch()
   const marketerLogin = useSelector(state => state.marketerLoginReducer)
   const {marketerInfo} = marketerLogin
-   const marketerDetails = useSelector(state => state.marketerDetailsReducer)
+  const marketerDetails = useSelector(state => state.marketerDetailsReducer)
   const { user } = marketerDetails
+  const clickDetails = useSelector(state => state.getClickReducer)
+  const { click } = clickDetails
 
 
   useEffect(() => {
@@ -23,6 +26,7 @@ export default function Dashboard() {
         history.push('/login/marketer')
     } else {
         dispatch(details())
+        dispatch(getClickCount())
     }
 }, [marketerInfo, history, dispatch])
   return (
@@ -45,7 +49,7 @@ export default function Dashboard() {
               </div>
               <span className="text-lg font-semibold">click</span>
             </div>
-            <span className="text-2xl ml-24">300</span>
+            <span className="text-2xl ml-24">{click}</span>
           </div>
         </article>
         <article className="p-4 bg-white cursor-pointer transition-shadow border rounded-lg shadow-sm hover:shadow-lg">

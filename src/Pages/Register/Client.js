@@ -173,7 +173,7 @@ function ClientLogin() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -283,7 +283,7 @@ function ClientLogin() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
@@ -394,7 +394,7 @@ function ClientLogin() {
                         disableElevation
                         onClick={() => history.push('/register/client')}
                         >
-                            Client 
+                            Merchant
                         </Button>
                         <Button
                         variant='contained'
