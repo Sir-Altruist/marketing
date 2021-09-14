@@ -31,7 +31,7 @@ function RecentProducts({ history }) {
                 <td className="flex space-x-3 p-3">
                 <img
                   className="rounded-full max-h-14"
-                  src={`${process.env.REACT_APP_API_URL}${product.productImg}`}
+                  src={`${product.productImg}`}
                   alt="product"
                 />
                 <div>
