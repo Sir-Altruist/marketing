@@ -8,7 +8,8 @@ import Status from '../Pages/Dashboard/order/Status'
 import Tracking from '../Pages/Dashboard/order/Tracking'
 import Settings from '../Pages/Dashboard/Settings'
 import EditProduct from '../Pages/Dashboard/EditProduct'
-import Layout from './Layout'
+// import Layout from './Layout'
+import Mobile from './Mobile'
 // Marketer's link
 import MarketerDashboard from "./Marketer/Layout/Layout";
 import MarketerHome from "../Pages/Marketer/Home";
@@ -44,7 +45,7 @@ function Link() {
   </MarketerDashboard>
     </Switch> : path === 'client' ?
     <Switch>
-    <Layout>
+    <Mobile>
           <Switch>
           <Route path='/client/dashboard' component={Dashboard} />
           <Route path='/client/payment/paypal' component={Paypal} />
@@ -54,7 +55,7 @@ function Link() {
           <Route path='/client/settings' component={Settings} />
           <Route path='/client/editproduct/:id' component={EditProduct} />
           </Switch>
-  </Layout>
+  </Mobile>
     </Switch> : null
     return (
         <>

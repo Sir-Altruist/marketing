@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { singleProductDetails, editProduct } from '../../actions/productAction'
 import EditAlert from '../../components/Basic/Alerts/Products/EditAlert'
-import ErrorAlert from '../../components/Basic/Alerts/Products/ErrorAlert'
+// import ErrorAlert from '../../components/Basic/Alerts/Products/ErrorAlert'
 
 
 

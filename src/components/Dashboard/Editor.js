@@ -7,9 +7,12 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles({
     root: {
         width: '90%',
-        // minHeight: '100vh',
         borderRadius: '10%',
-        margin: '3rem auto 1rem auto'
+        margin: '3rem auto 1rem auto',
+        "@media (max-width: 900px)": {
+            margin: '0',
+            width: '80%'
+          },
     }
 })
 function Editor() {

@@ -32,8 +32,11 @@ const useStyles = makeStyles({
        marginTop: '5rem'
    },
    table: {
+       width: '100%',
+       display: 'block',
        marginTop: '1rem',
-       marginBottom: '3rem'
+       marginBottom: '3rem',
+       overflowX: 'auto'
    }
 })
 
@@ -118,10 +121,7 @@ function Status({ order }) {
                     <Typography variant='body2' style={{paddingLeft: '1rem'}}>Overall Order</Typography>
                 </div>
                 <TableContainer component={Paper} className={classes.table} data-aos='fade-right'>
-                    <Table>
-                        <Container>
-                            
-                        </Container>
+                    <Table responsive>
                     <TableHead>
                 <TableRow>
                     <TableCell style={{ fontWeight: 'bold'}}>

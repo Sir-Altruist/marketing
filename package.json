@@ -1,6 +1,6 @@
 {
   "name": "trial",
-  "homepage": "https://peposc.online/affiliate",
+  "homepage": "https://peposc.online/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +18,7 @@
     "alpinejs": "^3.2.2",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.21.1",
+    "clsx": "^1.1.1",
     "final-form": "^4.20.2",
     "material-ui-react-final-form": "^0.1.4",
     "netlify-cli": "^4.0.5",

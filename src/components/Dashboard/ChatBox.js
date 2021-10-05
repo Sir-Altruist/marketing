@@ -7,7 +7,10 @@ import Read from '../../assets/icons/read.svg'
 
 const useStyles = makeStyles({
     root: {
-        flexGrow: 1
+      width: '100%',
+        "@media (max-width: 900px)": {
+            width: '70%',
+          },
     },
     chats: {
         display: 'flex',

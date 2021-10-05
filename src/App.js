@@ -11,6 +11,7 @@ import MarketerLogin from './Pages/Login/MarketerLogin'
 import Client from './Pages/Register/Client'
 import Marketer from './Pages/Register/Marketer'
 import Link from './components/Link'
+import Mobile from './components/Mobile' 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './App.css';
@@ -25,6 +26,7 @@ function App() {
        <Route path='/service'  component={Service} />
        <Route path='/contact' component={Contact} />
        <Route path='/products'  component={Products} />
+       <Route path='/mobile'  component={Mobile} />
        <Route path='/login/client'  component={ClientLogin} />
        <Route path='/login/marketer'  component={MarketerLogin} />
        <Route path='/register/client'  component={Client} />

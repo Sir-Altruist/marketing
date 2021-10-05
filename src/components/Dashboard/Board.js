@@ -4,11 +4,17 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
     root: {
-       flexGrow: 1,
-       margin: '3rem .5rem'
+        flexGrow: 1,
+    //    width: '80%',
+       margin: '3rem .5rem',
+       "@media (max-width: 900px)": {
+        width: '70%',
+        // margin: '1rem',
+      },
     },
     content: {
         display: 'flex',
+        justifyContent: 'space-between'
     },
     box: {
         width: '2rem',
