@@ -8,11 +8,12 @@ import {
     CLIENT_LOGOUT, 
     CLIENT_REGISTER_FAILURE, 
     CLIENT_REGISTER_REQUEST, 
-    CLIENT_REGISTER_SUCCESS
+    CLIENT_REGISTER_SUCCESS,
+    CLEAR_TOKEN
 } from "../constants/clientConstant"
 import axios from 'axios'
 
-export const login = (username, email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     try {
 
         dispatch({
@@ -25,7 +26,7 @@ export const login = (username, email, password) => async (dispatch) => {
             }
         })
 
-        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login/client`, { username, email, password }, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login/client`, { username, password }, config)
 
         dispatch({
             type: CLIENT_LOGIN_SUCCESS,
@@ -74,7 +75,7 @@ export const details = () => async (dispatch, getState) => {
     }
 }
 
-export const register = (username, email, password, confirm) => async (dispatch) => {
+export const register = (name, username, email, phone, country, password, confirm) => async (dispatch) => {
     try {
 
         dispatch({
@@ -87,7 +88,7 @@ export const register = (username, email, password, confirm) => async (dispatch)
             }
         })
 
-        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/register/client`, { username, email, password, confirm }, config)
+        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/register/client`, { name, username, email, phone, country, password, confirm }, config)
 
         dispatch({
             type: CLIENT_REGISTER_SUCCESS,
@@ -109,5 +110,16 @@ export const logout = () => (dispatch) => {
     dispatch({
         type: CLIENT_LOGOUT
     })
+}
 
+export const clearToken = () => (dispatch) => {
+   
+    setTimeout(() => {
+        localStorage.removeItem('clientInfo')
+        localStorage.removeItem('userInfo')
+    }, 10000)
+    
+    dispatch({
+        type: CLEAR_TOKEN
+    })
 }

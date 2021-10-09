@@ -12,7 +12,7 @@ import {
 } from "../constants/marketerConstant"
 import axios from 'axios'
 
-export const register = (name, email, website, category, password, confirm) => async (dispatch) => {
+export const register = (name, username, email, phone, country, password, confirm) => async (dispatch) => {
 
     try {
 
@@ -27,7 +27,7 @@ export const register = (name, email, website, category, password, confirm) => a
         }
 
         const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/register/marketer`, 
-        { name, email, website, category, password, confirm },
+        { name, username, email, phone, country, password, confirm },
         config)
 
         dispatch({
@@ -44,7 +44,7 @@ export const register = (name, email, website, category, password, confirm) => a
     }
 }
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
 
     try {
 
@@ -59,7 +59,7 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login/marketer`, 
-        { email, password },
+        { username, password },
         config)
 
         dispatch({

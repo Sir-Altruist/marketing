@@ -9,7 +9,8 @@ import {
     CLIENT_REGISTER_FAILURE,
     CLIENT_DETAILS_REQUEST,
     CLIENT_DETAILS_SUCCESS,
-    CLIENT_DETAILS_FAILURE
+    CLIENT_DETAILS_FAILURE,
+    CLEAR_TOKEN
 
 } from "../constants/clientConstant"
 
@@ -30,6 +31,8 @@ export const clientLoginReducer = (state = {}, action) => {
                 error: action.payload
                 }
         case CLIENT_LOGOUT:
+            return { }
+        case CLEAR_TOKEN:
             return { }
         default:
             return state

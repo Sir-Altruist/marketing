@@ -129,8 +129,8 @@ const ClientLogin = () => {
     }, [history, clientInfo])
 
     const onSubmit = (values)  => {
-        const { username, email, password } = values
-        dispatch(login(username, email, password))
+        const { username, password } = values
+        dispatch(login(username, password))
     };
 
     const validate = values => {
@@ -276,7 +276,7 @@ const ClientLogin = () => {
                                {error && <ErrorAlert />}
                                {clientInfo && <SuccessAlert />}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -366,7 +366,7 @@ const ClientLogin = () => {
                                {error && <ErrorAlert />}
                                {clientInfo && <SuccessAlert />}
                                <div>
-                                    <label>Username/Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 

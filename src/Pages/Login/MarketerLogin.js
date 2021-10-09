@@ -134,14 +134,14 @@ function MarketerLogin() {
         }
     })
     const onSubmit = (values)  => {
-      const {email, password } = values
-      dispatch(login( email, password ))
+      const {username, password } = values
+      dispatch(login( username, password ))
     };
 
     const validate = values => {
         const errors = {}
-        if(!values.email) {
-            errors.email = 'Email is required'
+        if(!values.username) {
+            errors.username = 'Email is required'
         }
         if(!values.password){
             errors.password = 'Password is required'
@@ -190,12 +190,12 @@ function MarketerLogin() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
-                                    name="email" 
+                                    name="username" 
                                     component={CustomInput}
-                                    type='email'
+                                    type='text'
                                     required
                                     className={classes.field} 
                                     />
@@ -280,12 +280,12 @@ function MarketerLogin() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
-                                    name="email" 
+                                    name="username" 
                                     component={CustomInput}
-                                    type='email'
+                                    type='text'
                                     required
                                     className={classes.field} 
                                     />
@@ -372,12 +372,12 @@ function MarketerLogin() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Email</label>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
-                                    name="email" 
+                                    name="username" 
                                     component={CustomInput}
-                                    type='email'
+                                    type='text'
                                     required
                                     className={classes.field} 
                                     />

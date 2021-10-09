@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Card, Box, Typography, Button, Checkbox } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Form, Field } from 'react-final-form';
-import {CustomInput, PasswordInputs, CategoryInput } from '../../components/Basic/CustomInput';
+import {CustomInput, PasswordInputs} from '../../components/Basic/CustomInput';
 import { indigo } from '@material-ui/core/colors'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -129,30 +129,30 @@ function Marketer() {
     const marketerRegister = useSelector(state => state.marketerRegisterReducer)
     const {loading, error, marketerInfo } = marketerRegister
 
-    useEffect(() => {
-        if(marketerInfo){
-            history.push('/login/marketer')
-        }
-    }, [history, marketerInfo])
-
     const onSubmit = (values)  => {
-        const {username, email, website, category, password, confirm } = values
-        dispatch(register(username, email, website, category, password, confirm))
+        const {name, username, email, phone, country, password, confirm } = values
+        dispatch(register(name, username, email, phone, country, password, confirm))
     };
 
     const validate = values => {
         const errors = {}
+        if(!values.name) {
+            errors.name = 'This field is required'
+        }
         if(!values.username) {
-            errors.username = 'Username is required'
+            errors.username = 'This field is required'
         }
         if(!values.email){
-            errors.email = 'Email is required'
+            errors.email = 'This field is required'
         }
-        if(!values.category){
-            errors.category = 'Category is required'
+        if(!values.phone){
+            errors.phone = 'This field is required'
+        }
+        if(!values.country){
+            errors.country = 'This field is required'
         }
         if(!values.password){
-            errors.password = 'Password is required'
+            errors.password = 'This field is required'
         }
         if(!values.confirm){
             errors.confirm = 'This field is required'
@@ -204,7 +204,18 @@ function Marketer() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Marketer Name</label>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field}
+                                    />
+                                </div>
+                               <div>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -226,22 +237,22 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Website (if any)</label>
+                                    <label>Phone Number</label>
                                     <br />
                                     <Field 
-                                    name="website" 
+                                    name="phone" 
                                     component={CustomInput}
                                     type='text'
                                     className={classes.field}
                                     />
                                 </div>
                                 <div>
-                                    <label>Category</label>
+                                    <label>Country</label>
                                     <br />
                                     <Field 
-                                    name="category" 
-                                    component={CategoryInput}
-                                    type='select'
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
                                     className={classes.field}
                                     />
                                 </div>
@@ -256,7 +267,7 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                 <Field 
                                     name="confirm" 
@@ -334,7 +345,18 @@ function Marketer() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Marketer Name</label>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                               <div>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -356,22 +378,22 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Website (if any)</label>
+                                    <label>Phone Number</label>
                                     <br />
                                     <Field 
-                                    name="website" 
+                                    name="phone" 
                                     component={CustomInput}
                                     type='text'
                                     className={classes.field} 
                                     />
                                 </div>
                                 <div>
-                                    <label>Category</label>
+                                    <label>Country</label>
                                     <br />
                                     <Field 
-                                    name="category" 
-                                    component={CategoryInput}
-                                    type='select'
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
                                     className={classes.field}
                                     />
                                 </div>
@@ -386,7 +408,7 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                 <Field 
                                     name="confirm" 
@@ -465,7 +487,18 @@ function Marketer() {
                                {error && <ErrorAlert />}
                                {marketerInfo && <SuccessAlert />}
                                <div>
-                                    <label>Marketer Name</label>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                               <div>
+                                    <label>Username</label>
                                     <br />
                                     <Field 
                                     name="username" 
@@ -487,22 +520,22 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Website (if any)</label>
+                                    <label>Phone Number</label>
                                     <br />
                                     <Field 
-                                    name="website" 
+                                    name="phone" 
                                     component={CustomInput}
                                     type='text'
                                     className={classes.field} 
                                     />
                                 </div>
                                 <div>
-                                    <label>Category</label>
+                                    <label>Country</label>
                                     <br />
                                     <Field 
-                                    name="category" 
-                                    component={CategoryInput}
-                                    type='select'
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
                                     className={classes.field}
                                     />
                                 </div>
@@ -517,7 +550,7 @@ function Marketer() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                 <Field 
                                     name="confirm" 

@@ -126,27 +126,30 @@ function ClientLogin() {
     const clientRegister = useSelector(state => state.clientRegisterReducer)
     const { loading, error, clientInfo } = clientRegister
 
-    // useEffect(() => {
-    //     if(clientInfo){
-    //         history.push('/login/client')
-    //     }
-    // }, [history, clientInfo])
-
     const onSubmit = values  => {
-      const { username, email, password, confirm } = values
-      dispatch(register( username, email, password, confirm ))
+      const { name, username, email, phone, country, password, confirm } = values
+      dispatch(register( name, username, email, phone, country, password, confirm ))
     };
 
     const validate = values => {
         const errors = {}
+        if(!values.name) {
+            errors.name = 'This field is required'
+        }
         if(!values.username) {
-            errors.username = 'Username is required'
+            errors.username = 'This field is required'
         }
         if(!values.email) {
-            errors.email = 'Email is required'
+            errors.email = 'This field is required'
+        }
+        if(!values.phone) {
+            errors.phone = 'This field is required'
+        }
+        if(!values.country) {
+            errors.country = 'This field is required'
         }
         if(!values.password){
-            errors.password = 'Password is required'
+            errors.password = 'This field is required'
         }
         if(!values.confirm){
             errors.confirm = 'This field is required'
@@ -198,6 +201,17 @@ function ClientLogin() {
                                {error && <ErrorAlert />}
                                {clientInfo && <SuccessAlert />}
                                <div>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                               <div>
                                     <label>Username</label>
                                     <br />
                                     <Field 
@@ -219,6 +233,27 @@ function ClientLogin() {
                                     className={classes.field} 
                                     />
                                 </div>
+                                <div>
+                                    <label>Phone</label>
+                                    <br />
+                                    <Field 
+                                    name="phone" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div><div>
+                                    <label>Country</label>
+                                    <br />
+                                    <Field 
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
                                <div>
                                     <label>Password</label>
                                     <br />
@@ -230,7 +265,7 @@ function ClientLogin() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                     <Field 
                                     name="confirm" 
@@ -308,6 +343,17 @@ function ClientLogin() {
                                {error && <ErrorAlert />}
                                {clientInfo && <SuccessAlert />}
                                <div>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                               <div>
                                     <label>Username</label>
                                     <br />
                                     <Field 
@@ -329,6 +375,28 @@ function ClientLogin() {
                                     className={classes.field} 
                                     />
                                 </div>
+                                <div>
+                                    <label>Phone</label>
+                                    <br />
+                                    <Field 
+                                    name="phone" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Country</label>
+                                    <br />
+                                    <Field 
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
                                <div>
                                     <label>Password</label>
                                     <br />
@@ -340,7 +408,7 @@ function ClientLogin() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                     <Field 
                                     name="confirm" 
@@ -419,6 +487,17 @@ function ClientLogin() {
                                {error && <ErrorAlert />}
                                {clientInfo && <SuccessAlert />}
                                <div>
+                                    <label>Full Name</label>
+                                    <br />
+                                    <Field 
+                                    name="name" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                               <div>
                                     <label>Username</label>
                                     <br />
                                     <Field 
@@ -440,6 +519,28 @@ function ClientLogin() {
                                     className={classes.field} 
                                     />
                                 </div>
+                                <div>
+                                    <label>Phone</label>
+                                    <br />
+                                    <Field 
+                                    name="phone" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Country</label>
+                                    <br />
+                                    <Field 
+                                    name="country" 
+                                    component={CustomInput}
+                                    type='text'
+                                    required
+                                    className={classes.field} 
+                                    />
+                                </div>
                                <div>
                                     <label>Password</label>
                                     <br />
@@ -451,7 +552,7 @@ function ClientLogin() {
                                     />
                                 </div>
                                 <div>
-                                    <label>Re-Password</label>
+                                    <label>Confirm Password</label>
                                     <br />
                                     <Field 
                                     name="confirm" 
