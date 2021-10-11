@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../actions/clientAction'
 import ErrorAlert from '../../components/Basic/Alerts/Client/Register/ErrorAlert';
 import SuccessAlert from '../../components/Basic/Alerts/Client/Register/SuccessAlert';
+import CustomHeader2 from '../../components/Basic/CustomHeader/CustomHeader2';
+import CustomFooter2 from '../../components/Basic/CustomFooter/CustomFooter2';
 
 
 const useStyles = makeStyles({
@@ -18,13 +20,13 @@ const useStyles = makeStyles({
         flexGrow: 1,
         backgroundColor: '#C4C4C41A',
         width: '100%',
-        minHeight: '150vh',
+        minHeight: '180vh',
         position: 'relative'
     },
     loginCard: {
         position: 'absolute',
         top: '7rem',
-        marignBottom: '4rem',
+        marignBottom: '10rem',
         left: '30%',
         right: '30%',
         width: '40%',
@@ -99,6 +101,11 @@ const useStyles = makeStyles({
         textTransform: 'inherit',
         backgroundColor: '#F6F6F6',
         fontWeight: 'bold'
+    },
+    footer: {
+        position: 'absolute',
+        width: '100%',
+        top: '70rem'
     }
 })
 
@@ -162,6 +169,7 @@ function ClientLogin() {
 
     return (
     <>
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
                 <Card data-aos="fade-up" data-aos-delay='700'  className={classes.loginCard}>
                     <Container>
@@ -301,9 +309,13 @@ function ClientLogin() {
                     </div>
                     </Container>
                 </Card>
+                <div className={classes.footer}>
+                <CustomFooter2 />
+                </div>
         </Box>
 
         {/* small screen */}
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardS}>
                     <Container>
@@ -444,10 +456,14 @@ function ClientLogin() {
                     </div>
                     </Container>
                 </Card>
+            <div className={classes.footer}>
+            <CustomFooter2 />
+            </div>
         </Box>
 
 
         {/* Extra small screen */}
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardXs}>
                     <Container>
@@ -588,6 +604,9 @@ function ClientLogin() {
                     </div>
                     </Container>
                 </Card>
+            <div className={classes.footer}>
+            <CustomFooter2 />
+            </div>
         </Box>
         </>
     )

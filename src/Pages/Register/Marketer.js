@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../actions/marketerAction'
 import ErrorAlert from '../../components/Basic/Alerts/Marketer/Login/ErrorAlert';
 import SuccessAlert from '../../components/Basic/Alerts/Marketer/Register/SuccessAlert';
+import CustomHeader2 from '../../components/Basic/CustomHeader/CustomHeader2';
+import CustomFooter2 from '../../components/Basic/CustomFooter/CustomFooter2';
 
 
 const useStyles = makeStyles({
@@ -24,7 +26,7 @@ const useStyles = makeStyles({
     loginCard: {
         position: 'absolute',
         top: '7rem',
-        marignBottom: '4rem',
+        marignBottom: '10rem',
         left: '30%',
         right: '30%',
         width: '40%',
@@ -102,6 +104,11 @@ const useStyles = makeStyles({
     },
     category: {
         width: '100%'
+    },
+    footer: {
+        position: 'absolute',
+        width: '100%',
+        top: '70rem'
     }
 })
 
@@ -165,6 +172,7 @@ function Marketer() {
 
     return (
     <>
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }} className={classes.root}>
                 <Card className={classes.loginCard} data-aos="fade-up" data-aos-delay='700'>
                     <Container>
@@ -303,9 +311,13 @@ function Marketer() {
                     </div>
                     </Container>
                 </Card>
+            <div className={classes.footer}>
+            <CustomFooter2 />
+            </div>
         </Box>
 
         {/* small screen */}
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'none', sm: 'block', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardS}>
                     <Container>
@@ -444,10 +456,14 @@ function Marketer() {
                     </div>
                     </Container>
                 </Card>
+            <div className={classes.footer}>
+            <CustomFooter2 />
+            </div>
         </Box>
 
 
         {/* Extra small screen */}
+        <CustomHeader2 />
         <Box component='div' display={{ xs: 'block', sm: 'none', md: 'none', lg: 'none' }} className={classes.root}>
                 <Card data-aos="fade-up" data-aos-delay='700' className={classes.loginCardXs}>
                     <Container>
@@ -586,6 +602,9 @@ function Marketer() {
                     </div>
                     </Container>
                 </Card>
+            <div className={classes.footer}>
+            <CustomFooter2 />
+            </div>
         </Box>
         </>
     )

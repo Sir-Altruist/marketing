@@ -13,6 +13,7 @@ import Product from '../components/Homepage2/Product'
 import { productList } from '../actions/productAction'
 import { useDispatch, useSelector } from 'react-redux'
 import CustomFooter2 from '../components/Basic/CustomFooter/CustomFooter2'
+import CustomHeader2 from '../components/Basic/CustomHeader/CustomHeader2'
 
 const useStyles = makeStyles({
     root: {
@@ -120,6 +121,7 @@ function Products({ image }) {
 
     return (
         <div className={classes.root}>
+            <CustomHeader2 />
             <ProductHeader />
             <Box component='div' className={classes.root}>
                 <Container>

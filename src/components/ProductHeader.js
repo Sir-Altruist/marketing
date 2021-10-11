@@ -48,9 +48,6 @@ function ProductHeader() {
         <Box component='div' className={classes.root}>
             <Container>
                 <Grid container className={classes.header}>
-                    <Grid item xs={4} md={3}>
-                        <img src={Logo} alt='logo' className={classes.icon} />
-                    </Grid>
                     <Grid item xs={8} md={6}>
                         <form noValidate autoComplete='off' className={classes.form}>
                             <TextField
@@ -70,7 +67,7 @@ function ProductHeader() {
                         </form>
                         {/* <Divider className={classes.divider} orientation='vertical' /> */}
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={4}>
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                             <TextsmsIcon style={{paddingTop: '.5rem'}} />
                             <ShoppingCartIcon style={{paddingTop: '.5rem'}} />
