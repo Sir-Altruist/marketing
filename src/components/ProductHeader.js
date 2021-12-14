@@ -2,7 +2,6 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Container, Button, Grid, TextField, Avatar } from '@material-ui/core'
-import Logo from '../assets/icons/logo.svg'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined'
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'

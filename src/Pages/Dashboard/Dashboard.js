@@ -113,7 +113,7 @@ let listOfProducts = products.length > 0 ?
             <Head />
 
             {/* Large Screen Display for Chat and Table */}
-            <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
+            {/* <Box component='div' display={{ xs: 'none', sm: 'none', md: 'block', lg: 'block' }}>
                 <Container>
                     <div style={{ display: 'flex', paddingBottom: '1rem', paddingLeft: '.5rem' }}>
                         <ChatBubbleOutlineIcon />
@@ -142,7 +142,7 @@ let listOfProducts = products.length > 0 ?
                         </Container>
                     </div>
                 </div>
-            </Box>
+            </Box> */}
 
             {/* Samll Screen Display for Chat and Table */}
             <Box component='div' display={{ xs: 'block', sm: 'block', md: 'none', lg: 'none' }}>
