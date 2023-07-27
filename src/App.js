@@ -5,7 +5,7 @@ import About from './Pages/About'
 import Service from './Pages/Service'
 import Contact from './Pages/Contact'
 import Products from './Pages/Products'
-import NotFound from './Pages/NotFound'
+// import NotFound from './Pages/NotFound'
 import ClientLogin from './Pages/Login/ClientLogin'
 import MarketerLogin from './Pages/Login/MarketerLogin'
 import Client from './Pages/Register/Client'
@@ -32,7 +32,7 @@ function App() {
        <Route path='/register/client'  component={Client} />
        <Route path='/register/marketer'  component={Marketer} />
        <Link />
-       <Route component={NotFound} />
+       {/* <Route component={NotFound} /> */}
       </Switch>
     </Router>
 
@@ -41,7 +41,7 @@ function App() {
 
 
 AOS.init({
-  offset: 400,
+  // offset: 400,
   duration: 1000
 });
 

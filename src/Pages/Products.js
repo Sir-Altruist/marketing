@@ -103,13 +103,13 @@ function Products({ image }) {
         dispatch(productList())
       }, [dispatch])
 
-      let listOfProducts = products.length > 0 ? <Carousel 
+      let listOfProducts = products?.length > 0 ? <Carousel 
       breakPoints={breakPoints}
       enableAutoPlay={true}
       autoPlaySpeed={5000}
     >
 
-        {products &&  products.map((product, i) => {
+        {products &&  products?.map((product, i) => {
               return (
                   <Grid item key={i}>
                       <Product product={product} />
@@ -167,7 +167,9 @@ function Products({ image }) {
                         Storage: 256GB NVMe PCIe SSD<br />
                         Keyboard: Backlit Keyboard (Single Color, White)
                         </Typography>
-                        <Card className={classes.card}  data-aos="fade-right">
+                        <Card className={classes.card} 
+                        //  data-aos="fade-right"
+                         >
                             <Container style={{ textAlign: 'center'}}>
                             <CardContent>
                                 <Typography variant='body1' style={{ paddingTop: '1rem', fontWeight: 'bold'}}>

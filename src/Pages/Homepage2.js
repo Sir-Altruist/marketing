@@ -175,7 +175,7 @@ function Homepage2({choose, affiliate, buyer, snap}) {
         dispatch(productList())
       }, [dispatch])
 
-      const listOfProducts = products.length > 0 ? <Carousel 
+      const listOfProducts = products?.length > 0 ? <Carousel 
       breakPoints={breakPoints}
       enableAutoPlay={true}
       autoPlaySpeed={5000}
@@ -211,7 +211,10 @@ function Homepage2({choose, affiliate, buyer, snap}) {
                 </div>
                 </Container>
             </div>
-            <div className={classes.rightSide} data-aos="fade-left">
+            <div 
+            className={classes.rightSide} 
+            // data-aos="fade-left"
+            >
                 <img src={Chart} alt='chart' className={classes.image} />
             </div>
         </Box>
@@ -255,7 +258,11 @@ function Homepage2({choose, affiliate, buyer, snap}) {
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
+                <Grid container 
+                style={{ marginTop: '5rem'}} 
+                // data-aos="fade-right" 
+                // data-aos-delay='400'
+                >
                 <Grid item xs={12} md={6}>
                     <List className={classes.affiliateList}>
                     {affiliate.map((single, i) => {
@@ -265,7 +272,12 @@ function Homepage2({choose, affiliate, buyer, snap}) {
                     })}
                     </List>
                     </Grid>
-                      <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
+                      <Grid 
+                      item xs={12} 
+                      md={6} 
+                    //   data-aos="fade-left"
+                    //   data-aos-delay='800'
+                      >
                         <img src={AffiliateImg} alt='affiliate' style={{ width: '100%'}} />
                 </Grid>
                 </Grid>
@@ -278,11 +290,20 @@ function Homepage2({choose, affiliate, buyer, snap}) {
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
+                <Grid 
+                container style={{ marginTop: '5rem'}} 
+                // data-aos="fade-right" 
+                // data-aos-delay='400'
+                >
                       <Grid item xs={12} md={6}>
                         <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
                 </Grid>
-                <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
+                <Grid item 
+                xs={12} 
+                md={6} 
+                // data-aos="fade-left" 
+                // data-aos-delay='800'
+                >
                     <List className={classes.buyerList}>
                     {buyer.map((single, i) => {
                         return ( 
@@ -301,11 +322,20 @@ function Homepage2({choose, affiliate, buyer, snap}) {
             We invite you to join the Affiliate Program to get many benefits. 
             Now find out <br /> what are your advantages by joining us
             </Typography>
-                <Grid container style={{ marginTop: '5rem'}} data-aos="fade-right" data-aos-delay='400'>
+                <Grid 
+                container style={{ marginTop: '5rem'}} 
+                // data-aos="fade-right" 
+                // data-aos-delay='400'
+                >
                       <Grid item xs={12} md={6}>
                         <img src={BuyerImg} alt='buyer' style={{ width: '90%'}} />
                 </Grid>
-                <Grid item xs={12} md={6} data-aos="fade-left" data-aos-delay='800'>
+                <Grid item 
+                xs={12} 
+                md={6} 
+                // data-aos="fade-left" 
+                // data-aos-delay='800'
+                >
                     <List className={classes.buyerList1}>
                     {buyer.map((single, i) => {
                         return ( 
